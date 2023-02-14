@@ -12,6 +12,10 @@
         <servlet-name>FilterProducts</servlet-name>
         <servlet-class>Controller.FilterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>Controller.HomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>
@@ -23,5 +27,9 @@
     <servlet-mapping>
         <servlet-name>FilterProducts</servlet-name>
         <url-pattern>/filter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
 </web-app>

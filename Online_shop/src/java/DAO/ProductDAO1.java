@@ -28,8 +28,10 @@ public class ProductDAO1 extends DBcontext {
         ArrayList<ProductDiscountUnitOnOrder> list = new ArrayList<>();
         try {
             Date date = java.util.Calendar.getInstance().getTime();
-            String sql = "select c.ProductID,c.ProductName,c.Picture,b.Discount,a.StartSale,a.EndSale from [Events] as a inner join Discounts as b on a.SaleID=b.SaleID  "
-                    + "inner join Products as c on b.ProductID=c.ProductID";
+            String sql = "select c.Price, c.ProductID,c.ProductName,c.Picture,b.Discount,d.Rate,d.AmountRate,a.StartSale,a.EndSale from [Events] as a inner join Discounts \n"
+                    + "as b on a.SaleID=b.SaleID inner join Products as c on b.ProductID=c.ProductID\n"
+                    + "left join (SELECT ProductID,AVG(Rate) as Rate,Count(Rate) as AmountRate FROM Comments GROUP BY ProductID) as d \n"
+                    + "on c.ProductID = d.ProductID";
 
             PreparedStatement ps = getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -42,7 +44,10 @@ public class ProductDAO1 extends DBcontext {
                     String productName = rs.getString("ProductName");
                     String picture = rs.getString("Picture");
                     float discount = rs.getFloat("Discount");
-                    ProductDiscountUnitOnOrder product = new ProductDiscountUnitOnOrder(productID, productName, picture, discount);
+                    float price = rs.getFloat("Price");
+                    int rate = rs.getInt("Rate");
+                    int amountRate = rs.getInt("AmountRate");
+                    ProductDiscountUnitOnOrder product = new ProductDiscountUnitOnOrder(productID, productName, picture, discount, price, rate, amountRate);
                     list.add(product);
                 }
                 Collections.sort(list, new Comparator<ProductDiscountUnitOnOrder>() {
@@ -62,7 +67,7 @@ public class ProductDAO1 extends DBcontext {
     public static void main(String[] args) throws ParseException {
                     ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProductBestSale();
                     for (ProductDiscountUnitOnOrder productDiscountUnitOnOrder : ListSale) {
-                        System.out.println("ds");
+                        System.out.println(productDiscountUnitOnOrder.getProductID());
             
         }
     }

@@ -131,7 +131,7 @@
     <div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Best Sale Products</span></h2>
         <div class="row px-xl-5">
-            <c:forEach begin="0" end="4" items="${ListSale}" var="sale">
+            <c:forEach begin="0" end="3" items="${ListSale}" var="sale">
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
@@ -144,17 +144,21 @@
                         </div>
                     </div>
                     <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
+                        <a class="h6 text-decoration-none text-truncate" href=""></a>
                         <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                            <h5>$<fmt:formatNumber maxFractionDigits="0" value="${sale.price *(1-sale.discount)}"/></h5><h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="2" value="${sale.price}"/></del></h6>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
+                            <div class="rate-star-class">
+                                <c:forEach begin="1" end="${sale.rate}">
+                                <small class="fa fa-star fasize checked"></small>
+                                </c:forEach>
+                                <c:forEach begin="1" end="${5-sale.rate}">
+                                <small class="fa fa-star fasize "></small>
+                                </c:forEach>
+                               
+                            </div>
+                            <small>(${sale.amountRate})</small>
                         </div>
                     </div>
                 </div>

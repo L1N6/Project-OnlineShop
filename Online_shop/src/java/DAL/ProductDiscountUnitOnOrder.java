@@ -23,6 +23,43 @@ public class ProductDiscountUnitOnOrder {
     private int unitOnstoke;
     private int unitOnOrder;
     private float price;
+    private int rate;
+    private int amountRate;
+    
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public int getAmountRate() {
+        return amountRate;
+    }
+
+    public void setAmountRate(int amountRate) {
+        this.amountRate = amountRate;
+    }
+
+    public ProductDiscountUnitOnOrder(int productID, String productName, String picture, float discount, float price, int rate, int amountRate) {
+        this.productID = productID;
+        this.productName = productName;
+        this.picture = picture;
+        this.discount = discount;
+        this.price = price;
+        this.rate = rate;
+        this.amountRate = amountRate;
+    }
+ 
+
+    public ProductDiscountUnitOnOrder(int productID, String productName, String picture, float discount, float price) {
+        this.productID = productID;
+        this.productName = productName;
+        this.picture = picture;
+        this.discount = discount;
+        this.price = price;
+    }
 
     public ProductDiscountUnitOnOrder(int productID, String productName, String picture, int unitOnOrder) {
         this.productID = productID;

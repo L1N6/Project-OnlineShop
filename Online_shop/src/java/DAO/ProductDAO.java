@@ -42,7 +42,6 @@ public class ProductDAO extends DBcontext {
             }
         } catch (Exception e) {
         }
-        System.out.println(listProduct.size());
         return listProduct;
     }
 

@@ -39,10 +39,11 @@ public class ShopViewController extends HttpServlet {
         } else {
             currentPage = Integer.parseInt(req.getParameter("currentPage"));
         }
+        req.getSession().removeAttribute("searching");
+        req.getSession().removeAttribute("sortSession");
         switch (choice) {
             case "sort":
                 String condition = req.getParameter("sort");
-                req.getSession().removeAttribute("searching");
                 List<ProductInfor> listSortingProduct = new ProductDAO().sortProducts(condition);
                 List<ProductInfor> sortProduct = pcp.getPageOfResult(listSortingProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
                 numberOfPage = pcp.getTotalPageOfResult(listSortingProduct, PaginationObject.getNumberOfRowEachPage());

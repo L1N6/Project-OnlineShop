@@ -41,6 +41,7 @@ public class ShopViewController extends HttpServlet {
         }
         req.getSession().removeAttribute("searching");
         req.getSession().removeAttribute("sortSession");
+        
         switch (choice) {
             case "sort":
                 String condition = req.getParameter("sort");

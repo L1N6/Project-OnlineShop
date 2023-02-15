@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/shop.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO.java</file>
-            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/ProductInfor.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/SearchingController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/ShopViewController.java</file>
         </group>
     </open-files>
 </project-private>

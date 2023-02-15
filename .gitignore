@@ -1,4 +1,8 @@
 /build/
 /dist/
+
 /Online_shop/build/
 /Online_shop/dist/
+/Online_shop/nbproject/
+
+/Online_shop/src/java/DAL/DBContext.java

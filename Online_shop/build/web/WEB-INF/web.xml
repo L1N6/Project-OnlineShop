@@ -15,6 +15,8 @@
     <servlet>
         <servlet-name>Test</servlet-name>
         <servlet-class>Controller.Test</servlet-class>
+        <servlet-name>SendEmailServlet</servlet-name>
+        <servlet-class>Controller.SendEmailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
@@ -31,5 +33,7 @@
     <servlet-mapping>
         <servlet-name>Test</servlet-name>
         <url-pattern>/test</url-pattern>
+        <servlet-name>SendEmailServlet</servlet-name>
+        <url-pattern>/SendEmailServlet</url-pattern>
     </servlet-mapping>
 </web-app>

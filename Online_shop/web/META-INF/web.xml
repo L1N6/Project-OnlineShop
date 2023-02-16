@@ -13,8 +13,13 @@
         <servlet-class>Controller.FilterController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>Test</servlet-name>
         <servlet-class>Controller.Test</servlet-class>
+=======
+        <servlet-name>SendEmailServlet</servlet-name>
+        <servlet-class>Controller.SendEmailServlet</servlet-class>
+>>>>>>> origin/contact
     </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
@@ -29,7 +34,12 @@
         <url-pattern>/filter</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>Test</servlet-name>
         <url-pattern>/test</url-pattern>
+=======
+        <servlet-name>SendEmailServlet</servlet-name>
+        <url-pattern>/SendEmailServlet</url-pattern>
+>>>>>>> origin/contact
     </servlet-mapping>
 </web-app>

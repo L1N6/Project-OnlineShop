@@ -99,6 +99,26 @@ address {
   line-height: inherit;
 }
 
+.rate-star-class{
+   
+    margin-right: 0.25rem !important;
+
+
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    size: 10px;
+}
+.checked{
+  color: orange;
+}
+.fasize {
+    font-size: 1em;
+    
+}
+
 ol,
 ul,
 dl {

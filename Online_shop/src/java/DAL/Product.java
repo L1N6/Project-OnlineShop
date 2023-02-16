@@ -18,14 +18,31 @@ public class Product {
     private String OperatingSystem;
     private String PhoneScreen;
     private String Picture;
-
+    private double Price;
+    
     public Product() {
     }
 
+    public Product(int ProductID, String ProductName, String Picture, double Price) {
+        this.ProductID = ProductID;
+        this.ProductName = ProductName;
+        this.Picture = Picture;
+        this.Price = Price;
+    }
+
+       
     public Product(int ProductID, String ProductName, String Picture) {
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.Picture = Picture;
+    }
+    
+    public double getPrice() {
+        return Price;
+    }
+
+    public void setPrice(double Price) {
+        this.Price = Price;
     }
 
     public int getProductID() {

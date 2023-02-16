@@ -6,6 +6,7 @@ package Controller;
 
 import DAL.PaginationObject;
 import DAL.Product;
+import DAL.ProductInfor;
 import DAO.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -38,22 +39,24 @@ public class ShopViewController extends HttpServlet {
         } else {
             currentPage = Integer.parseInt(req.getParameter("currentPage"));
         }
+        req.getSession().removeAttribute("searching");
+        req.getSession().removeAttribute("sortSession");
+        
         switch (choice) {
             case "sort":
                 String condition = req.getParameter("sort");
-                if(condition.equals("latest")){
-                    condition = "desc";
-                }
-                List<Product> listSortingProduct = new ProductDAO().sortProducts(condition);
-                List<Product> sortProduct = pcp.getPageOfResult(listSortingProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
+                List<ProductInfor> listSortingProduct = new ProductDAO().sortProducts(condition);
+                List<ProductInfor> sortProduct = pcp.getPageOfResult(listSortingProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
                 numberOfPage = pcp.getTotalPageOfResult(listSortingProduct, PaginationObject.getNumberOfRowEachPage());
+                req.getSession().setAttribute("sortSession", "not null");
                 req.getSession().setAttribute("currentPage", currentPage);
+                req.setAttribute("sortCondition", condition);
                 req.setAttribute("numberOfPage", numberOfPage);
                 req.setAttribute("shopListProduct", sortProduct);
                 break;
             default: {
-                List<Product> listProduct = new ProductDAO().getAllProduct();
-                List<Product> getProduct = pcp.getPageOfResult(listProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
+                List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
+                List<ProductInfor> getProduct = pcp.getPageOfResult(listProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
                 numberOfPage = pcp.getTotalPageOfResult(listProduct, PaginationObject.getNumberOfRowEachPage());
                 req.getSession().setAttribute("currentPage", currentPage);
                 req.setAttribute("numberOfPage", numberOfPage);

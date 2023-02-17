@@ -53,12 +53,12 @@
                            <div class="dropdown-menu dropdown-menu-right">
                                <c:if test="${empty AccSession}">
                                 <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign in</a>
-                                <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign up</a>
+                                <a  class="dropdown-item" href="<%=path%>/SignUp" type="button">Sign up</a>
                             </c:if>
                                 
                             <c:if test="${not empty AccSession}">
                                 <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="profile"/></c:url>">Profile</a>
-                                <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a>
+                                <a class="dropdown-item" href="<c:url value="/Logout"><c:param name="req" value="remove"/></c:url>">SignOut</a>
                             </c:if>
                         </div>
                         <div class="btn-group mx-2">

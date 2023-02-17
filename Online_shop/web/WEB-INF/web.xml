@@ -16,6 +16,14 @@
         <servlet-name>ForgotPass</servlet-name>
         <servlet-class>Controller.ForgotPassword</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>Controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>

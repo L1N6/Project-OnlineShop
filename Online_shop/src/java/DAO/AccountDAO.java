@@ -36,18 +36,25 @@ public class AccountDAO extends DBcontext {
         int result1 = 0, result2 = 0;
         try {
             String sql1 = "insert into Customers(CustomerID, CompanyName, ContactName, ContactTitle, Address) values(?,?,?,?,?)";
-            String sql2 = "insert into Accounts(Email,Password,CustomerID,Role,EmployeeID) values(?,?,?,2,?)";
+            String sql2 = "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role) values(?,?,?,?,2)";
+            boolean fl = true;
+            if(acc.getEmployeeID() == null ){
+                sql2 =  "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role) values(?,?,?,NULL,2)";
+                fl=false;
+            }
+            
             PreparedStatement ps1 = getConnection().prepareStatement(sql1);
             PreparedStatement ps2 = getConnection().prepareStatement(sql2);
             ps1.setString(1, customer.getCustomerID());
-            ps1.setString(2, customer.getCompanyName());
-            ps1.setString(3, customer.getContactName());
-            ps1.setString(4, customer.getContactTitle());
+            ps1.setString(2, customer.getCompanyName()==null?"Null":customer.getCompanyName());
+            ps1.setString(3, customer.getContactName()==null?"NULL":customer.getContactName());
+            ps1.setString(4, customer.getContactTitle()==null?"NULL":customer.getContactTitle());
             ps1.setString(5, customer.getAddress());
             ps2.setString(1, acc.getEmail());
             ps2.setString(2, acc.getPass());
             ps2.setString(3, customer.getCustomerID());   
-            ps2.setString(4, acc.getEmployeeID());  
+            if(fl)
+                ps2.setInt(4, Integer.parseInt(acc.getEmployeeID()));  
             result1 = ps1.executeUpdate();
             result2 = ps2.executeUpdate();
         } catch (Exception e) {

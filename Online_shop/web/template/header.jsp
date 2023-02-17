@@ -44,32 +44,31 @@
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                         <c:if test="${not empty adminAccount}">
+                            <c:if test="${not empty adminAccount}">
                             <li><a href="<c:url value="/Admin"><c:param name="req" value="listProduct"/></c:url>">Admin Manager</a></li>
                             <li><a href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a></li>
-                        </c:if>
-                        
-                            <div class="btn-group">
+                            </c:if>
+                        <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
-                           <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-menu dropdown-menu-right">
                                <c:if test="${empty AccSession}">
                                 <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign in</a>
                                 <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign up</a>
-                            </c:if>
+                                </c:if>
                                 
-                            <c:if test="${not empty AccSession}">
-                                <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="profile"/></c:url>">Profile</a>
-                                <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a>
-                            </c:if>
-                        </div>
-                        <div class="btn-group mx-2">
+                                <c:if test="${not empty AccSession}">
+                                    <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="profile"/></c:url>">Profile</a>
+                                    <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a>
+                                </c:if>
+                            </div>
+                            <div class="btn-group mx-2">
                             <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <button class="dropdown-item" type="button">EUR</button>
                                 <button class="dropdown-item" type="button">GBP</button>
                                 <button class="dropdown-item" type="button">CAD</button>
                             </div>
-                        </div>
+                            </div>
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
                             <div class="dropdown-menu dropdown-menu-right">
@@ -99,13 +98,13 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-6 text-left">
-                    <form action="">
+                    <form action="<c:url value="/searching"/>" method="Post">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for products">
+                            <input value="${txtValue}" type="text" class="form-control" placeholder="Search for products" name="txt">
                             <div class="input-group-append">
-                                <span class="input-group-text bg-transparent text-primary">
+                                <button class="input-group-text bg-transparent text-primary">
                                     <i class="fa fa-search"></i>
-                                </span>
+                                </button>
                             </div>
                         </div>
                     </form>

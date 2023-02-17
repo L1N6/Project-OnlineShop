@@ -27,14 +27,14 @@ public class EventDAO extends DBcontext{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Date dateS = rs.getDate("StartSale");
-                Date dateE = rs.getDate("EndSale");
+                Date dateS = rs.getDate("StartEvent");
+                Date dateE = rs.getDate("EndEvent");
                 if (dateS.before(date) && date.before(dateE)) {
-                    int SaleID = rs.getInt("SaleID");
-                    String NameSale = rs.getString("NameSale");
+                    int SaleID = rs.getInt("EventID");
+                    String NameSale = rs.getString("EventName");
                     String picture= rs.getString("Picture");
-                    Date StartSale = rs.getDate("StartSale");
-                    Date EndSale = rs.getDate("EndSale");
+                    Date StartSale = rs.getDate("StartEvent");
+                    Date EndSale = rs.getDate("EndEvent");
                     list.add(new Event(sql, NameSale, picture, StartSale, EndSale));
                 }
             }

@@ -28,16 +28,16 @@ public class ProductDAO1 extends DBcontext {
         ArrayList<ProductDiscountUnitOnOrder> list = new ArrayList<>();
         try {
             Date date = java.util.Calendar.getInstance().getTime();
-            String sql = "select c.Price, c.ProductID,c.ProductName,c.Picture,b.Discount,d.Rate,d.AmountRate,a.StartSale,a.EndSale from [Events] as a inner join Discounts \n"
-                    + "as b on a.SaleID=b.SaleID inner join Products as c on b.ProductID=c.ProductID\n"
+            String sql = "select c.Price, c.ProductID,c.ProductName,c.Picture,b.Discount,d.Rate,d.AmountRate,a.StartEvent,a.EndEvent from [Events] as a inner join Discounts \n"
+                    + "as b on a.EventID=b.EventID inner join Products as c on b.ProductID=c.ProductID\n"
                     + "left join (SELECT ProductID,AVG(Rate) as Rate,Count(Rate) as AmountRate FROM Comments GROUP BY ProductID) as d \n"
                     + "on c.ProductID = d.ProductID";
 
             PreparedStatement ps = getConnection().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Date dateS = rs.getDate("StartSale");
-                Date dateE = rs.getDate("EndSale");
+                Date dateS = rs.getDate("StartEvent");
+                Date dateE = rs.getDate("EndEvent");
                
                 if (dateS.before(date) && date.before(dateE)) {
                     int productID = rs.getInt("ProductID");

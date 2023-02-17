@@ -31,6 +31,7 @@ public class DBcontext {
             String pass = "123123";
             String url = "jdbc:sqlserver://DESKTOP-52OQN5G:1433;databaseName=Oline_SHOP_DB";
 
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {

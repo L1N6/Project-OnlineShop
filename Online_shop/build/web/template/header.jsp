@@ -1,5 +1,6 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free HTML Templates" name="keywords">
         <meta content="Free HTML Templates" name="description">
-        
+        <%String path = request.getContextPath(); %>
         <!-- Favicon -->
         <link href="img/favicon.ico" rel="icon">
 
@@ -43,12 +44,23 @@
                 </div>
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
-                        <div class="btn-group">
+                         <c:if test="${not empty adminAccount}">
+                            <li><a href="<c:url value="/Admin"><c:param name="req" value="listProduct"/></c:url>">Admin Manager</a></li>
+                            <li><a href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a></li>
+                        </c:if>
+                        
+                            <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <button  class="dropdown-item" type="button">Sign in</button>
-                                <button  class="dropdown-item" type="button">Sign up</button>
-                            </div>
+                           <div class="dropdown-menu dropdown-menu-right">
+                               <c:if test="${empty AccSession}">
+                                <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign in</a>
+                                <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign up</a>
+                            </c:if>
+                                
+                            <c:if test="${not empty AccSession}">
+                                <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="profile"/></c:url>">Profile</a>
+                                <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a>
+                            </c:if>
                         </div>
                         <div class="btn-group mx-2">
                             <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
@@ -87,13 +99,13 @@
                     </a>
                 </div>
                 <div class="col-lg-4 col-6 text-left">
-                    <form action="<c:url value="/searching"/>" method="Post">
+                    <form action="">
                         <div class="input-group">
-                            <input value="${txtValue}" type="text" class="form-control" placeholder="Search for products" name="txt">
+                            <input type="text" class="form-control" placeholder="Search for products">
                             <div class="input-group-append">
-                                <button class="input-group-text bg-transparent text-primary">
+                                <span class="input-group-text bg-transparent text-primary">
                                     <i class="fa fa-search"></i>
-                                </button>
+                                </span>
                             </div>
                         </div>
                     </form>
@@ -144,7 +156,7 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="index.jsp" class="nav-item nav-link">Home</a>
-                                <a href="<c:url value="/shop"><c:param name="choice" value="shop"/></c:url>" class="nav-item nav-link active">Shop</a>
+                                <a href="shop.jsp" class="nav-item nav-link active">Shop</a>
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                                     <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">

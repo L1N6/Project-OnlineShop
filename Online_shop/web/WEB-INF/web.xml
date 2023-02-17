@@ -16,14 +16,6 @@
         <servlet-name>ForgotPass</servlet-name>
         <servlet-class>Controller.ForgotPassword</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>Test</servlet-name>
-        <servlet-class>Controller.Test</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SendEmailServlet</servlet-name>
-        <servlet-class>Controller.SendEmailServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>SignUp</servlet-name>
         <url-pattern>/SignUp</url-pattern>
@@ -37,16 +29,6 @@
         <url-pattern>/SignIn</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SendEmailServlet</servlet-name>
-        <url-pattern>/SendEmailServlet</url-pattern>
-    </servlet-mapping>
-    
-=======
         <servlet-name>ForgotPass</servlet-name>
         <url-pattern>/ForgotPass</url-pattern>
     </servlet-mapping>
@@ -55,5 +37,4 @@
             30
         </session-timeout>
     </session-config>
->>>>>>> origin/login
 </web-app>

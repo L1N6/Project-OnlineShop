@@ -20,10 +20,6 @@
         <servlet-name>SendEmailServlet</servlet-name>
         <servlet-class>Controller.SendEmailServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>HomeController</servlet-name>
-        <servlet-class>Controller.HomeController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>
@@ -81,8 +77,5 @@
             30
         </session-timeout>
     </session-config>
-    <servlet-mapping>
-        <servlet-name>HomeController</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
+    
 </web-app>

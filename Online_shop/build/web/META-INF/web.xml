@@ -4,6 +4,110 @@
         <servlet-name>Shop</servlet-name>
         <servlet-class>Controller.ShopViewController</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>SearchingProducts</servlet-name>
+        <servlet-class>Controller.SearchingController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>FilterProducts</servlet-name>
+        <servlet-class>Controller.FilterController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>Controller.HomeController</servlet-class>
+    </servlet>
+
+    <servlet>
+         <servlet-name>Test</servlet-name>
+        <servlet-class>Controller.Test</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SendEmailServlet</servlet-name>
+        <servlet-class>Controller.SendEmailServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Shop</servlet-name>
+        <url-pattern>/shop</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SearchingProducts</servlet-name>
+        <url-pattern>/searching</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FilterProducts</servlet-name>
+        <url-pattern>/filter</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SendEmailServlet</servlet-name>
+        <url-pattern>/SendEmailServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignIn</servlet-name>
+        <servlet-class>Controller.SignInController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>SignUp</servlet-name>
+        <servlet-class>Controller.SignUpController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>Controller.HomeController</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>ForgotPass</servlet-name>
+        <servlet-class>Controller.ForgotPassword</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SignUp</servlet-name>
+        <url-pattern>/SignUp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>SignIn</servlet-name>
+        <url-pattern>/SignIn</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ForgotPass</servlet-name>
+        <url-pattern>/ForgotPass</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <servlet>
+        <servlet-name>Shop</servlet-name>
+        <servlet-class>Controller.ShopViewController</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>SearchingProducts</servlet-name>
         <servlet-class>Controller.SearchingController</servlet-class>
@@ -15,6 +119,14 @@
     <servlet>
         <servlet-name>HomeController</servlet-name>
         <servlet-class>Controller.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Test</servlet-name>
+        <servlet-class>Controller.Test</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SendEmailServlet</servlet-name>
+        <servlet-class>Controller.SendEmailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
@@ -32,4 +144,45 @@
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendEmailServlet</servlet-name>
+        <url-pattern>/SendEmailServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SignIn</servlet-name>
+        <servlet-class>Controller.SignInController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SignUp</servlet-name>
+        <servlet-class>Controller.SignUpController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>Controller.HomeController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPass</servlet-name>
+        <servlet-class>Controller.ForgotPassword</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignUp</servlet-name>
+        <url-pattern>/SignUp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignIn</servlet-name>
+        <url-pattern>/SignIn</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotPass</servlet-name>
+        <url-pattern>/ForgotPass</url-pattern>
+    </servlet-mapping>
+
+    
 </web-app>

@@ -16,6 +16,19 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,6 +54,17 @@ public class HomeController extends HttpServlet{
         req.setAttribute("Check", "true");
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
-    
-    
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+
+        }
+    } 
 }
+
+/**
+ *
+ * @author hieuh
+ */
+

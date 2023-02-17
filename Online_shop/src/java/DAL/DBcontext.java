@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author LEGION
  */
 public class DBcontext {
-     private Connection connection;
+    private Connection connection;
     public DBcontext()
     {
         //@Students: You are allowed to edit user, pass, url variables to fit 
@@ -60,4 +60,8 @@ public class DBcontext {
         }
     }
     
+    
+
+
+
 }

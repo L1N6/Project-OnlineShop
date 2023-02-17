@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/index.jsp</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/s_css/bootstrap/scss/bootstrap.scss</file>
@@ -15,6 +16,14 @@
             <file>file:/E:/Project-OnlineShop/Online_shop/web/css/style.min.css</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/css/style.css</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO1.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/SearchingController.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/META-INF/web.xml</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Email.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/SendEmail.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/contact.jsp</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/SendEmailServlet.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/nbproject/build-impl.xml</file>
+
         </group>
     </open-files>
 </project-private>

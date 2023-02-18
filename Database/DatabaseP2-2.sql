@@ -1,8 +1,8 @@
 ﻿USE [master]
 GO
-CREATE DATABASE [SHOP_DB_Test_7]
+CREATE DATABASE [SHOP_DB_Test_1]
 GO
-USE [SHOP_DB_Test_7]
+USE [SHOP_DB_Test_1]
 GO
 CREATE TABLE [dbo].[Employees](
 	[EmployeeID] [int] IDENTITY(1,1) NOT NULL,
@@ -379,33 +379,33 @@ CREATE TABLE [dbo].[Discounts](
 )
 GO
 
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (1,1,0.2)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (2,1,0.15)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (3,1,0.2)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (4,1,0.75)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (5,1,0.2)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (6,1,0.1)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (1,1,0.2)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (2,1,0.15)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (3,1,0.2)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (4,1,0.75)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (5,1,0.2)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (6,1,0.1)
 
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (7,2,0.2)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (8,2,0.15)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (9,2,0.075)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (10,2,0.05)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (11,2,0.005)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (7,2,0.2)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (8,2,0.15)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (9,2,0.075)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (10,2,0.05)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (11,2,0.005)
 
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (12,3,0.075)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (13,3,0.09)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (14,3,0.08)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (15,3,0.07)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (16,3,0.06)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (12,3,0.075)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (13,3,0.09)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (14,3,0.08)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (15,3,0.07)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (16,3,0.06)
 
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (27,2,0.06)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (19,2,0.07)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (18,2,0.08)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (27,2,0.06)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (19,2,0.07)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (18,2,0.08)
 
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (1,4,0.1)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (2,4,0.11)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (3,4,0.22)
-INSERT [dbo].[Discounts] (  ProductID, SaleID,Discount) VALUES (4,4,0.77)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (1,4,0.1)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (2,4,0.11)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (3,4,0.22)
+INSERT [dbo].[Discounts] (  ProductID, EvenID,Discount) VALUES (4,4,0.77)
 
 
 GO
@@ -421,15 +421,6 @@ CREATE TABLE [dbo].[OrderDetails](
 )
 GO
 --
-INSERT [dbo].[Products] ( [ProductName], [BrandID], [Chip],[Ram],[Pin],[OperatingSystem],[PhoneScreen],Picture,[Price]) VALUES ('iPhone 11',1,'Apple A13 Bionic',4,'3110 mAh,18 W','iOS 15','IPS LCD,6.1",Liquid Retina','iphone-11-(88).jpg',11490000)
-INSERT [dbo].[Products] ( [ProductName], [BrandID], [Chip],[Ram],[Pin],[OperatingSystem],[PhoneScreen],Picture,[Price]) VALUES ('iPhone 13 Pro Max',1, 'Apple A15 Bionic',6,'4352 mAh,20 W','iOS 15','OLED,6.7",Super Retina XDR ','iphone-13-pro-max-1tb-(38).jpg',34990000)                   
-INSERT [dbo].[Products] ( [ProductName], [BrandID], [Chip],[Ram],[Pin],[OperatingSystem],[PhoneScreen],Picture,[Price]) VALUES ('iPhone 13 Pro',1, 'Apple A15 Bionic',6,'3095 mAh,20 W','iOS 15','OLED,6.1",Super Retina XDR','iphone-13-pro-1tb-(38).jpg',29990000)
-INSERT [dbo].[Products] ( [ProductName], [BrandID], [Chip],[Ram],[Pin],[OperatingSystem],[PhoneScreen],Picture,[Price]) VALUES ('iPhone 14 Pro Max',1, 'Apple A16 Bionic',6,'4323 mAh,20 W','iOS 16','OLED,6.7",Super Retina XDR','iphone-14-pro-max-(40).jpg',29990000)
---brand2 SAMSUNG
-INSERT [dbo].[Products] ( [ProductName], [BrandID], [Chip],[Ram],[Pin],[OperatingSystem],[PhoneScreen],Picture,[Price]) VALUES ('Samsung Galaxy Z Flip4',2,'Snapdragon 8+ Gen 1',8,'3700 mAh,25 W','Android 12',N'Chính: Dynamic AMOLED 2X, Phụ: Super AMOLEDChính 6.7" & Phụ 1.9"Full HD+','samsung-galaxy-z-flip4-(12).jpg',18990000)
-INSERT [dbo].[Products] ( [ProductName], [BrandID], [Chip],[Ram],[Pin],[OperatingSystem],[PhoneScreen],Picture,[Price]) VALUES ('Samsung Galaxy S22 Ultra',2,'Snapdragon 8+ Gen 1',8,'5000 mAh,45 W','Android 12',N'Dynamic AMOLED 2X6.8"Quad HD+ (2K+)','samsung-galaxy-s22-ultra-(20).jpg',23990000)
-INSERT [dbo].[Products] ( [ProductName], [BrandID], [Chip],[Ram],[Pin],[OperatingSystem],[PhoneScreen],Picture,[Price]) VALUES ('Samsung Galaxy A23',2,'Snapdragon 680',8,'5000 mAh,25 W','Android 12',N'PLS TFT LCD6.6"Full HD+','samsung-galaxy-a23-cam-thumb-600x600.jpg',4890000)
-INSERT [dbo].[Products] ( [ProductName], [BrandID], [Chip],[Ram],[Pin],[OperatingSystem],[PhoneScreen],Picture,[Price]) VALUES ('Samsung Galaxy Z Fold4',2,'Snapdragon 8+ Gen 1',12,'4400 mAh,25 W','Android 12',N'Dynamic AMOLED 2XChính 7.6" & Phụ 6.2"Quad HD+ (2K+)','samsung-galaxy-z-fold4-(14).jpg',9490000)
 
 --
 INSERT [dbo].[OrderDetails] (OrderID,ProductID,DiscountID,UnitPrice,Quantity) VALUES (1,1,1,11490000,1);
@@ -471,6 +462,7 @@ CREATE TABLE [dbo].[Cart](
 	AccountID [int] FOREIGN KEY REFERENCES Accounts (AccountID)NOT NULL,
 	PRIMARY KEY (CartID)
 )
+GO
 INSERT [dbo].[Cart] (AccountID) VALUES (3);
 INSERT [dbo].[Cart] (AccountID) VALUES (4);
 INSERT [dbo].[Cart] (AccountID) VALUES (5);
@@ -478,7 +470,7 @@ INSERT [dbo].[Cart] (AccountID) VALUES (6);
 INSERT [dbo].[Cart] (AccountID) VALUES (7);
 INSERT [dbo].[Cart] (AccountID) VALUES (8);
 INSERT [dbo].[Cart] (AccountID) VALUES (9);
-
+GO
 
 CREATE TABLE [dbo].[CartDetails](
 	[CartDetailID] [int] IDENTITY(1,1) NOT NULL,
@@ -524,6 +516,7 @@ CREATE TABLE [dbo].[Comments](
 	[Picture] [nvarchar](40) NULL,
 	PRIMARY KEY ([CommentID])
 	)
+	GO
 	INSERT [dbo].[Comments] (AccountID, Rate,ProductID,[Time],[Description]) VALUES (3,5,1,CAST(N'2023-01-01T00:00:00.000' AS DateTime),'Nice Phone')
 	INSERT [dbo].[Comments] (AccountID, Rate,ProductID,[Time],[Description]) VALUES (4,5,1,CAST(N'2023-01-02T00:00:00.000' AS DateTime),'Best Phone')
 	INSERT [dbo].[Comments] (AccountID, Rate,ProductID,[Time],[Description]) VALUES (5,5,1,CAST(N'2023-01-03T00:00:00.000' AS DateTime),'Good Product')

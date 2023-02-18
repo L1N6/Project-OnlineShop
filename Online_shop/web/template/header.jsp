@@ -187,5 +187,9 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <!-- Navbar End -->
 
+=======
+    <!-- Navbar End -->
+>>>>>>> Develop

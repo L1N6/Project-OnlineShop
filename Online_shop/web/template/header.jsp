@@ -58,7 +58,6 @@
                                 <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign in</a>
                                 <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign up</a>
                                 </c:if>
-                                
                                 <c:if test="${not empty AccSession}">
                                     <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="profile"/></c:url>">Profile</a>
                                     <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a>

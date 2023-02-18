@@ -10,6 +10,7 @@ import DAL.Product;
 import DAL.ProductInfor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,9 @@ import java.util.List;
  * @author LEGION
  */
 public class ProductDAO extends DBcontext {
-
-    public List<ProductInfor> getAllProduct() {
+    ResultSet rs;
+    PreparedStatement ps;
+    public List<ProductInfor> getAllProduct() throws SQLException {
         List<ProductInfor> listProduct = new ArrayList<ProductInfor>();
         Product p = new Product();
         Comments c = new Comments();
@@ -28,8 +30,8 @@ public class ProductDAO extends DBcontext {
             String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average "
                     + "from Comments c inner join Products p on c.ProductID = p.ProductID "
                     + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
-            PreparedStatement ps = getConnection().prepareCall(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = getConnection().prepareCall(sql);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 int ProductID = rs.getInt("ProductID");
                 String ProductName = rs.getString("ProductName");
@@ -40,12 +42,15 @@ public class ProductDAO extends DBcontext {
                 c = new Comments(Rate);
                 listProduct.add(new ProductInfor(c, p));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return listProduct;
     }
 
-    public List<ProductInfor> searchProducts(String condition) {
+    public List<ProductInfor> searchProducts(String condition) throws SQLException {
         List<ProductInfor> listProduct = new ArrayList<ProductInfor>();
         Product p = new Product();
         Comments c = new Comments();
@@ -53,9 +58,9 @@ public class ProductDAO extends DBcontext {
             String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average \n"
                     + "from Comments c inner join Products p on c.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%'+?+'%'\n"
                     + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
-            PreparedStatement ps = getConnection().prepareCall(sql);
+            ps = getConnection().prepareCall(sql);
             ps.setString(1, condition);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                 int ProductID = rs.getInt("ProductID");
                 String ProductName = rs.getString("ProductName");
@@ -66,12 +71,15 @@ public class ProductDAO extends DBcontext {
                 c = new Comments(Rate);
                 listProduct.add(new ProductInfor(c, p));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return listProduct;
     }
 
-    public List<ProductInfor> sortProducts(String condition) {
+    public List<ProductInfor> sortProducts(String condition) throws SQLException {
         List<ProductInfor> listProduct = new ArrayList<ProductInfor>();
         Product p = new Product();
         Comments c = new Comments();
@@ -85,8 +93,8 @@ public class ProductDAO extends DBcontext {
             sql = "select * from Products order by ProductID desc";
         }
         try {
-            PreparedStatement ps = getConnection().prepareCall(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = getConnection().prepareCall(sql);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 int ProductID = rs.getInt("ProductID");
                 String ProductName = rs.getString("ProductName");
@@ -97,7 +105,10 @@ public class ProductDAO extends DBcontext {
                 c = new Comments(Rate);
                 listProduct.add(new ProductInfor(c, p));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return listProduct;
     }

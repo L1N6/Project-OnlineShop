@@ -9,6 +9,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SignInController extends HttpServlet {
 
@@ -20,34 +23,38 @@ public class SignInController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //nhan du lieu tu login.jsp
-        String email = req.getParameter("txtEmail");
-        String pass = req.getParameter("txtPass");
-        if (email.equals("")) {
-            req.setAttribute("msgEmail", "Email is required");
-        } else {
-            req.setAttribute("Email", email);
-        }
-        if (pass.equals("")) {
-            req.setAttribute("msgPass", "Pass is required");
-        }
-        Account acc = new AccountDAO().getAccount(email, pass);
-        if (acc != null) {
-            //Cap session cho account
-            req.setAttribute("check", "not empty");
-            if (acc.getRole() == 1) {
-                req.getSession().setAttribute("adminAccount", acc);
+        try {
+            //nhan du lieu tu login.jsp
+            String email = req.getParameter("txtEmail");
+            String pass = req.getParameter("txtPass");
+            if (email.equals("")) {
+                req.setAttribute("msgEmail", "Email is required");
             } else {
-                req.getSession().setAttribute("AccSession", acc);
+                req.setAttribute("Email", email);
             }
-            CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID());
-            req.getSession().setAttribute("CustomerInfor", inforAccount);
-            //Dieu huong toi index.jsp
-            resp.sendRedirect("home");
-        } else {
-            req.setAttribute("check", "not empty");
-            req.setAttribute("msg", "This account does not exist");
-            req.getRequestDispatcher("signIn.jsp").forward(req, resp);
+            if (pass.equals("")) {
+                req.setAttribute("msgPass", "Pass is required");
+            }
+            Account acc = new AccountDAO().getAccount(email, pass);
+            if (acc != null) {
+                //Cap session cho account
+                req.setAttribute("check", "not empty");
+                if (acc.getRole() == 1) {
+                    req.getSession().setAttribute("adminAccount", acc);
+                } else {
+                    req.getSession().setAttribute("AccSession", acc);
+                }
+                CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID());
+                req.getSession().setAttribute("CustomerInfor", inforAccount);
+                //Dieu huong toi index.jsp
+                resp.sendRedirect("home");
+            } else {
+                req.setAttribute("check", "not empty");
+                req.setAttribute("msg", "This account does not exist");
+                req.getRequestDispatcher("signIn.jsp").forward(req, resp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

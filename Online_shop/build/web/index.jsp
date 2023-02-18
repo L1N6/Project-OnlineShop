@@ -19,15 +19,12 @@
             <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <c:forEach begin="0" end="${Events.size()-1}" var="count"> 
-
                         <c:if test="${count!=0}">
                             <li data-target="#header-carousel" data-slide-to="${count}" ></li>
                             </c:if>
                             <c:if test="${count==0}">
                             <li data-target="#header-carousel" data-slide-to="${count}" class="active"></li>
                             </c:if>
-
-
                     </c:forEach>
                 </ol>
                 <div class="carousel-inner">
@@ -38,19 +35,16 @@
                                 <img class="position-absolute w-100 h-100" src="img/${event.picture}" style="object-fit: cover;">
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
-
                                         <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
-                             
                         </c:if>
                         <c:if test="${count==1}">
                         <div class="carousel-item position-relative" style="height:450px;">
                             <img class="position-absolute w-100 h-100" src="img/${event.picture}" style="object-fit: cover;">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
                                 </div>
                             </div>
@@ -178,7 +172,6 @@
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                         </div>
                     </div>

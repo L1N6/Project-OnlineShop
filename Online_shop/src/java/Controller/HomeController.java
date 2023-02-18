@@ -23,8 +23,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author blabl
@@ -34,15 +37,19 @@ public class HomeController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
-        ArrayList<BrandAndQuantity> brandList = new BrandDAO().getBrands();
-        ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProductBestSale();
-        ArrayList<Event> events = new EventDAO().getEvents();
-       
-        req.setAttribute("Events", events);
-        req.setAttribute("ListSale", ListSale);
-        req.setAttribute("List", brandList);
-        req.setAttribute("Check", "true");
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        try {
+            ArrayList<BrandAndQuantity> brandList = new BrandDAO().getBrands();
+            ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProductBestSale();
+            ArrayList<Event> events = new EventDAO().getEvents();
+            
+            req.setAttribute("Events", events);
+            req.setAttribute("ListSale", ListSale);
+            req.setAttribute("List", brandList);
+            req.setAttribute("Check", "true");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+        } catch (SQLException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

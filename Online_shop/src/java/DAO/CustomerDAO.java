@@ -10,6 +10,7 @@ import DAL.CustomerAccount;
 import DAL.DBcontext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -17,14 +18,15 @@ import java.util.ArrayList;
  * @author LEGION
  */
 public class CustomerDAO extends DBcontext {
-
-    public CustomerAccount getCustomerInfor(String CusID) {
+    ResultSet rs;
+    PreparedStatement ps;
+    public CustomerAccount getCustomerInfor(String CusID) throws SQLException {
         CustomerAccount customerAccount = null;
         try {
             String sql = "select * from Customers c, Accounts a where c.CustomerID = a.CustomerID and c.CustomerID = ?;";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps = getConnection().prepareStatement(sql);
             ps.setString(1, CusID);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                 String Email = rs.getString("Email");
                 String CompanyName = rs.getString("CompanyName");
@@ -36,36 +38,39 @@ public class CustomerDAO extends DBcontext {
                 Account acc = new Account(Email);
                 customerAccount = new CustomerAccount(acc, customer);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return customerAccount;
     }
 
-    public void updateCustomer(Customer cus) {
+    public void updateCustomer(Customer cus) throws SQLException {
         try {
             String sql = "Update Customers set ContactName= ?, CompanyName= ?,ContactTitle= ?,[Address]= ? \n"
                     + "where CustomerID = ? ";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps = getConnection().prepareStatement(sql);
             ps.setString(1, cus.getContactName());
             ps.setString(2, cus.getCompanyName());
             ps.setString(3, cus.getContactTitle());
             ps.setString(4, cus.getAddress());
             ps.setString(5, cus.getCustomerID());
             ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
     }
 
-    public ArrayList<CustomerAccount> getCustomerbyCondition(String condition, String cusName) {
+    public ArrayList<CustomerAccount> getCustomerbyCondition(String condition, String cusName) throws SQLException {
         ArrayList<CustomerAccount> list = new ArrayList<>();
         Customer c = new Customer();
         Account ac = new Account();
         CustomerAccount customerAccount = new CustomerAccount();
         try {
             String sql;
-            PreparedStatement ps;
             switch (condition) {
                 case "searchByCustomerName":
                     sql = "select * from Customers c left join Accounts ac on c.CustomerID = ac.CustomerID where c.ContactName like ?";
@@ -77,7 +82,7 @@ public class CustomerDAO extends DBcontext {
                     ps = getConnection().prepareStatement(sql);
                     break;
             }
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                 String CustomerID = rs.getString("CustomerID");
                 String CompanyName = rs.getString("CompanyName");
@@ -90,7 +95,10 @@ public class CustomerDAO extends DBcontext {
                 customerAccount = new CustomerAccount(ac, c);
                 list.add(customerAccount);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return list;
     }

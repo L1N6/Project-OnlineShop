@@ -8,15 +8,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AccountDAO extends DBcontext {
-
-    public Account getAccount(String email, String pass) {
+    ResultSet rs;
+    PreparedStatement ps;
+    public Account getAccount(String email, String pass) throws SQLException {
         Account acc = null;
         try {
             String sql = "select * from Accounts where Email = ? and Password = ?";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps = getConnection().prepareStatement(sql);
             ps.setString(1, email);
             ps.setString(2, pass);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()) {
                 String Email = rs.getString("Email");
                 String Password = rs.getString("Password");
@@ -26,13 +27,15 @@ public class AccountDAO extends DBcontext {
                 acc = new Account(Email, Password, CusID, role,EmpID);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return acc;
     }
 
 
-    public int addAccount(Customer customer, Account acc) {
+    public int addAccount(Customer customer, Account acc) throws SQLException {
         int result1 = 0, result2 = 0;
         try {
             String sql1 = "insert into Customers(CustomerID, CompanyName, ContactName, ContactTitle, Address) values(?,?,?,?,?)";
@@ -50,8 +53,10 @@ public class AccountDAO extends DBcontext {
             ps2.setString(4, acc.getEmployeeID());  
             result1 = ps1.executeUpdate();
             result2 = ps2.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         if(result1 > 0 && result2 > 0){
             return 1;
@@ -60,18 +65,21 @@ public class AccountDAO extends DBcontext {
         }
     }
     
-    public void changedPassword(String email, String newPassword){
+    public void changedPassword(String email, String newPassword) throws SQLException{
         try {
             String sql = "Update Accounts Set Password = ? where Email = ?";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps = getConnection().prepareStatement(sql);
             ps.setString(1, newPassword);
             ps.setString(2, email);
             ps.executeUpdate();
         } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
     }
     
-    public Account checkAccount(String email){
+    public Account checkAccount(String email) throws SQLException{
         Account acc = null;
         try {
             String sql = "select * from Accounts where Email = ?";
@@ -87,7 +95,9 @@ public class AccountDAO extends DBcontext {
                 acc = new Account(Email, Password, CusID, role,EmpID);
             }
         } catch (SQLException e) {
-            return null;
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return acc;
     }

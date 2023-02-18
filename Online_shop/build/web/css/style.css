@@ -9572,7 +9572,7 @@ a.text-dark:hover, a.text-dark:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(61, 70, 77, 0.5);
+  background: rgba(61, 70, 77, 0.05);
   z-index: 1;
 }
 
@@ -9721,7 +9721,25 @@ a.text-dark:hover, a.text-dark:focus {
   z-index: 11;
   animation: action 1s infinite alternate;
 }
+.rate-star-class{
+   
+    margin-right: 0.25rem !important;
 
+
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    size: 10px;
+}
+.checked{
+  color: orange;
+}
+.fasize {
+    font-size: 1em;
+    
+}
 @keyframes action {
   0% {
     transform: translateY(0);

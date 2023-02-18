@@ -22,7 +22,7 @@ public class PaginationObject<T> {
     public static void setNumberOfRowEachPage(int numberOfRowEachPage) {
         PaginationObject.numberOfRowEachPage = numberOfRowEachPage;
     }
-
+    
     public List<T> getPageOfResult(List<T> objects, int page, int number) {
         List<T> list = new ArrayList<>();
         for (int i = ((page - 1) * number); i < (number*page); i++) {

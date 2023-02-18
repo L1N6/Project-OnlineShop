@@ -9,6 +9,7 @@ import DAL.DBcontext;
 import DAL.Event;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -17,14 +18,16 @@ import java.util.Date;
  * @author blabl
  */
 public class EventDAO extends DBcontext{
-    public ArrayList<Event> getEvents() {
+    ResultSet rs;
+    PreparedStatement ps;
+    public ArrayList<Event> getEvents() throws SQLException {
         ArrayList<Event> list = new ArrayList<>();
         try {
             
             Date date = java.util.Calendar.getInstance().getTime();
             String sql = "select * from [Events]";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = getConnection().prepareStatement(sql);
+            rs = ps.executeQuery();
 
             while (rs.next()) {
                 Date dateS = rs.getDate("StartEvent");
@@ -38,16 +41,12 @@ public class EventDAO extends DBcontext{
                     list.add(new Event(sql, NameSale, picture, StartSale, EndSale));
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return list;
     }
-    public static void main(String[] args){
-        ArrayList<Event> brandList = new EventDAO().getEvents();
-        for (Event event : brandList) {
-            System.out.println("d");
-        }
-        
-    }
+    
 }

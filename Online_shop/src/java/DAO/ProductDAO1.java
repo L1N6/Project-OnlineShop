@@ -8,6 +8,7 @@ import DAL.DBcontext;
 import DAL.ProductDiscountUnitOnOrder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -23,8 +24,9 @@ import java.util.Locale;
  * @author blabl
  */
 public class ProductDAO1 extends DBcontext {
-
-    public ArrayList<ProductDiscountUnitOnOrder> getProductBestSale() {
+    ResultSet rs;
+    PreparedStatement ps;
+    public ArrayList<ProductDiscountUnitOnOrder> getProductBestSale() throws SQLException {
         ArrayList<ProductDiscountUnitOnOrder> list = new ArrayList<>();
         try {
             Date date = java.util.Calendar.getInstance().getTime();
@@ -33,8 +35,8 @@ public class ProductDAO1 extends DBcontext {
                     + "left join (SELECT ProductID,AVG(Rate) as Rate,Count(Rate) as AmountRate FROM Comments GROUP BY ProductID) as d \n"
                     + "on c.ProductID = d.ProductID";
 
-            PreparedStatement ps = getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = getConnection().prepareStatement(sql);
+            rs = ps.executeQuery();
             while (rs.next()) {
                 Date dateS = rs.getDate("StartEvent");
                 Date dateE = rs.getDate("EndEvent");
@@ -58,17 +60,11 @@ public class ProductDAO1 extends DBcontext {
                 });
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return list;
-    }
-
-    public static void main(String[] args) throws ParseException {
-                    ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProductBestSale();
-                    for (ProductDiscountUnitOnOrder productDiscountUnitOnOrder : ListSale) {
-                        System.out.println(productDiscountUnitOnOrder.getProductID());
-            
-        }
     }
 }

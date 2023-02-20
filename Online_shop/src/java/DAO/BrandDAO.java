@@ -9,6 +9,7 @@ import DAL.DBcontext;
 import DAL.ProductDiscountUnitOnOrder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
@@ -17,12 +18,14 @@ import org.apache.jasper.tagplugins.jstl.core.ForEach;
  * @author blabl
  */
 public class BrandDAO extends DBcontext{
-    public ArrayList<BrandAndQuantity> getBrands() {
+    ResultSet rs;
+    PreparedStatement ps;
+    public ArrayList<BrandAndQuantity> getBrands() throws SQLException {
         ArrayList<BrandAndQuantity> list = new ArrayList<>();
         try {
             String sql = "Select * from Brands inner join (select BrandID,Count(ProductID) as Quantity from Products group by BrandID)as b ON Brands.BrandID=b.BrandID";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = getConnection().prepareStatement(sql);
+            rs = ps.executeQuery();
 
             while (rs.next()) {
 
@@ -32,19 +35,12 @@ public class BrandDAO extends DBcontext{
                  int quantity = rs.getInt("Quantity");
                 list.add(new BrandAndQuantity(brandId, brandName, picture, quantity));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
         return list;
-    }
-    public static void main(String[] args){
-        ArrayList<BrandAndQuantity> brandList = new BrandDAO().getBrands();
-        int count =0;
-        for (BrandAndQuantity brandAndQuantity : brandList) {
-            System.out.println(count);
-            count++;
-        }
-        
     }
 }
 

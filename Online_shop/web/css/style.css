@@ -99,6 +99,22 @@ address {
   line-height: inherit;
 }
 
+.Return-home a{
+    display: inline-block;
+    margin-left: 45%;
+    margin-bottom: 160px;
+    border-radius: 25px;
+    border: 2px solid rgb(37, 150, 190);
+    color:rgb(37, 150, 190);
+    text-decoration: none;
+    padding: 10px 35px;
+}
+
+.Return-home :hover:not(.active){
+    background-color: rgb(37, 150, 190);
+    color: white;
+}
+
 .rate-star-class{
    
     margin-right: 0.25rem !important;

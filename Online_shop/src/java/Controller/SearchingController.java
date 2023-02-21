@@ -46,6 +46,7 @@ private final PaginationObject pcp = new PaginationObject();
         req.setAttribute("numberOfPage", numberOfPage);
         req.setAttribute("shopListProduct", getProduct);
         req.setAttribute("txtValue", searchingInf);
+        req.setAttribute("check","not empty");
         req.getRequestDispatcher("shop.jsp").forward(req, resp);
     } catch (SQLException ex) {
         Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);
@@ -74,6 +75,7 @@ private final PaginationObject pcp = new PaginationObject();
         req.setAttribute("numberOfPage", numberOfPage);
         req.setAttribute("shopListProduct", getProduct);
         req.setAttribute("txtValue", searchingInf);
+        req.setAttribute("check","not empty");
         req.getRequestDispatcher("shop.jsp").forward(req, resp);
     } catch (SQLException ex) {
         Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);

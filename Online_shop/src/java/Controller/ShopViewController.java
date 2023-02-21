@@ -35,6 +35,9 @@ public class ShopViewController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String choice = req.getParameter("choice");
+            if(choice == null){
+                choice += "home";
+            }
             int currentPage;
             int numberOfPage;
             String a = req.getParameter("currentPage");
@@ -67,6 +70,7 @@ public class ShopViewController extends HttpServlet {
                         break;
                         }
             }
+            req.setAttribute("check","not empty");
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(ShopViewController.class.getName()).log(Level.SEVERE, null, ex);

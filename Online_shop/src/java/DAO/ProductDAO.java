@@ -19,16 +19,18 @@ import java.util.List;
  * @author LEGION
  */
 public class ProductDAO extends DBcontext {
+
     ResultSet rs;
     PreparedStatement ps;
+
     public List<ProductInfor> getAllProduct() throws SQLException {
         List<ProductInfor> listProduct = new ArrayList<ProductInfor>();
         Product p = new Product();
         Comments c = new Comments();
         try {
 
-            String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average "
-                    + "from Comments c inner join Products p on c.ProductID = p.ProductID "
+            String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+                    + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
                     + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
             ps = getConnection().prepareCall(sql);
             rs = ps.executeQuery();
@@ -40,7 +42,8 @@ public class ProductDAO extends DBcontext {
                 p = new Product(ProductID, ProductName, Picture, Price);
                 int Rate = rs.getInt("Average");
                 c = new Comments(Rate);
-                listProduct.add(new ProductInfor(c, p));
+                int TotalComment = rs.getInt("TotalComments");
+                listProduct.add(new ProductInfor(c, p, TotalComment));
             }
         } catch (SQLException e) {
             getConnection().rollback();
@@ -55,9 +58,9 @@ public class ProductDAO extends DBcontext {
         Product p = new Product();
         Comments c = new Comments();
         try {
-            String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average \n"
-                    + "from Comments c inner join Products p on c.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%'+?+'%'\n"
-                    + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
+            String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n" +
+"from Comments c inner join Products p on c.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%'+?+'%'\n" +
+"group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
             ps = getConnection().prepareCall(sql);
             ps.setString(1, condition);
             rs = ps.executeQuery();
@@ -69,7 +72,8 @@ public class ProductDAO extends DBcontext {
                 p = new Product(ProductID, ProductName, Picture, Price);
                 int Rate = rs.getInt("Average");
                 c = new Comments(Rate);
-                listProduct.add(new ProductInfor(c, p));
+                int TotalComment = rs.getInt("TotalComments");
+                listProduct.add(new ProductInfor(c, p, TotalComment));
             }
         } catch (SQLException e) {
             getConnection().rollback();
@@ -85,12 +89,14 @@ public class ProductDAO extends DBcontext {
         Comments c = new Comments();
         String sql = "";
         if (condition.equals("latest")) {
-            sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average \n"
-                    + "from Comments c inner join Products p on c.ProductID = p.ProductID \n"
-                    + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture\n"
-                    + "order by p.ProductID desc";
+            sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n" +
+"from Comments c inner join Products p on c.ProductID = p.ProductID\n" +
+"group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture\n" +
+"order by p.ProductID desc";
         } else if (condition.equals("popularity")) {
             sql = "select * from Products order by ProductID desc";
+        } else{
+            
         }
         try {
             ps = getConnection().prepareCall(sql);
@@ -103,7 +109,8 @@ public class ProductDAO extends DBcontext {
                 p = new Product(ProductID, ProductName, Picture, Price);
                 int Rate = rs.getInt("Average");
                 c = new Comments(Rate);
-                listProduct.add(new ProductInfor(c, p));
+                int TotalComment = rs.getInt("TotalComments");
+                listProduct.add(new ProductInfor(c, p, TotalComment));
             }
         } catch (SQLException e) {
             getConnection().rollback();

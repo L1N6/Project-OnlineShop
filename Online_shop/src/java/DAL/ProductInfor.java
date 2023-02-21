@@ -11,14 +11,26 @@ package DAL;
 public class ProductInfor {
     private Comments comments;
     private Product product;
-
+    private int TotalComments;
+    
     public ProductInfor() {
     }
 
-    public ProductInfor(Comments comments, Product product) {
+    public ProductInfor(Comments comments, Product product, int TotalComments) {
         this.comments = comments;
         this.product = product;
+        this.TotalComments = TotalComments;
     }
+
+    public int getTotalComments() {
+        return TotalComments;
+    }
+
+    public void setTotalComments(int TotalComments) {
+        this.TotalComments = TotalComments;
+    }
+
+    
 
     public Comments getComments() {
         return comments;

@@ -20,6 +20,10 @@
         <servlet-name>SendEmailServlet</servlet-name>
         <servlet-class>Controller.SendEmailServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignUpController</servlet-name>
+        <servlet-class>Controller.SignUpController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>

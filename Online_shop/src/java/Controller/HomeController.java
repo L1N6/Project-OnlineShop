@@ -39,10 +39,14 @@ public class HomeController extends HttpServlet{
         
         try {
             ArrayList<BrandAndQuantity> brandList = new BrandDAO().getBrands();
-            ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProductBestSale();
+            ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProduct(1);
+            ArrayList<ProductDiscountUnitOnOrder> ListFeatured = new ProductDAO1().getProduct(2);
+            ArrayList<ProductDiscountUnitOnOrder> ListBigAmount = new ProductDAO1().getProduct(3);
             ArrayList<Event> events = new EventDAO().getEvents();
             
             req.setAttribute("Events", events);
+            req.setAttribute("ListFeatured", ListFeatured);
+            req.setAttribute("ListBigAmount", ListBigAmount);
             req.setAttribute("ListSale", ListSale);
             req.setAttribute("List", brandList);
             req.setAttribute("Check", "true");
@@ -54,8 +58,4 @@ public class HomeController extends HttpServlet{
     
 }
 
-/**
- *
- * @author hieuh
- */
 

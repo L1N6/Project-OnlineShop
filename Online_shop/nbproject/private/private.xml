@@ -4,6 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/index.jsp</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/s_css/style.scss</file>
@@ -49,6 +50,33 @@
             <file>file:/E:/Project-OnlineShop/Online_shop/web/css/style.css</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/index.jsp</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/SignInController.java</file>
+>>>>>>> Develop
+=======
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/CustomerDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/BrandDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/SearchingController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/template/footer.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/Email.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/SendEmailServlet.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/AccountDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/EventDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/ShopViewController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/SendEmail.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/css/style.css</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/FilterController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/index.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/LogoutController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/ProductInfor.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/META-INF/web.xml</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/Product.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/signUp.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/HomeController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/shop.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO1.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/SignInController.java</file>
 >>>>>>> Develop
         </group>
     </open-files>

@@ -20,7 +20,15 @@ public class ProductDiscountUnitOnOrder {
     private String PhoneScreen;
     private String picture;
     private float discount;
-    private int unitOnstoke;
+    private int unitOnStock;
+
+    public int getUnitOnStock() {
+        return unitOnStock;
+    }
+
+    public void setUnitOnStock(int unitOnStock) {
+        this.unitOnStock = unitOnStock;
+    }
     private int unitOnOrder;
     private float price;
     private int rate;
@@ -28,6 +36,29 @@ public class ProductDiscountUnitOnOrder {
     
     public int getRate() {
         return rate;
+    }
+
+    public ProductDiscountUnitOnOrder(int productID, String productName, String picture, int unitOnStock, int unitOnOrder, float price, int rate, int amountRate) {
+        this.productID = productID;
+        this.productName = productName;
+        this.picture = picture;
+        this.unitOnStock = unitOnStock;
+        this.unitOnOrder = unitOnOrder;
+        this.price = price;
+        this.rate = rate;
+        this.amountRate = amountRate;
+    }
+
+    public ProductDiscountUnitOnOrder(int productID, String productName, String picture, float discount, int unitOnStock, int unitOnOrder, float price, int rate, int amountRate) {
+        this.productID = productID;
+        this.productName = productName;
+        this.picture = picture;
+        this.discount = discount;
+        this.unitOnStock = unitOnStock;
+        this.unitOnOrder = unitOnOrder;
+        this.price = price;
+        this.rate = rate;
+        this.amountRate = amountRate;
     }
 
     public void setRate(int rate) {
@@ -39,6 +70,17 @@ public class ProductDiscountUnitOnOrder {
     }
 
     public void setAmountRate(int amountRate) {
+        this.amountRate = amountRate;
+    }
+
+    public ProductDiscountUnitOnOrder(int productID, String productName, float discount, int unitOnStock, int unitOnOrder, float price, int rate, int amountRate) {
+        this.productID = productID;
+        this.productName = productName;
+        this.discount = discount;
+        this.unitOnStock = unitOnStock;
+        this.unitOnOrder = unitOnOrder;
+        this.price = price;
+        this.rate = rate;
         this.amountRate = amountRate;
     }
 
@@ -154,13 +196,6 @@ public class ProductDiscountUnitOnOrder {
         this.discount = discount;
     }
 
-    public int getUnitOnstoke() {
-        return unitOnstoke;
-    }
-
-    public void setUnitOnstoke(int unitOnstoke) {
-        this.unitOnstoke = unitOnstoke;
-    }
 
     public int getUnitOnOrder() {
         return unitOnOrder;
@@ -176,6 +211,9 @@ public class ProductDiscountUnitOnOrder {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public ProductDiscountUnitOnOrder() {
     }
     
     

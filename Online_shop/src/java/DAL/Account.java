@@ -26,6 +26,7 @@ public class Account {
         this.Email = Email;
         this.Pass = Pass;
         this.CustomerID = CustomerID;
+        this.Role = 2;        
         this.EmployeeID = EmployeeID;
     }
 

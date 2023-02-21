@@ -13,7 +13,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,17 +26,18 @@ public class SearchingController extends HttpServlet {
 private final PaginationObject pcp = new PaginationObject();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    try {
         resp.setContentType("text/html;charset=UTF-8");
         req.getSession().removeAttribute("sortSession");
         String searchingInf = req.getParameter("txt");
         List<ProductInfor> searchingList = new ProductDAO().searchProducts(searchingInf);
         int currentPage;
-            String a = req.getParameter("currentPage");
-            if ("".equals(a) || a == null) {
-                currentPage = 1;
-            } else {
-                currentPage = Integer.parseInt(req.getParameter("currentPage"));
-            }
+        String a = req.getParameter("currentPage");
+        if ("".equals(a) || a == null) {
+            currentPage = 1;
+        } else {
+            currentPage = Integer.parseInt(req.getParameter("currentPage"));
+        }
         int numberOfPage;
         List<Product> getProduct = pcp.getPageOfResult(searchingList, currentPage, PaginationObject.getNumberOfRowEachPage());
         numberOfPage = pcp.getTotalPageOfResult(searchingList, PaginationObject.getNumberOfRowEachPage());
@@ -43,21 +47,25 @@ private final PaginationObject pcp = new PaginationObject();
         req.setAttribute("shopListProduct", getProduct);
         req.setAttribute("txtValue", searchingInf);
         req.getRequestDispatcher("shop.jsp").forward(req, resp);
+    } catch (SQLException ex) {
+        Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    try {
         resp.setContentType("text/html;charset=UTF-8");
         req.getSession().removeAttribute("sortSession");
         String searchingInf = req.getParameter("txt");
         List<ProductInfor> searchingList = new ProductDAO().searchProducts(searchingInf);
         int currentPage;
-            String a = req.getParameter("currentPage");
-            if ("".equals(a) || a == null) {
-                currentPage = 1;
-            } else {
-                currentPage = Integer.parseInt(req.getParameter("currentPage"));
-            }
+        String a = req.getParameter("currentPage");
+        if ("".equals(a) || a == null) {
+            currentPage = 1;
+        } else {
+            currentPage = Integer.parseInt(req.getParameter("currentPage"));
+        }
         int numberOfPage;
         List<Product> getProduct = pcp.getPageOfResult(searchingList, currentPage, PaginationObject.getNumberOfRowEachPage());
         numberOfPage = pcp.getTotalPageOfResult(searchingList, PaginationObject.getNumberOfRowEachPage());
@@ -67,6 +75,9 @@ private final PaginationObject pcp = new PaginationObject();
         req.setAttribute("shopListProduct", getProduct);
         req.setAttribute("txtValue", searchingInf);
         req.getRequestDispatcher("shop.jsp").forward(req, resp);
+    } catch (SQLException ex) {
+        Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
     
 }

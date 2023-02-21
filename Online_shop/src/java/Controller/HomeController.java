@@ -54,8 +54,4 @@ public class HomeController extends HttpServlet{
     
 }
 
-/**
- *
- * @author hieuh
- */
 

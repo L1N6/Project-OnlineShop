@@ -7,6 +7,7 @@ package DAO;
 import DAL.Comments;
 import DAL.DBcontext;
 import DAL.Product;
+import DAL.ProductDetail;
 import DAL.ProductInfor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ public class ProductDAO extends DBcontext {
         List<ProductInfor> listProduct = new ArrayList<ProductInfor>();
         Product p = new Product();
         Comments c = new Comments();
+        ProductDetail pd = new ProductDetail();
         try {
 
             String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average "
@@ -40,6 +42,7 @@ public class ProductDAO extends DBcontext {
                 p = new Product(ProductID, ProductName, Picture, Price);
                 int Rate = rs.getInt("Average");
                 c = new Comments(Rate);
+                int jij;
                 listProduct.add(new ProductInfor(c, p));
             }
         } catch (SQLException e) {

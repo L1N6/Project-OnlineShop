@@ -11,8 +11,14 @@ package DAL;
 public class ProductInfor {
     private Comments comments;
     private Product product;
-
+    private ProductDetail productDetail;
     public ProductInfor() {
+    }
+
+    public ProductInfor(Comments comments, Product product, ProductDetail productDetail) {
+        this.comments = comments;
+        this.product = product;
+        this.productDetail = productDetail;
     }
 
     public ProductInfor(Comments comments, Product product) {

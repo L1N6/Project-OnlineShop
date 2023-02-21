@@ -20,7 +20,10 @@ public class Customer {
 
     public Customer(String CustomerID, String ContactName) {
         this.CustomerID = CustomerID;
+        this.CompanyName = null;
         this.ContactName = ContactName;
+        this.ContactTitle = null;
+        this.Address = null;
     }
     
     

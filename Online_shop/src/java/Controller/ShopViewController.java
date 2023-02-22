@@ -6,6 +6,7 @@ package Controller;
 
 import DAL.PaginationObject;
 import DAL.Product;
+import DAL.ProductDetail;
 import DAL.ProductInfor;
 import DAO.ProductDAO;
 import jakarta.servlet.ServletException;
@@ -48,6 +49,7 @@ public class ShopViewController extends HttpServlet {
             }
             req.getSession().removeAttribute("searching");
             req.getSession().removeAttribute("sortSession");
+            List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
             switch (choice) {
                 case "sort":
                     String condition = req.getParameter("sort");
@@ -61,7 +63,6 @@ public class ShopViewController extends HttpServlet {
                     req.setAttribute("shopListProduct", sortProduct);
                     break;
                 default: {
-                        List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
                         List<ProductInfor> getProduct = pcp.getPageOfResult(listProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
                         numberOfPage = pcp.getTotalPageOfResult(listProduct, PaginationObject.getNumberOfRowEachPage());
                         req.getSession().setAttribute("currentPage", currentPage);
@@ -70,6 +71,10 @@ public class ShopViewController extends HttpServlet {
                         break;
                         }
             }
+            List<ProductDetail> getColor = new ProductDAO().getAllColor();
+            System.out.println(listProduct.size());
+            req.getSession().setAttribute("totalListProduct", listProduct.size());
+            req.getSession().setAttribute("listColor", getColor);
             req.setAttribute("check","not empty");
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {

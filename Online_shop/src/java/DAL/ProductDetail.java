@@ -15,8 +15,21 @@ public class ProductDetail extends Product{
     private String Color;
     private int UnitsInStock;
     private int UnitsOnOrder;
-
+    private int Count;
     public ProductDetail() {
+    }
+
+    public ProductDetail(String Color, int Count) {
+        this.Color = Color;
+        this.Count = Count;
+    }
+
+    public int getCount() {
+        return Count;
+    }
+
+    public void setCount(int count) {
+        this.Count = count;
     }
 
     public ProductDetail(int UnitsInStock, int ProductID, String ProductName, String Picture, double Price) {

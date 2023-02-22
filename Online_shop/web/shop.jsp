@@ -9,118 +9,138 @@
     </c:redirect>
 </c:if>
 <!-- Shop Start -->
-    <div class="container-fluid">
-        <div class="row px-xl-5">
-            <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-4">
-                <!-- Price Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form action="./shop.jsp" method="post">
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="submit" class="custom-control-input" checked id="price-all">
-                            <label class="custom-control-label" for="price-all"><a href="#" style="color: black;text-decoration: none">All Price</a></label>
-                            <span class="badge border font-weight-normal">${totalListProduct}</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="submit" class="custom-control-input" id="price-1">
-                            <label class="custom-control-label" for="price-1"><a href="#" style="color: black;text-decoration: none">$0 - $5.000.000</a></label>
-                            <span class="badge border font-weight-normal">150</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="submit" class="custom-control-input" id="price-2">
-                            <label class="custom-control-label" for="price-2"><a href="#" style="color: black;text-decoration: none">$5.000.000 - $10.000.000</a></label>
-                            <span class="badge border font-weight-normal">295</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="submit" class="custom-control-input" id="price-3">
-                            <label class="custom-control-label" for="price-3"><a href="#" style="color: black;text-decoration: none">$10.000.000 - $15.000.000</a></label>
-                            <span class="badge border font-weight-normal">246</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="submit" class="custom-control-input" id="price-4">
-                            <label class="custom-control-label" for="price-4"><a href="#" style="color: black;text-decoration: none">$15.000.000 - $20.000.000</a></label>
-                            <span class="badge border font-weight-normal">145</span>
-                        </div>
-                        
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="checkbox" class="custom-control-input" id="price-5">
-                            <label class="custom-control-label" for="price-5"><a href="#" style="color: black;text-decoration: none">$20.000.000 + </a></label>
-                            <span class="badge border font-weight-normal">168</span>
-                        </div>
-                    </form>
-                </div>
-                <!-- Price End -->
-                
-                <!-- Color Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <c:set var="total" value="${0}"/>
-                        <c:forEach var="c" items="${listColor}">
-                            <c:set var="total" value="${total + c.count}"/>
-                        </c:forEach>
-                        <c:set var="i" value="${0}"/>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="submit" class="custom-control-input" checked id="color-all">
-                            <label class="custom-control-label" for="color-all"><a href="#" style="color: black;text-decoration: none">All Color</a></label>
-                            <span class="badge border font-weight-normal">${total}</span>
-                        </div>
-                        <c:forEach var="c" items="${listColor}">
-                            <c:set var="i" value="${i + 1}"/>
-                            <c:if test="${i != listColor.size()}">
-                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                                    <input type="submit" class="custom-control-input" id="color-${i}">
-                                    <label class="custom-control-label" for="color-${i}"><a href="#" style="color: black;text-decoration: none">${c.color}</a></label>
-                                    <span class="badge border font-weight-normal">${c.count}</span>
-                                </div>
-                            </c:if>
-                            <c:if test="${i == listColor.size()}">
-                                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                                    <input type="submit" class="custom-control-input" id="color-${i}">
-                                    <label class="custom-control-label" for="color-${i}"><a href="#" style="color: black;text-decoration: none">${c.color}</a></label>
-                                    <span class="badge border font-weight-normal">${c.count}</span>
-                                </div>
-                            </c:if>
-                        </c:forEach>
-                        
-                    </form>
-                </div>
-                <!-- Color End -->
-
-                <!-- Size Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by Storage</span></h5>
-                <div class="bg-light p-4 mb-30">
-                    <form>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                            <input type="submit" class="custom-control-input" checked id="storage-all">
-                            <label class="custom-control-label" for="storage-all"><a href="#" style="color: black;text-decoration: none">All Storage</a></label>
-                            <span class="badge border font-weight-normal">1000</span>
-                        </div>
-                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                            <input type="submit" class="custom-control-input" checked id="storage-1">
-                            <label class="custom-control-label" for="storage-1"><a href="#" style="color: black;text-decoration: none">Size</a></label>
-                            <span class="badge border font-weight-normal">1000</span>
-                            
-                        </div>storage
-                    </form>
-                </div>
-                
-                <!-- Size End -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-4">
+            <form action="<c:url value="/filter"/>" method="post">
+            <!-- Price Start -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
+            <div class="bg-light p-4 mb-30">
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="checkbox" class="custom-control-input" checked id="price-all" name="txtFilterPrice" value="All">
+                        <label class="custom-control-label" for="price-all">All Price</label>
+                        <span class="badge border font-weight-normal">${totalListProduct}</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="submit" class="custom-control-input" id="price-1">
+                        <label class="custom-control-label" for="price-1">$0 - $5.000.000</label>
+                        <span class="badge border font-weight-normal">150</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="submit" class="custom-control-input" id="price-2">
+                        <label class="custom-control-label" for="price-2">$5.000.000 - $10.000.000</label>
+                        <span class="badge border font-weight-normal">295</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="submit" class="custom-control-input" id="price-3">
+                        <label class="custom-control-label" for="price-3">$10.000.000 - $15.000.000</label>
+                        <span class="badge border font-weight-normal">246</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                        <input type="submit" class="custom-control-input" id="price-4">
+                        <label class="custom-control-label" for="price-4">$15.000.000 - $20.000.000</label>
+                        <span class="badge border font-weight-normal">145</span>
+                    </div>
+                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                        <input type="submit" class="custom-control-input" id="price-5">
+                        <label class="custom-control-label" for="price-5">$20.000.000 + </label>
+                        <span class="badge border font-weight-normal">168</span>
+                    </div>
             </div>
-            <!-- Shop Sidebar End -->
+            <!-- Price End -->
+
+            <!-- Color Start -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span></h5>
+            <div class="bg-light p-4 mb-30">
+                <c:set var="total" value="${0}"/>
+                <c:forEach var="c" items="${listColor}">
+                    <c:set var="total" value="${total + c.count}"/>
+                </c:forEach>
+                <c:set var="i" value="${0}"/>
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <input type="checkbox" class="custom-control-input" checked id="color-all" name="txtFilterColor" value="All">
+                    <label class="custom-control-label" for="color-all">All Color</label>
+                    <span class="badge border font-weight-normal">${total}</span>
+                </div>
+                <c:forEach var="c" items="${listColor}">
+                    <c:set var="i" value="${i + 1}"/>
+                    <c:if test="${i != listColor.size()}">
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="submit" class="custom-control-input" id="color-${i}" name="txtFilterColor" value="${c.color}">
+                            <label class="custom-control-label" for="color-${i}">${c.color}</label>
+                            <span class="badge border font-weight-normal">${c.count}</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${i == listColor.size()}">
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="submit" class="custom-control-input" id="color-${i}" name="txtFilterColor" value="${c.color}">
+                            <label class="custom-control-label" for="color-${i}">${c.color}</label>
+                            <span class="badge border font-weight-normal">${c.count}</span>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </div>
+            <!-- Color End -->
+
+            <!-- Storage Start -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by Storage</span></h5>
+            <div class="bg-light p-4 mb-30">
+                <c:set var="total" value="${0}"/>
+                <c:forEach var="s" items="${listProductStorage}">
+                    <c:set var="total" value="${total + s.count}"/>
+                </c:forEach>
+                <c:set var="i" value="${0}"/>
+                <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                    <input type="checkbox" class="custom-control-input" checked id="storage-all" name="txtFilterStorage" value="All">
+                    <label class="custom-control-label" for="storage-all">All Storage</label>
+                    <span class="badge border font-weight-normal">${total}</span>
+                </div>
+                <c:forEach var="s" items="${listProductStorage}">
+                    <c:set var="i" value="${i + 1}"/>
+                    <c:if test="${i != listProductStorage.size()}">
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="submit" class="custom-control-input"  id="storage-{i}" name="txtFilterStorage" value="${s.productStorage}">
+                            <c:if test="${s.productStorage == 1000}">
+                                <label class="custom-control-label" for="storage-${i}">1 TB</label>
+                            </c:if>
+                            <c:if test="${s.productStorage != 1000}">
+                                <label class="custom-control-label" for="storage-${i}">${s.productStorage} GB</label>
+                            </c:if>
+                            <span class="badge border font-weight-normal">${s.count}</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${i == listProductStorage.size()}">
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="submit" class="custom-control-input"  id="storage-{i}" name="txtFilterStorage" value="${s.productStorage}">
+                            <c:if test="${s.productStorage == 1000}">
+                                <label class="custom-control-label" for="storage-${i}">1 TB</label>
+                            </c:if>
+                            <c:if test="${s.productStorage != 1000}">
+                                <label class="custom-control-label" for="storage-${i}">${s.productStorage} GB</label>
+                            </c:if>
+                            <span class="badge border font-weight-normal">${s.count}</span>
+                        </div>
+                    </c:if>
+                </c:forEach>
+            </div>
+        </form>
+            <!-- Size End -->
+        </div>
+                
+        <!-- Shop Sidebar End -->
 
 
-            <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-8">
-                <div class="row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
-                                <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
-                            </div>
-                            <div class="ml-2">
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
+                            <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+                        </div>
+                        <div class="ml-2">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
                                 <div class="dropdown-menu dropdown-menu-right">
@@ -138,7 +158,6 @@
                             </div>
                         </div>
                     </div>
-
                 <c:if test="${empty searching}">
                     <c:if test="${empty sortSession}">
                         <c:forEach var="ListProduct" items="${shopListProduct}" >
@@ -163,14 +182,14 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-center mb-1">
                                                 <div class="rate-star-class">
-                                                <c:forEach begin="1" end="${c.rate}">
-                                                    <small class="fa fa-star fasize checked"></small>
-                                                </c:forEach>
+                                                    <c:forEach begin="1" end="${c.rate}">
+                                                        <small class="fa fa-star fasize checked"></small>
+                                                    </c:forEach>
 
-                                                <c:forEach begin="1" end="${5-c.rate}">
-                                                    <small class="fa fa-star fasize "></small>
-                                                </c:forEach>
-                                            </div>
+                                                    <c:forEach begin="1" end="${5-c.rate}">
+                                                        <small class="fa fa-star fasize "></small>
+                                                    </c:forEach>
+                                                </div>
                                                 <small>(${ListProduct.totalComments})</small>
                                             </div>
                                         </div>
@@ -213,7 +232,6 @@
                             </nav>
                         </div>
                     </c:if>
-
                     <c:if test="${not empty sortSession}">
                         <c:forEach var="ListProduct" items="${shopListProduct}" >
                             <c:set var="p" value="${ListProduct.product}"></c:set>
@@ -238,14 +256,14 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-center mb-1">
                                                 <div class="rate-star-class">
-                                                <c:forEach begin="1" end="${c.rate}">
-                                                    <small class="fa fa-star fasize checked"></small>
-                                                </c:forEach>
+                                                    <c:forEach begin="1" end="${c.rate}">
+                                                        <small class="fa fa-star fasize checked"></small>
+                                                    </c:forEach>
 
-                                                <c:forEach begin="1" end="${5-c.rate}">
-                                                    <small class="fa fa-star fasize "></small>
-                                                </c:forEach>
-                                            </div>
+                                                    <c:forEach begin="1" end="${5-c.rate}">
+                                                        <small class="fa fa-star fasize "></small>
+                                                    </c:forEach>
+                                                </div>
                                                 <small>(${ListProduct.totalComments})</small>
                                             </div>
                                         </div>
@@ -295,8 +313,8 @@
 
                 <c:if test="${not empty searching}">
                     <c:forEach var="ListProduct" items="${searchingListProduct}" >
-                        <c:set var="p" value="${searchingListProduct.product}"></c:set>
-                        <c:set var="c" value="${searchingListProduct.comments}"></c:set>
+                        <c:set var="p" value="${ListProduct.product}"></c:set>
+                        <c:set var="c" value="${ListProduct.comments}"></c:set>
                             <div id="content" class="col-lg-4 col-md-6 col-sm-6 pb-1">
                                 <div>
                                     <div  class="product-item bg-light mb-4">
@@ -366,10 +384,11 @@
                             </ul>
                         </nav>
                     </div>
-                </c:if>
+                </c:if>    
             </div>
-            <!-- Shop Product End -->
         </div>
+        <!-- Shop Product End -->
     </div>
-    <!-- Shop End -->
+</div>
+<!-- Shop End -->
 <%@include file="template/footer.jsp" %>

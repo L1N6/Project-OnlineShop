@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -6,6 +6,7 @@ package Controller;
 
 import DAL.PaginationObject;
 import DAL.Product;
+import DAL.ProductDetail;
 import DAL.ProductInfor;
 import DAO.ProductDAO;
 import jakarta.servlet.ServletException;
@@ -23,63 +24,89 @@ import java.util.logging.Logger;
  * @author LEGION
  */
 public class SearchingController extends HttpServlet {
-private final PaginationObject pcp = new PaginationObject();
+
+    private final PaginationObject pcp = new PaginationObject();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    try {
-        resp.setContentType("text/html;charset=UTF-8");
-        req.getSession().removeAttribute("sortSession");
-        String searchingInf = req.getParameter("txt");
-        List<ProductInfor> searchingList = new ProductDAO().searchProducts(searchingInf);
-        int currentPage;
-        String a = req.getParameter("currentPage");
-        if ("".equals(a) || a == null) {
-            currentPage = 1;
-        } else {
-            currentPage = Integer.parseInt(req.getParameter("currentPage"));
+        try {
+            resp.setContentType("text/html;charset=UTF-8");
+            req.getSession().removeAttribute("sortSession");
+            String searchingInf = req.getParameter("txt");
+            if (searchingInf == null) {
+                searchingInf = "";
+            }
+            List<ProductInfor> searchingList = new ProductDAO().searchProducts(searchingInf);
+            int currentPage;
+            String a = req.getParameter("currentPage");
+            if ("".equals(a) || a == null) {
+                currentPage = 1;
+            } else {
+                currentPage = Integer.parseInt(req.getParameter("currentPage"));
+            }
+            int numberOfPage;
+            List<Product> getProduct = pcp.getPageOfResult(searchingList, currentPage, PaginationObject.getNumberOfRowEachPage());
+            numberOfPage = pcp.getTotalPageOfResult(searchingList, PaginationObject.getNumberOfRowEachPage());
+            req.getSession().setAttribute("currentPage", currentPage);
+            req.getSession().setAttribute("searching", currentPage);
+            req.setAttribute("numberOfPage", numberOfPage);
+            req.setAttribute("searchingListProduct", getProduct);
+            req.setAttribute("txtValue", searchingInf);
+            req.setAttribute("check", "not empty");
+            //getColor
+            List<ProductDetail> getColor = new ProductDAO().getAllColor();
+            req.getSession().setAttribute("listColor", getColor);
+            //getProductStorage
+            List<ProductDetail> getProductStorage = new ProductDAO().getAllProductStorage();
+            req.getSession().setAttribute("listProductStorage", getProductStorage);
+            //getTotal Product
+            List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
+            req.getSession().setAttribute("totalListProduct", listProduct.size());
+            req.getRequestDispatcher("shop.jsp").forward(req, resp);
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int numberOfPage;
-        List<Product> getProduct = pcp.getPageOfResult(searchingList, currentPage, PaginationObject.getNumberOfRowEachPage());
-        numberOfPage = pcp.getTotalPageOfResult(searchingList, PaginationObject.getNumberOfRowEachPage());
-        req.getSession().setAttribute("currentPage", currentPage);
-        req.getSession().setAttribute("searching", currentPage);
-        req.setAttribute("numberOfPage", numberOfPage);
-        req.setAttribute("searchingListProduct", getProduct);
-        req.setAttribute("txtValue", searchingInf);
-        req.setAttribute("check","not empty");
-        req.getRequestDispatcher("shop.jsp").forward(req, resp);
-    } catch (SQLException ex) {
-        Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);
-    }
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    try {
-        resp.setContentType("text/html;charset=UTF-8");
-        req.getSession().removeAttribute("sortSession");
-        String searchingInf = req.getParameter("txt");
-        List<ProductInfor> searchingList = new ProductDAO().searchProducts(searchingInf);
-        int currentPage;
-        String a = req.getParameter("currentPage");
-        if ("".equals(a) || a == null) {
-            currentPage = 1;
-        } else {
-            currentPage = Integer.parseInt(req.getParameter("currentPage"));
+        try {
+            resp.setContentType("text/html;charset=UTF-8");
+            req.getSession().removeAttribute("sortSession");
+            String searchingInf = req.getParameter("txt");
+            if (searchingInf == null) {
+                searchingInf = "";
+            }
+            List<ProductInfor> searchingList = new ProductDAO().searchProducts(searchingInf);
+            int currentPage;
+            String a = req.getParameter("currentPage");
+            if ("".equals(a) || a == null) {
+                currentPage = 1;
+            } else {
+                currentPage = Integer.parseInt(req.getParameter("currentPage"));
+            }
+            int numberOfPage;
+            List<Product> getProduct = pcp.getPageOfResult(searchingList, currentPage, PaginationObject.getNumberOfRowEachPage());
+            numberOfPage = pcp.getTotalPageOfResult(searchingList, PaginationObject.getNumberOfRowEachPage());
+            req.getSession().setAttribute("currentPage", currentPage);
+            req.getSession().setAttribute("searching", currentPage);
+            req.setAttribute("numberOfPage", numberOfPage);
+            req.setAttribute("searchingListProduct", getProduct);
+            req.setAttribute("txtValue", searchingInf);
+            req.setAttribute("check", "not empty");
+            //getColor
+            List<ProductDetail> getColor = new ProductDAO().getAllColor();
+            req.getSession().setAttribute("listColor", getColor);
+            //getProductStorage
+            List<ProductDetail> getProductStorage = new ProductDAO().getAllProductStorage();
+            req.getSession().setAttribute("listProductStorage", getProductStorage);
+            //getTotal Product
+            List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
+            req.getSession().setAttribute("totalListProduct", listProduct.size());
+            req.getRequestDispatcher("shop.jsp").forward(req, resp);
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int numberOfPage;
-        List<Product> getProduct = pcp.getPageOfResult(searchingList, currentPage, PaginationObject.getNumberOfRowEachPage());
-        numberOfPage = pcp.getTotalPageOfResult(searchingList, PaginationObject.getNumberOfRowEachPage());
-        req.getSession().setAttribute("currentPage", currentPage);
-        req.getSession().setAttribute("searching", currentPage);
-        req.setAttribute("numberOfPage", numberOfPage);
-        req.setAttribute("searchingListProduct", getProduct);
-        req.setAttribute("txtValue", searchingInf);
-        req.setAttribute("check","not empty");
-        req.getRequestDispatcher("shop.jsp").forward(req, resp);
-    } catch (SQLException ex) {
-        Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);
     }
-    }
-    
+
 }

@@ -71,10 +71,14 @@ public class ShopViewController extends HttpServlet {
                         break;
                         }
             }
+            //getColor
             List<ProductDetail> getColor = new ProductDAO().getAllColor();
-            System.out.println(listProduct.size());
-            req.getSession().setAttribute("totalListProduct", listProduct.size());
             req.getSession().setAttribute("listColor", getColor);
+            //getProductStorage
+            List<ProductDetail> getProductStorage = new ProductDAO().getAllProductStorage();
+            req.getSession().setAttribute("listProductStorage", getProductStorage);
+            //
+            req.getSession().setAttribute("totalListProduct", listProduct.size());
             req.setAttribute("check","not empty");
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {

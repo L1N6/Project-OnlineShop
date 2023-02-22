@@ -142,4 +142,25 @@ public class ProductDAO extends DBcontext {
         }
         return listColor;
     }
+    
+    public List<ProductDetail> getAllProductStorage() throws SQLException{
+        List<ProductDetail> listColor = new ArrayList<ProductDetail>();
+        ProductDetail pd = new ProductDetail();
+        String sql = "select ProductStorage, count(ProductID) as CountStorage from ProductDetails group by ProductStorage";
+        try {
+            ps = getConnection().prepareCall(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int Storage = rs.getInt("ProductStorage");
+                int CountStorage = rs.getShort("CountStorage");
+                pd = new ProductDetail(Storage, CountStorage);
+                listColor.add(pd);
+            }
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        }
+        return listColor;
+    }
 }

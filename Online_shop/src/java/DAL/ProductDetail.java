@@ -24,6 +24,12 @@ public class ProductDetail extends Product{
         this.Count = Count;
     }
 
+    public ProductDetail(int ProductStorage, int Count) {
+        this.ProductStorage = ProductStorage;
+        this.Count = Count;
+    }
+
+    
     public int getCount() {
         return Count;
     }

@@ -8,6 +8,7 @@ package Controller;
 
 
 import DAL.BrandAndQuantity;
+import DAL.Brands;
 import DAL.Event;
 import DAL.ProductDiscountUnitOnOrder;
 import DAO.BrandDAO;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -41,7 +43,8 @@ public class HomeController extends HttpServlet{
             ArrayList<BrandAndQuantity> brandList = new BrandDAO().getBrands();
             ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProductBestSale();
             ArrayList<Event> events = new EventDAO().getEvents();
-            
+            List<Brands> getAllBrands = new BrandDAO().getAllBrands();
+            req.getSession().setAttribute("NvabarBrands", getAllBrands);
             req.setAttribute("Events", events);
             req.setAttribute("ListSale", ListSale);
             req.setAttribute("List", brandList);

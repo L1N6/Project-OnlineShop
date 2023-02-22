@@ -101,6 +101,7 @@
                             <input type="submit" class="custom-control-input" checked id="storage-1">
                             <label class="custom-control-label" for="storage-1"><a href="#" style="color: black;text-decoration: none">Size</a></label>
                             <span class="badge border font-weight-normal">1000</span>
+                            
                         </div>storage
                     </form>
                 </div>

@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controller;
+package Controller.shop;
 
 import DAL.PaginationObject;
 import DAL.shop.Product;
 import DAL.shop.ProductDetail;
 import DAL.shop.ProductInfor;
-import DAO.ProductDAO;
+import DAO.shop.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -49,6 +49,7 @@ public class ShopViewController extends HttpServlet {
             }
             req.getSession().removeAttribute("searching");
             req.getSession().removeAttribute("sortSession");
+            req.getSession().removeAttribute("filter");
             List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
             switch (choice) {
                 case "sort":
@@ -80,6 +81,10 @@ public class ShopViewController extends HttpServlet {
             //
             req.getSession().setAttribute("totalListProduct", listProduct.size());
             req.setAttribute("check","not empty");
+            //pull default value of filter
+            req.getSession().setAttribute("PriceFilter", 0);
+            req.getSession().setAttribute("ColorFilter", "All");
+            req.getSession().setAttribute("StorageFilter", 0);
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(ShopViewController.class.getName()).log(Level.SEVERE, null, ex);

@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controller;
+package Controller.shop;
 
 import DAL.PaginationObject;
 import DAL.shop.Product;
 import DAL.shop.ProductDetail;
 import DAL.shop.ProductInfor;
-import DAO.ProductDAO;
+import DAO.shop.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,6 +32,7 @@ public class SearchingController extends HttpServlet {
         try {
             resp.setContentType("text/html;charset=UTF-8");
             req.getSession().removeAttribute("sortSession");
+            req.getSession().removeAttribute("filter");
             String searchingInf = req.getParameter("txt");
             if (searchingInf == null) {
                 searchingInf = "";
@@ -73,6 +74,7 @@ public class SearchingController extends HttpServlet {
         try {
             resp.setContentType("text/html;charset=UTF-8");
             req.getSession().removeAttribute("sortSession");
+            req.getSession().removeAttribute("filter");
             String searchingInf = req.getParameter("txt");
             if (searchingInf == null) {
                 searchingInf = "";

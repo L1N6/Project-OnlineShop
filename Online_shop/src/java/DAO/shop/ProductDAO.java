@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO;
+package DAO.shop;
 
 import DAL.shop.Comments;
 import DAL.DBcontext;
@@ -170,13 +170,13 @@ public class ProductDAO extends DBcontext {
         Comments c = new Comments();
         int array[] = new int[3];
         int count = 1;
-        String sql = "select p.ProductID, p.Picture, ProductName, pd.Coler, pd.ProductStorage, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+        String sql = "select p.ProductID, p.Picture, ProductName, pd.Coler, pd.ProductStorage, pd.UnitPrice, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
                 + "from Comments c inner join Products p on c.ProductID = p.ProductID \n"
                 + "inner join ProductDetails pd on p.ProductID = pd.ProductID";
         try {
             if (priceCondition != 0) {
                 sql += " and pd.UnitPrice between ? and ?";
-                array[1] = 1;
+                array[0] = 1;
             }
             if (!"All".equals(colorCondition)) {
                 sql += " and pd.Coler = ?";
@@ -186,7 +186,7 @@ public class ProductDAO extends DBcontext {
                 sql += " and pd.ProductStorage = ?";
                 array[2] = 3;
             }
-            sql += " group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture, pd.Coler, pd.ProductStorage";
+            sql += " group by c.ProductID, p.ProductName, pd.UnitPrice, p.ProductID, p.Picture, pd.Coler, pd.ProductStorage";
             ps = getConnection().prepareCall(sql);
             if(array[0] != 0){
                 ps.setInt(count++, (priceCondition-1) * 5000000);
@@ -198,12 +198,13 @@ public class ProductDAO extends DBcontext {
             if(array[2] != 0){
                 ps.setInt(count, storageCondition);
             }
+            System.out.println(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 int ProductID = rs.getInt("ProductID");
                 String ProductName = rs.getString("ProductName");
                 String Picture = rs.getString("Picture");
-                double Price = rs.getDouble("Price");
+                double Price = rs.getDouble("UnitPrice");
                 p = new Product(ProductID, ProductName, Picture, Price);
                 int Rate = rs.getInt("Average");
                 c = new Comments(Rate);

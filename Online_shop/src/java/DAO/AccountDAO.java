@@ -24,7 +24,8 @@ public class AccountDAO extends DBcontext {
                 String CusID = rs.getString("CustomerID");
                 int role = rs.getInt("Role");
                 String EmpID = rs.getString("EmployeeID");
-                acc = new Account(Email, Password, CusID, role,EmpID);
+                
+                acc = new Account(Email, Password, new Customer(CusID), role,EmpID);
             }
         } catch (SQLException e) {
             getConnection().rollback();
@@ -37,15 +38,17 @@ public class AccountDAO extends DBcontext {
 
     public int addAccount(Customer customer, Account acc) throws SQLException {
         int result1 = 0, result2 = 0;
-        try {
-            String sql1 = "insert into Customers(CustomerID, CompanyName, ContactName, ContactTitle, Address) values(?,?,?,?,?)";
+        try { 
+            openConnection();
+            String sql1 = "insert into Customers(CustomerID, CompanyName, ContactName, ContactTitle, Address,Gender) values(?,?,?,?,?,?)";
             String sql2 = "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role) values(?,?,?,?,2)";
             boolean fl = true;
             if(acc.getEmployeeID() == null ){
                 sql2 =  "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role) values(?,?,?,NULL,2)";
                 fl=false;
             }
-            
+            System.out.println(customer.toString());
+            System.out.println(acc.toString());
             PreparedStatement ps1 = getConnection().prepareStatement(sql1);
             PreparedStatement ps2 = getConnection().prepareStatement(sql2);
             ps1.setString(1, customer.getCustomerID());
@@ -53,6 +56,7 @@ public class AccountDAO extends DBcontext {
             ps1.setString(3, customer.getContactName()==null?"NULL":customer.getContactName());
             ps1.setString(4, customer.getContactTitle()==null?"NULL":customer.getContactTitle());
             ps1.setString(5, customer.getAddress());
+            ps1.setBoolean(6, customer.isGender()); 
             ps2.setString(1, acc.getEmail());
             ps2.setString(2, acc.getPass());
             ps2.setString(3, customer.getCustomerID());   
@@ -61,6 +65,7 @@ public class AccountDAO extends DBcontext {
             result1 = ps1.executeUpdate();
             result2 = ps2.executeUpdate();
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             getConnection().rollback();
         } finally {
             DBcontext.releaseJBDCObject(rs, ps, getConnection());
@@ -88,6 +93,7 @@ public class AccountDAO extends DBcontext {
     
     public Account checkAccount(String email) throws SQLException{
         Account acc = null;
+        openConnection();
         try {
             String sql = "select * from Accounts where Email = ?";
             PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -99,7 +105,7 @@ public class AccountDAO extends DBcontext {
                 String CusID = rs.getString("CustomerID");
                 int role = rs.getInt("Role");
                 String EmpID = rs.getString("EmployeeID");
-                acc = new Account(Email, Password, CusID, role,EmpID);
+                acc = new Account(Email, Password, new Customer(CusID), role,EmpID);
             }
         } catch (SQLException e) {
             getConnection().rollback();

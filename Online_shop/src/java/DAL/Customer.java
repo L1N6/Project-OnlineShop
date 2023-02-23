@@ -14,6 +14,7 @@ public class Customer {
     private String ContactName;
     private String ContactTitle;
     private String Address;
+    private boolean gender;
 
     public Customer() {
     }
@@ -30,13 +31,15 @@ public class Customer {
     public Customer(String CustomerID) {
         this.CustomerID = CustomerID;
     }
-    
-    public Customer(String CustomerID, String CompanyName, String ContactName, String ContactTitle, String Address) {
+     
+
+    public Customer(String CustomerID, String CompanyName, String ContactName, String ContactTitle, String Address, boolean gender) {
         this.CustomerID = CustomerID;
         this.CompanyName = CompanyName;
         this.ContactName = ContactName;
         this.ContactTitle = ContactTitle;
         this.Address = Address;
+        this.gender = gender;
     }
 
     public Customer(String CompanyName, String ContactName, String ContactTitle, String Address) {
@@ -44,6 +47,14 @@ public class Customer {
         this.ContactName = ContactName;
         this.ContactTitle = ContactTitle;
         this.Address = Address;
+    }
+
+    public boolean isGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
     public String getCustomerID() {

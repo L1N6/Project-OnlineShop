@@ -34,7 +34,7 @@ public class CustomerDAO extends DBcontext {
                 String ContactTitle = rs.getString("ContactTitle");
                 String Address = rs.getString("Address");
                 String CustomerID = rs.getString("CustomerID");
-                Customer customer = new Customer(CustomerID, CompanyName, ContactName, ContactTitle, Address);
+                Customer customer = new Customer(CustomerID, CompanyName, ContactName, ContactTitle, Address, rs.getBoolean("Gender"));
                 Account acc = new Account(Email);
                 customerAccount = new CustomerAccount(acc, customer);
             }
@@ -89,7 +89,7 @@ public class CustomerDAO extends DBcontext {
                 String ContactName = rs.getString("ContactName");
                 String ContactTitle = rs.getString("ContactTitle");
                 String Address = rs.getString("Address");
-                c = new Customer(CustomerID, CompanyName, ContactName, ContactTitle, Address);
+                c = new Customer(CustomerID, CompanyName, ContactName, ContactTitle, Address, rs.getBoolean("Gender"));
                 String Email = rs.getString("Email");
                 ac = new Account(Email);
                 customerAccount = new CustomerAccount(ac, c);

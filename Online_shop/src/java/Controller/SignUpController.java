@@ -7,9 +7,10 @@ package Controller;
 
 import DAL.Account;
 import DAL.Customer;
-import DAL.CustomerAccount;
+import DAL.CustomerAccount; 
 import DAO.AccountDAO;
 import DAO.CustomerDAO;
+import MyUntils.SendMail;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -40,23 +41,31 @@ public class SignUpController extends HttpServlet {
             String txtLastName = (String)request.getParameter("txtLastName");
             String txtEmail = (String)request.getParameter("txtEmail");
             String txtPass = (String)request.getParameter("txtPass");
+            String txtAddress = (String)request.getParameter("txtAddress");
+            boolean gender = (Boolean.valueOf(request.getParameter("gender")));
             AccountDAO acd = new AccountDAO();
             if(acd.checkAccount(txtEmail)!=null){
                 request.setAttribute("txtFirstName", txtFirstName);
                 request.setAttribute("txtLastName", txtLastName);
+                request.setAttribute("txtAddress", txtAddress);
+                request.setAttribute("gender", gender);
                 request.setAttribute("ERROR","email already exist!");
                 request.getRequestDispatcher("signUp.jsp").forward(request, response);
             }else{
+                // id = 3 chu cái dau Email và 2 chu cai dau FirstName ..... ContactName = txtFirstName + " " + txtLastName
                 Customer cus = new Customer(txtEmail.substring(0,3)+txtFirstName.substring(0,2),txtFirstName + " " + txtLastName);
-                Account acc = new Account(txtEmail, txtPass,cus.getCustomerID(), null);
+                cus.setAddress(txtAddress);
+                cus.setGender(gender);
+                Account acc = new Account(txtEmail, txtPass,cus, null);
                 if(acd.addAccount(cus, acc)!=0){
+                     SendMail.SendMailFunction(txtEmail, "tieu de", acc.toString());
                     request.getSession().setAttribute("AccSession", acc);
-                    CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID());
+                    CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID().getCustomerID());
                     request.getSession().setAttribute("CustomerInfor", inforAccount);
                     response.sendRedirect("home");
                 }else{
                     request.getRequestDispatcher("signUp.jsp").forward(request, response);
-                }
+                } 
             }
         } catch (SQLException ex) {
             Logger.getLogger(SignUpController.class.getName()).log(Level.SEVERE, null, ex);

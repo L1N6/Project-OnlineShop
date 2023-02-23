@@ -5,9 +5,9 @@
 package Controller;
 
 import DAL.PaginationObject;
-import DAL.Product;
-import DAL.ProductDetail;
-import DAL.ProductInfor;
+import DAL.shop.Product;
+import DAL.shop.ProductDetail;
+import DAL.shop.ProductInfor;
 import DAO.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

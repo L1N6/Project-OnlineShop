@@ -13,22 +13,12 @@
         <servlet-class>Controller.shop.FilterController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <servlet-name>SendEmailServlet</servlet-name>
-        <servlet-class>Controller.SendEmailServlet</servlet-class>
-=======
-        <servlet-name>Test</servlet-name>
-        <servlet-class>Controller.Test</servlet-class>
->>>>>>> d556dae566fddd99795b66cdb6e327a35d8d120e
-=======
         <servlet-name>Test</servlet-name>
         <servlet-class>Controller.Test</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SendEmailServlet</servlet-name>
         <servlet-class>Controller.SendEmailServlet</servlet-class>
->>>>>>> 001bb0c80b339e471e2e85bcddf0eedc5c3dca5a
     </servlet>
     <servlet>
         <servlet-name>SignUpController</servlet-name>
@@ -47,18 +37,8 @@
         <url-pattern>/filter</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <servlet-name>SendEmailServlet</servlet-name>
-        <url-pattern>/SendEmailServlet</url-pattern>
-=======
         <servlet-name>Test</servlet-name>
         <url-pattern>/test</url-pattern>
->>>>>>> d556dae566fddd99795b66cdb6e327a35d8d120e
-=======
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
->>>>>>> 001bb0c80b339e471e2e85bcddf0eedc5c3dca5a
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SendEmailServlet</servlet-name>

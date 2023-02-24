@@ -113,7 +113,7 @@
                 </div>
                 <div class="col-lg-4 col-6 text-right">
                     <p class="m-0">Customer Service</p>
-                    <h5 class="m-0">+012 345 6789</h5>
+                    <p class="m-0"><strong>+012 345 6789</strong>   </p>
                 </div>
             </div>
         </div>
@@ -130,18 +130,9 @@
                     </a>
                     <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                         <div class="navbar-nav w-100">
-                            <div class="nav-item dropdown dropright">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Apple</a>
-                                <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                                </div>
-                            </div>
-                            <a href="" class="nav-item nav-link">Samsung</a>
-                            <a href="" class="nav-item nav-link">Oppo</a>
-                            <a href="" class="nav-item nav-link">Vivo</a>
-                            <a href="" class="nav-item nav-link">Xiaomi</a>
-                            <a href="" class="nav-item nav-link">Realme</a>
-                            <a href="" class="nav-item nav-link">Mobell</a>
-                            <a href="" class="nav-item nav-link">Itel</a>
+                            <c:forEach items="${NvabarBrands}" var="b">
+                                <a href="<c:url value="/filter"/>" class="nav-item nav-link">${b.brandName}</a>
+                            </c:forEach>
                         </div>
                     </nav>
                 </div>

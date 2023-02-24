@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controller;
+package Controller.shop;
 
 import DAL.PaginationObject;
-import DAL.Product;
-import DAL.ProductInfor;
-import DAO.ProductDAO;
+import DAL.shop.Product;
+import DAL.shop.ProductDetail;
+import DAL.shop.ProductInfor;
+import DAO.shop.ProductDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,6 +36,9 @@ public class ShopViewController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String choice = req.getParameter("choice");
+            if(choice == null){
+                choice += "home";
+            }
             int currentPage;
             int numberOfPage;
             String a = req.getParameter("currentPage");
@@ -45,6 +49,8 @@ public class ShopViewController extends HttpServlet {
             }
             req.getSession().removeAttribute("searching");
             req.getSession().removeAttribute("sortSession");
+            req.getSession().removeAttribute("filter");
+            List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
             switch (choice) {
                 case "sort":
                     String condition = req.getParameter("sort");
@@ -58,7 +64,6 @@ public class ShopViewController extends HttpServlet {
                     req.setAttribute("shopListProduct", sortProduct);
                     break;
                 default: {
-                        List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
                         List<ProductInfor> getProduct = pcp.getPageOfResult(listProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
                         numberOfPage = pcp.getTotalPageOfResult(listProduct, PaginationObject.getNumberOfRowEachPage());
                         req.getSession().setAttribute("currentPage", currentPage);
@@ -67,6 +72,19 @@ public class ShopViewController extends HttpServlet {
                         break;
                         }
             }
+            //getColor
+            List<ProductDetail> getColor = new ProductDAO().getAllColor();
+            req.getSession().setAttribute("listColor", getColor);
+            //getProductStorage
+            List<ProductDetail> getProductStorage = new ProductDAO().getAllProductStorage();
+            req.getSession().setAttribute("listProductStorage", getProductStorage);
+            //
+            req.getSession().setAttribute("totalListProduct", listProduct.size());
+            req.setAttribute("check","not empty");
+            //pull default value of filter
+            req.getSession().setAttribute("PriceFilter", 0);
+            req.getSession().setAttribute("ColorFilter", "All");
+            req.getSession().setAttribute("StorageFilter", 0);
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(ShopViewController.class.getName()).log(Level.SEVERE, null, ex);

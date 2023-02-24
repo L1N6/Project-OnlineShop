@@ -5,12 +5,14 @@
 package DAO;
 
 import DAL.BrandAndQuantity;
+import DAL.Brands;
 import DAL.DBcontext;
 import DAL.ProductDiscountUnitOnOrder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 /**
@@ -34,6 +36,24 @@ public class BrandDAO extends DBcontext{
                  String picture= rs.getString("Picture");
                  int quantity = rs.getInt("Quantity");
                 list.add(new BrandAndQuantity(brandId, brandName, picture, quantity));
+            }
+        } catch (SQLException e) {
+            getConnection().rollback();
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        }
+        return list;
+    }
+    
+    public List<Brands> getAllBrands() throws SQLException{
+        List<Brands> list = new ArrayList<>();
+        try {
+            String sql = "select * from Brands";
+            ps = getConnection().prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                String BrandName = rs.getString("BrandName");
+                list.add(new Brands(BrandName));
             }
         } catch (SQLException e) {
             getConnection().rollback();

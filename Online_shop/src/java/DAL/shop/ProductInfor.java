@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAL;
+package DAL.shop;
 
 /**
  *
@@ -11,20 +11,26 @@ package DAL;
 public class ProductInfor {
     private Comments comments;
     private Product product;
-    private ProductDetail productDetail;
+    private int TotalComments;
+    
     public ProductInfor() {
     }
 
-    public ProductInfor(Comments comments, Product product, ProductDetail productDetail) {
+    public ProductInfor(Comments comments, Product product, int TotalComments) {
         this.comments = comments;
         this.product = product;
-        this.productDetail = productDetail;
+        this.TotalComments = TotalComments;
     }
 
-    public ProductInfor(Comments comments, Product product) {
-        this.comments = comments;
-        this.product = product;
+    public int getTotalComments() {
+        return TotalComments;
     }
+
+    public void setTotalComments(int TotalComments) {
+        this.TotalComments = TotalComments;
+    }
+
+    
 
     public Comments getComments() {
         return comments;

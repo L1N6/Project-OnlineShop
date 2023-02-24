@@ -199,7 +199,6 @@ public class ProductDAO extends DBcontext {
             if(array[2] != 0){
                 ps.setInt(count, storageCondition);
             }
-            System.out.println(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 int ProductID = rs.getInt("ProductID");

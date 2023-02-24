@@ -45,6 +45,7 @@ public class HomeController extends HttpServlet{
             ArrayList<Event> events = new EventDAO().getEvents();
             List<Brands> getAllBrands = new BrandDAO().getAllBrands();
             req.getSession().setAttribute("NvabarBrands", getAllBrands);
+            req.getSession().removeAttribute("BrandFilter");
             req.setAttribute("Events", events);
             req.setAttribute("ListSale", ListSale);
             req.setAttribute("List", brandList);

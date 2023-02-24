@@ -78,13 +78,14 @@ public class ShopViewController extends HttpServlet {
             //getProductStorage
             List<ProductDetail> getProductStorage = new ProductDAO().getAllProductStorage();
             req.getSession().setAttribute("listProductStorage", getProductStorage);
-            //
+            //getTotalProduct
             req.getSession().setAttribute("totalListProduct", listProduct.size());
             req.setAttribute("check","not empty");
             //pull default value of filter
             req.getSession().setAttribute("PriceFilter", 0);
             req.getSession().setAttribute("ColorFilter", "All");
             req.getSession().setAttribute("StorageFilter", 0);
+            req.getSession().setAttribute("BrandFilter", null);
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(ShopViewController.class.getName()).log(Level.SEVERE, null, ex);

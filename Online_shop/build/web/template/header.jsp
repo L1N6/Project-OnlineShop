@@ -94,7 +94,7 @@
             </div>
             <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
                 <div class="col-lg-4">
-                    <a href="index.jsp" class="text-decoration-none">
+                    <a href="<c:url value="/home"/>" class="text-decoration-none">
                         <span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
                         <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
                     </a>
@@ -125,13 +125,23 @@
             <div class="row px-xl-5">
                 <div class="col-lg-3 d-none d-lg-block">
                     <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                        <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Brands</h6>
+                        <c:choose>
+                            <c:when test="${empty BrandFilter}">
+                                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>All Brands</h6>
+                            </c:when>
+                            <c:otherwise>
+                                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>${BrandFilter}</h6>
+                            </c:otherwise>
+                        </c:choose>
                         <i class="fa fa-angle-down text-dark"></i>
                     </a>
                     <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                         <div class="navbar-nav w-100">
+                            <a href="<c:url value="/filter"><c:param name="txtBrandName" value="AllBrands"/></c:url>" class="nav-item nav-link">All Brands</a>
                             <c:forEach items="${NvabarBrands}" var="b">
-                                <a href="<c:url value="/filter"/>" class="nav-item nav-link">${b.brandName}</a>
+                                <a href="<c:url value="/filter">
+                                       <c:param name="txtBrandName" value="${b.brandName}"/>
+                                </c:url>" class="nav-item nav-link">${b.brandName}</a>
                             </c:forEach>
                         </div>
                     </nav>

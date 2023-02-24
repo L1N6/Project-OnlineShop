@@ -301,9 +301,7 @@
                                     <c:if test="${currentPage>1}">
                                         <c:url value="/filter" var="paginationPrevious">
                                             <c:param name="currentPage" value="${currentPage-1}" />
-                                            <c:param name="txtFilterPrice" value="${PriceFilter}"/>
-                                            <c:param name="txtFilterColor" value="${ColorFilter}"/>
-                                            <c:param name="txtFilterStorage" value="${StorageFilter}"/>
+                                            <c:param name="txtBrandName" value="${BrandFilter}"/>
                                         </c:url>
                                         <li class="page-item"><a class="page-link" href="${paginationPrevious}">Previous</span></a></li>
                                         </c:if>
@@ -315,9 +313,7 @@
                                                 <c:otherwise>
                                                     <c:url value="/filter" var="pagination">
                                                         <c:param name="currentPage" value="${stepValue}" />
-                                                        <c:param name="txtFilterPrice" value="${PriceFilter}"/>
-                                                        <c:param name="txtFilterColor" value="${ColorFilter}"/>
-                                                        <c:param name="txtFilterStorage" value="${StorageFilter}"/>
+                                                        <c:param name="txtBrandName" value="${BrandFilter}"/>
                                                     </c:url>
                                                 <li class="page-item"><a class="page-link" href="${pagination}">${stepValue}</a></li>
                                                 </c:otherwise>
@@ -326,9 +322,7 @@
                                         <c:if test="${currentPage<numberOfPage}">
                                             <c:url value="/filter" var="paginationNext">
                                                 <c:param name="currentPage" value="${currentPage+1}" />
-                                                <c:param name="txtFilterPrice" value="${PriceFilter}"/>
-                                                <c:param name="txtFilterColor" value="${ColorFilter}"/>
-                                                <c:param name="txtFilterStorage" value="${StorageFilter}"/>
+                                                <c:param name="txtBrandName" value="${BrandFilter}"/>
                                             </c:url>
                                         <li class="page-item"><a class="page-link" href="${paginationNext}">Next</a></li>
                                         </c:if>

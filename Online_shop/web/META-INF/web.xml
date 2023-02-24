@@ -12,6 +12,7 @@
         <servlet-name>FilterProducts</servlet-name>
         <servlet-class>Controller.shop.FilterController</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>Test</servlet-name>
         <servlet-class>Controller.Test</servlet-class>

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAL;
+package DAL.shop;
 
 /**
  *
@@ -15,8 +15,27 @@ public class ProductDetail extends Product{
     private String Color;
     private int UnitsInStock;
     private int UnitsOnOrder;
-
+    private int Count;
     public ProductDetail() {
+    }
+
+    public ProductDetail(String Color, int Count) {
+        this.Color = Color;
+        this.Count = Count;
+    }
+
+    public ProductDetail(int ProductStorage, int Count) {
+        this.ProductStorage = ProductStorage;
+        this.Count = Count;
+    }
+
+    
+    public int getCount() {
+        return Count;
+    }
+
+    public void setCount(int count) {
+        this.Count = count;
     }
 
     public ProductDetail(int UnitsInStock, int ProductID, String ProductName, String Picture, double Price) {

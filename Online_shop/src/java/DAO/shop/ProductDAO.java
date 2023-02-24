@@ -170,9 +170,10 @@ public class ProductDAO extends DBcontext {
         Comments c = new Comments();
         int array[] = new int[3];
         int count = 1;
-        String sql = "select p.ProductID, p.Picture, ProductName, pd.Coler, pd.ProductStorage, pd.UnitPrice, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
-                + "from Comments c inner join Products p on c.ProductID = p.ProductID \n"
-                + "inner join ProductDetails pd on p.ProductID = pd.ProductID";
+        String sql = "select pd.ProductID, pd.Picture, p.ProductName, pd.Coler, pd.ProductStorage, pd.UnitPrice, \n" +
+"avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n" +
+"from Comments c inner join Products p on c.ProductID = p.ProductID \n" +
+"inner join ProductDetails pd on p.ProductID = pd.ProductID ";
         try {
             if (priceCondition != 0) {
                 sql += " and pd.UnitPrice between ? and ?";
@@ -186,7 +187,7 @@ public class ProductDAO extends DBcontext {
                 sql += " and pd.ProductStorage = ?";
                 array[2] = 3;
             }
-            sql += " group by c.ProductID, p.ProductName, pd.UnitPrice, p.ProductID, p.Picture, pd.Coler, pd.ProductStorage";
+            sql += " group by c.ProductID, p.ProductName, pd.UnitPrice, pd.ProductID, pd.Picture, pd.Coler, pd.ProductStorage";
             ps = getConnection().prepareCall(sql);
             if(array[0] != 0){
                 ps.setInt(count++, (priceCondition-1) * 10000000);
@@ -198,6 +199,7 @@ public class ProductDAO extends DBcontext {
             if(array[2] != 0){
                 ps.setInt(count, storageCondition);
             }
+            System.out.println(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 int ProductID = rs.getInt("ProductID");

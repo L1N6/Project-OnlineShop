@@ -158,7 +158,7 @@
                                         <a href="checkout.jsp" class="dropdown-item">Checkout</a>
                                     </div>
                                 </div>
-                                <a href="contact.jsp" class="nav-item nav-link">Contact</a>
+                                <a href="<c:url value="/contact"></c:url>" class="nav-item nav-link">Contact</a>
                             </div>
                             <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                                 <a href="" class="btn px-0">

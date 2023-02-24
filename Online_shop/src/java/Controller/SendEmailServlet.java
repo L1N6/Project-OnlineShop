@@ -36,16 +36,14 @@ public class SendEmailServlet extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             /* TODO output your page here. You may use following sample code. */
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String message = request.getParameter("message");
-
-            SendEmail sm = new SendEmail();
-
-            Email mail = new Email(name, email, message);
-            
-            boolean confirmMail = sm.sendEmail(name, email, "SendMailContact", message);
-            request.getRequestDispatcher("index.jsp").forward(request, response);
+//            String name = request.getParameter("name");
+//            String email = request.getParameter("email");
+//            String message = request.getParameter("message");
+//            
+//            SendEmail sm = new SendEmail();
+//            Email mail = new Email(name, email, message);
+//            boolean confirmMail = sm.sendEmail(name, email, "SendMailContact", message);
+//            request.getRequestDispatcher("contact.jsp").forward(request, response);
         }
     }
 
@@ -61,7 +59,8 @@ public class SendEmailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        request.getRequestDispatcher("contact.jsp").forward(request,response);
     }
 
     /**
@@ -75,7 +74,15 @@ public class SendEmailServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String message = request.getParameter("message");
+            
+            SendEmail sm = new SendEmail();
+            Email mail = new Email(name, email, message);
+            boolean confirmMail = sm.sendEmail(name, email, "SendMailContact", message);
+            request.getRequestDispatcher("contact.jsp").forward(request, response);
     }
 
     /**

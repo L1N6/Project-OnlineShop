@@ -42,7 +42,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SendEmailServlet</servlet-name>
-        <url-pattern>/SendEmailServlet</url-pattern>
+        <url-pattern>/contact</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>SignIn</servlet-name>

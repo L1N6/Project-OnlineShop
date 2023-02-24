@@ -13,11 +13,6 @@
         <servlet-class>Controller.shop.FilterController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
-=======
-        <servlet-name>SendEmailServlet</servlet-name>
-        <servlet-class>Controller.SendEmailServlet</servlet-class>
->>>>>>> Develop
         <servlet-name>Test</servlet-name>
         <servlet-class>Controller.Test</servlet-class>
     </servlet>

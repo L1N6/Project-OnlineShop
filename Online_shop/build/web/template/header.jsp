@@ -175,14 +175,4 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-    </div>
-<<<<<<< HEAD
-    <!-- Navbar End -->
-
-=======
-    <!-- Navbar End -->
->>>>>>> Develop
-=======
         <!-- Navbar End -->
->>>>>>> Develop

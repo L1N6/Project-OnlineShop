@@ -94,8 +94,6 @@ public class FilterController extends HttpServlet {
             color = req.getParameter("txtFilterColor");
             //get Storage for filter
             storage = Integer.parseInt(req.getParameter("txtFilterStorage"));
-            
-            System.out.println(price + " " + storage + " " + color + " get");
             int currentPage;
             int numberOfPage;
             String a = req.getParameter("currentPage");

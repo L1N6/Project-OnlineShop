@@ -63,6 +63,11 @@ public class SearchingController extends HttpServlet {
             //getTotal Product
             List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
             req.getSession().setAttribute("totalListProduct", listProduct.size());
+            //reset Filter
+            req.getSession().setAttribute("PriceFilter", 0);
+            req.getSession().setAttribute("ColorFilter", "All");
+            req.getSession().setAttribute("StorageFilter", 0);
+            
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);
@@ -105,6 +110,11 @@ public class SearchingController extends HttpServlet {
             //getTotal Product
             List<ProductInfor> listProduct = new ProductDAO().getAllProduct();
             req.getSession().setAttribute("totalListProduct", listProduct.size());
+            //reset Filter
+            req.getSession().setAttribute("PriceFilter", 0);
+            req.getSession().setAttribute("ColorFilter", "All");
+            req.getSession().setAttribute("StorageFilter", 0);
+            
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(SearchingController.class.getName()).log(Level.SEVERE, null, ex);

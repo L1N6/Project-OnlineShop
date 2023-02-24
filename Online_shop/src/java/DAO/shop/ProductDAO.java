@@ -189,8 +189,8 @@ public class ProductDAO extends DBcontext {
             sql += " group by c.ProductID, p.ProductName, pd.UnitPrice, p.ProductID, p.Picture, pd.Coler, pd.ProductStorage";
             ps = getConnection().prepareCall(sql);
             if(array[0] != 0){
-                ps.setInt(count++, (priceCondition-1) * 5000000);
-                ps.setInt(count++, priceCondition * 5000000);
+                ps.setInt(count++, (priceCondition-1) * 10000000);
+                ps.setInt(count++, priceCondition * 10000000);
             }
             if(array[1] != 0){
                 ps.setString(count++, colorCondition);
@@ -198,7 +198,6 @@ public class ProductDAO extends DBcontext {
             if(array[2] != 0){
                 ps.setInt(count, storageCondition);
             }
-            System.out.println(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 int ProductID = rs.getInt("ProductID");

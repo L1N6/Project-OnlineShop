@@ -10,10 +10,10 @@
 </c:if>
 <!-- Shop Start -->
 <div class="container-fluid">
-    <form action="<c:url value="/filter"/>" method="post">
         <div class="row px-xl-5">
             <!-- Shop Sidebar Start -->
             <div class="col-lg-3 col-md-4">
+                <form action="<c:url value="/filter"/>" method="post">
                 <!-- Price Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
                 <div class="bg-light p-4 mb-30">
@@ -34,14 +34,14 @@
                         </c:when>
                     </c:choose>
                     <c:set var="i" value="${1}"/>
-                    <c:forEach begin="${i}" end="6">
+                    <c:forEach begin="${i}" end="5">
                         <c:choose>
                             <c:when test="${i == PriceFilter}">
                                 <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                                     <input type="checkbox" class="custom-control-input" checked id="price-${i}" name="txtCheckedFilterPrice" value="${PriceFilter}">
                                     <label class="custom-control-label" for="price-${i}">
-                                        $<fmt:formatNumber maxFractionDigits="0" value="${(i-1)*5000000}"/>
-                                        - $<fmt:formatNumber maxFractionDigits="0" value="${i*5000000}"/>
+                                        $<fmt:formatNumber maxFractionDigits="0" value="${(i-1)*10000000}"/>
+                                        - $<fmt:formatNumber maxFractionDigits="0" value="${i*10000000}"/>
                                     </label>
                                     <span class="badge border font-weight-normal">150</span>
                                 </div>
@@ -50,8 +50,8 @@
                                 <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                                     <input type="submit" class="custom-control-input" id="price-${i}" name="txtFilterPrice" value="${i}">
                                     <label class="custom-control-label" for="price-${i}">
-                                        $<fmt:formatNumber maxFractionDigits="0" value="${(i-1)*5000000}"/>
-                                        - $<fmt:formatNumber maxFractionDigits="0" value="${i*5000000}"/>
+                                        $<fmt:formatNumber maxFractionDigits="0" value="${(i-1)*10000000}"/>
+                                        - $<fmt:formatNumber maxFractionDigits="0" value="${i*10000000}"/>
                                     </label>
                                     <span class="badge border font-weight-normal">150</span>
                                 </div>
@@ -221,8 +221,11 @@
                         </c:choose>
                     </c:forEach>
                 </div>
+                </form>
                 <!-- Size End -->
-            </div>        
+            </div> 
+            
+    
             <!-- Shop Sidebar End -->
 
 
@@ -570,7 +573,6 @@
             </div>
             <!-- Shop Product End -->
         </div>
-    </form>
 
 </div>
 <!-- Shop End -->

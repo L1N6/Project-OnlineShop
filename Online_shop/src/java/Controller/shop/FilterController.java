@@ -36,7 +36,7 @@ public class FilterController extends HttpServlet {
             if (req.getParameter("txtCheckedFilterPrice") != null && req.getParameter("txtFilterPrice") != null) {
                 price = Integer.parseInt(req.getParameter("txtFilterPrice"));
             } else {
-                price = Integer.parseInt(req.getParameter("txtCheckedFilterPrice"));
+                 price = Integer.parseInt(req.getParameter("txtCheckedFilterPrice"));
             }
 
             //get Color for filter
@@ -50,7 +50,7 @@ public class FilterController extends HttpServlet {
             if (req.getParameter("txtCheckedFilterStorage") != null && req.getParameter("txtFilterStorage") != null) {
                 storage = Integer.parseInt(req.getParameter("txtFilterStorage"));
             } else {
-                storage = Integer.parseInt(req.getParameter("txtCheckedFilterStorage"));
+                    storage = Integer.parseInt(req.getParameter("txtCheckedFilterStorage"));
             }
             int currentPage;
             int numberOfPage;
@@ -88,21 +88,14 @@ public class FilterController extends HttpServlet {
             int price;
             String color;
             int storage;
-            if (req.getParameter("txtFilterPrice") == null) {
-                price = 0;
-            } else {
-                price = Integer.parseInt(req.getParameter("txtFilterPrice"));
-            }
-            if (req.getParameter("txtFilterColor") == null) {
-                color = "All";
-            } else {
-                color = req.getParameter("txtFilterColor");
-            }
-            if (req.getParameter("txtFilterStorage") == null) {
-                storage = 0;
-            } else {
-                storage = Integer.parseInt(req.getParameter("txtFilterStorage"));
-            }
+            //get Price for filter
+            price = Integer.parseInt(req.getParameter("txtFilterPrice"));
+            //get Color for filter
+            color = req.getParameter("txtFilterColor");
+            //get Storage for filter
+            storage = Integer.parseInt(req.getParameter("txtFilterStorage"));
+            
+            System.out.println(price + " " + storage + " " + color + " get");
             int currentPage;
             int numberOfPage;
             String a = req.getParameter("currentPage");
@@ -128,9 +121,15 @@ public class FilterController extends HttpServlet {
             req.setAttribute("check", "not empty");
 
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
-        } catch (SQLException ex) {
+        }
+        catch (NumberFormatException e){
+            System.out.println(e.getMessage());
+            resp.sendRedirect("shop.jsp");
+        }
+        catch (SQLException ex) {
             Logger.getLogger(FilterController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
 }

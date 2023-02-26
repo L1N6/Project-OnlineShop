@@ -81,8 +81,4 @@
             30
         </session-timeout>
     </session-config>
-<<<<<<< HEAD:Online_shop/web/Shop/META-INF/web.xml
 </web-app>
-=======
-</web-app>
->>>>>>> Develop:Online_shop/build/web/META-INF/web.xml

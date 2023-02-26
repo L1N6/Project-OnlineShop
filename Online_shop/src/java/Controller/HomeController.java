@@ -49,6 +49,7 @@ public class HomeController extends HttpServlet{
             req.setAttribute("ListSale", ListSale);
             req.setAttribute("List", brandList);
             req.setAttribute("Check", "true");
+            req.getSession().removeAttribute("BrandFilter");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);

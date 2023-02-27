@@ -40,7 +40,7 @@
                         <a href="<c:url value="/home"/>" class="text-decoration-none mr-3">
                             <!--                        <span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
                                                     <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>-->
-                            <img src="../img/gradient-mobile-store-logo-design_23-2149697771.jpg" class="rounded" width="70" height="70"" alt="alt"/>
+                            <img src="./img/gradient-mobile-store-logo-design_23-2149697771.jpg" class="rounded" width="70" height="70"" alt="alt"/>
                         </a>
                         <div class="d-none d-lg-block mr-3">
                             <a class="text-body " data-toggle="collapse" href="#navbar-vertical" style="height: 5px;">
@@ -67,29 +67,16 @@
                         </div>
                         <a class="text-dark font-weight-bold mr-3" href="">About</a>
                         <a class="text-dark font-weight-bold mr-3" href="contact.jsp">Contact</a>
-                        <a href="#" class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown">CheckOut?</i></a>
+                        <a href="#" class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown">Cart</a>
                         <div class="dropdown-menu text-dark">
                             <a href="cart.jsp" class="dropdown-item">Shopping Cart</a>
                             <a href="checkout.jsp" class="dropdown-item">Checkout</a>
                         </div>
-                        <a class="text-dark font-weight-bold mr-3" href="">FAQs</a>
-                        <!--                            <div class="navbar-nav mr-auto py-0">
-                                                            <a href="index.jsp" class="nav-item nav-link">Home</a>
-                                                            <a href="<c:url value="/shop">
+                        <a class="text-dark font-weight-bold mr-3" href="<c:url value="/shop">
                             <c:param name="choice" value="showList" />
-                        </c:url>" class="nav-item nav-link active">Shop</a>
-                     <div class="nav-item dropdown">
-                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
-                         <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                             <a href="cart.jsp" class="dropdown-item">Shopping Cart</a>
-                             <a href="checkout.jsp" class="dropdown-item">Checkout</a>
-                         </div>
-                     </div>
-                     <a href="contact.jsp" class="nav-item nav-link">Contact</a>
-                 </div>-->
+                        </c:url>">Shop</a>
                     </div>
                 </div>
-
                 <div class="col-lg-4 col-2 text-left mt-3">
                     <form action="<c:url value="/searching"/>" method="Post">
                         <div class="input-group">
@@ -102,7 +89,6 @@
                         </div>
                     </form>
                 </div>
-
                 <div class="col-lg-4 text-center text-lg-right mt-3" >
                     <div class="btn-group mx-2">
                         <a href="" class="btn px-0">
@@ -147,14 +133,8 @@
                     </div>
                 </div>
             </div>
-            <!--            <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
-                            <div class="col-lg-4">
-                                
-                            </div>
-                        </div>-->
         </div>
         <!-- Topbar End -->
-
 
         <!-- Navbar Start -->
         <div class="container-fluid bg-white mb-30">
@@ -169,10 +149,6 @@
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                        <!--                        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                                                    
-                        
-                                                </div>-->
                     </nav>
                 </div>
             </div>

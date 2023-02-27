@@ -10,10 +10,10 @@
 </c:if>
 <!-- Shop Start -->
 <div class="container-fluid">
-        <div class="row px-xl-5">
-            <!-- Shop Sidebar Start -->
-            <div class="col-lg-3 col-md-4">
-                <form action="<c:url value="/filter"/>" method="post">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        <div class="col-lg-3 col-md-4">
+            <form action="<c:url value="/filter"/>" method="post">
                 <!-- Price Start -->
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
                 <div class="bg-light p-4 mb-30">
@@ -221,285 +221,224 @@
                         </c:choose>
                     </c:forEach>
                 </div>
-                </form>
-                <!-- Size End -->
-            </div> 
-            
-    
-            <!-- Shop Sidebar End -->
+            </form>
+            <!-- Size End -->
+        </div> 
 
 
-            <!-- Shop Product Start -->
-            <div class="col-lg-9 col-md-8">
-                <div class="row pb-3">
-                    <div class="col-12 pb-1">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div>
-                                <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
-                                <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+        <!-- Shop Sidebar End -->
+
+
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
+                            <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+                        </div>
+                        <div class="ml-2">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
+                                <c:choose>
+                                    <c:when test="${empty filter}">
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="<c:url value="/shop">
+                                                   <c:param name="choice" value="sort"/>
+                                                   <c:param name="sort" value="latest"/></c:url>">Latest</a>
+                                            <a class="dropdown-item" href="<c:url value="/shop">
+                                                   <c:param name="choice" value="sort"/>
+                                                   <c:param name="sort" value="popularity"/></c:url>">Popularity</a>
+                                            <a class="dropdown-item" href="<c:url value="/shop">
+                                                   <c:param name="choice" value="sort"/>
+                                                   <c:param name="sort" value="bestRating"/></c:url>">Best Rating</a>
+                                            </div>
+                                    </c:when>
+                                    <c:when test="${not empty filter}">
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="<c:url value="/filter">
+                                                   <c:param name="sort" value="desc"/></c:url>">Price Desc</a>
+                                            <a class="dropdown-item" href="<c:url value="/filter">
+                                                   <c:param name="sort" value="asc"/></c:url>">Price Asc</a>
+                                            </div>
+                                    </c:when>
+                                </c:choose>
                             </div>
-                            <div class="ml-2">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="<c:url value="/shop">
-                                               <c:param name="choice" value="sort"/>
-                                               <c:param name="sort" value="latest"/></c:url>">Latest</a>
-                                        <a class="dropdown-item" href="<c:url value="/shop">
-                                               <c:param name="choice" value="sort"/>
-                                               <c:param name="sort" value="popularity"/></c:url>">Popularity</a>
-                                        <a class="dropdown-item" href="<c:url value="/shop">
-                                               <c:param name="choice" value="sort"/>
-                                               <c:param name="sort" value="bestRating"/></c:url>">Best Rating</a>
+                        </div>
+                    </div>
+                </div>
+                <!--FILTER-->
+                <c:if test="${not empty filter}">
+                    <c:forEach var="ListProduct" items="${listFilterProduct}" >
+                        <c:set var="p" value="${ListProduct.product}"></c:set>
+                        <c:set var="c" value="${ListProduct.comments}"></c:set>
+                            <div id="content" class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                                <div >
+                                    <div  class="product-item bg-light mb-4">
+                                        <div class="product-img position-relative overflow-hidden">
+                                            <img class="img-fluid w-100" src="img/${p.picture}" alt="">
+                                        <div class="product-action">
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="text-center py-4">
+                                        <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
+                                        <div class="d-flex align-items-center justify-content-center mt-2">
+                                            <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
+                                            <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center mb-1">
+                                            <div class="rate-star-class">
+                                                <c:forEach begin="1" end="${c.rate}">
+                                                    <small class="fa fa-star fasize checked"></small>
+                                                </c:forEach>
+
+                                                <c:forEach begin="1" end="${5-c.rate}">
+                                                    <small class="fa fa-star fasize "></small>
+                                                </c:forEach>
+                                            </div>
+                                            <small>(${ListProduct.totalComments})</small>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--FILTER-->
-                    <c:if test="${not empty filter}">
-                        <c:forEach var="ListProduct" items="${listFilterProduct}" >
-                            <c:set var="p" value="${ListProduct.product}"></c:set>
-                            <c:set var="c" value="${ListProduct.comments}"></c:set>
-                                <div id="content" class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                                    <div >
-                                        <div  class="product-item bg-light mb-4">
-                                            <div class="product-img position-relative overflow-hidden">
-                                                <img class="img-fluid w-100" src="img/${p.picture}" alt="">
-                                            <div class="product-action">
-                                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="text-center py-4">
-                                            <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
-                                            <div class="d-flex align-items-center justify-content-center mt-2">
-                                                <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
-                                                <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
-                                            </div>
-                                            <div class="d-flex align-items-center justify-content-center mb-1">
-                                                <div class="rate-star-class">
-                                                    <c:forEach begin="1" end="${c.rate}">
-                                                        <small class="fa fa-star fasize checked"></small>
-                                                    </c:forEach>
-
-                                                    <c:forEach begin="1" end="${5-c.rate}">
-                                                        <small class="fa fa-star fasize "></small>
-                                                    </c:forEach>
-                                                </div>
-                                                <small>(${ListProduct.totalComments})</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach>
-                        <div class="col-12">
-                            <nav>
-                                <ul class="pagination justify-content-center">
-                                    <c:if test="${currentPage>1}">
-                                        <c:url value="/filter" var="paginationPrevious">
-                                            <c:param name="currentPage" value="${currentPage-1}" />
+                    </c:forEach>
+                    <div class="col-12">
+                        <nav>
+                            <ul class="pagination justify-content-center">
+                                <c:if test="${currentPage>1}">
+                                    <c:url value="/filter" var="paginationPrevious">
+                                        <c:param name="currentPage" value="${currentPage-1}" />
+                                        <c:param name="txtFilterPrice" value="${PriceFilter}"/>
+                                        <c:param name="txtFilterColor" value="${ColorFilter}"/>
+                                        <c:param name="txtFilterStorage" value="${StorageFilter}"/>
+                                        <c:param name="txtBrandName" value="${BrandFilter}"/>
+                                        <c:param name="sort" value="${SortingFilter}"/>
+                                    </c:url>
+                                    <li class="page-item"><a class="page-link" href="${paginationPrevious}">Previous</span></a></li>
+                                    </c:if>
+                                    <c:forEach begin="1" end="${numberOfPage}" step="1" var="stepValue">
+                                        <c:choose>
+                                            <c:when test="${stepValue == currentPage}">
+                                            <li class="page-item active"><a class="page-link" href="#">${stepValue}</a></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:url value="/filter" var="pagination">
+                                                    <c:param name="currentPage" value="${stepValue}" />
+                                                    <c:param name="txtFilterPrice" value="${PriceFilter}"/>
+                                                    <c:param name="txtFilterColor" value="${ColorFilter}"/>
+                                                    <c:param name="txtFilterStorage" value="${StorageFilter}"/>
+                                                    <c:param name="txtBrandName" value="${BrandFilter}"/>
+                                                    <c:param name="sort" value="${SortingFilter}"/>
+                                                </c:url>
+                                            <li class="page-item"><a class="page-link" href="${pagination}">${stepValue}</a></li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                    <c:if test="${currentPage<numberOfPage}">
+                                        <c:url value="/filter" var="paginationNext">
+                                            <c:param name="currentPage" value="${currentPage+1}" />
                                             <c:param name="txtFilterPrice" value="${PriceFilter}"/>
                                             <c:param name="txtFilterColor" value="${ColorFilter}"/>
                                             <c:param name="txtFilterStorage" value="${StorageFilter}"/>
+                                            <c:param name="txtBrandName" value="${BrandFilter}"/>
+                                            <c:param name="sort" value="${SortingFilter}"/>
                                         </c:url>
-                                        <li class="page-item"><a class="page-link" href="${paginationPrevious}">Previous</span></a></li>
-                                        </c:if>
-                                        <c:forEach begin="1" end="${numberOfPage}" step="1" var="stepValue">
-                                            <c:choose>
-                                                <c:when test="${stepValue == currentPage}">
-                                                <li class="page-item active"><a class="page-link" href="#">${stepValue}</a></li>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <c:url value="/filter" var="pagination">
-                                                        <c:param name="currentPage" value="${stepValue}" />
-                                                        <c:param name="txtFilterPrice" value="${PriceFilter}"/>
-                                                        <c:param name="txtFilterColor" value="${ColorFilter}"/>
-                                                        <c:param name="txtFilterStorage" value="${StorageFilter}"/>
-                                                    </c:url>
-                                                <li class="page-item"><a class="page-link" href="${pagination}">${stepValue}</a></li>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
-                                        <c:if test="${currentPage<numberOfPage}">
-                                            <c:url value="/filter" var="paginationNext">
-                                                <c:param name="currentPage" value="${currentPage+1}" />
-                                                <c:param name="txtFilterPrice" value="${PriceFilter}"/>
-                                                <c:param name="txtFilterColor" value="${ColorFilter}"/>
-                                                <c:param name="txtFilterStorage" value="${StorageFilter}"/>
-                                            </c:url>
-                                        <li class="page-item"><a class="page-link" href="${paginationNext}">Next</a></li>
-                                        </c:if>
-                                </ul>
-                            </nav>
-                        </div>
-                    </c:if>
-                    <!--EMPTY FILTER-->
-                    <c:if test="${empty filter}">
-                        <!--EMPTY SEARCHING-->
-                        <c:if test="${empty searching}">
-                            <!--EMPTY SORTING-->
-                            <c:if test="${empty sortSession}">
-                                <c:forEach var="ListProduct" items="${shopListProduct}" >
-                                    <c:set var="p" value="${ListProduct.product}"></c:set>
-                                    <c:set var="c" value="${ListProduct.comments}"></c:set>
-                                        <div id="content" class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                                            <div >
-                                                <div  class="product-item bg-light mb-4">
-                                                    <div class="product-img position-relative overflow-hidden">
-                                                        <img class="img-fluid w-100" src="img/${p.picture}" alt="">
-                                                    <div class="product-action">
-                                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                                        <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="text-center py-4">
-                                                    <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
-                                                    <div class="d-flex align-items-center justify-content-center mt-2">
-                                                        <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
-                                                        <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
-                                                    </div>
-                                                    <div class="d-flex align-items-center justify-content-center mb-1">
-                                                        <div class="rate-star-class">
-                                                            <c:forEach begin="1" end="${c.rate}">
-                                                                <small class="fa fa-star fasize checked"></small>
-                                                            </c:forEach>
-
-                                                            <c:forEach begin="1" end="${5-c.rate}">
-                                                                <small class="fa fa-star fasize "></small>
-                                                            </c:forEach>
-                                                        </div>
-                                                        <small>(${ListProduct.totalComments})</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                                <div class="col-12">
-                                    <nav>
-                                        <ul class="pagination justify-content-center">
-                                            <c:if test="${currentPage>1}">
-                                                <c:url value="/shop" var="paginationPrevious">
-                                                    <c:param name="currentPage" value="${currentPage-1}" />
-                                                    <c:param name="choice" value="shop"/>
-                                                </c:url>
-                                                <li class="page-item"><a class="page-link" href="${paginationPrevious}">Previous</span></a></li>
-                                                </c:if>
-                                                <c:forEach begin="1" end="${numberOfPage}" step="1" var="stepValue">
-                                                    <c:choose>
-                                                        <c:when test="${stepValue == currentPage}">
-                                                        <li class="page-item active"><a class="page-link" href="#">${stepValue}</a></li>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <c:url value="/shop" var="pagination">
-                                                                <c:param name="currentPage" value="${stepValue}" />
-                                                                <c:param name="choice" value="shop"/>
-                                                            </c:url>
-                                                        <li class="page-item"><a class="page-link" href="${pagination}">${stepValue}</a></li>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:forEach>
-                                                <c:if test="${currentPage<numberOfPage}">
-                                                    <c:url value="/shop" var="paginationNext">
-                                                        <c:param name="currentPage" value="${currentPage+1}" />
-                                                        <c:param name="choice" value="shop"/>
-                                                    </c:url>
-                                                <li class="page-item"><a class="page-link" href="${paginationNext}">Next</a></li>
-                                                </c:if>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </c:if>
-                            <!--SORTING-->
-                            <c:if test="${not empty sortSession}">
-                                <c:forEach var="ListProduct" items="${shopListProduct}" >
-                                    <c:set var="p" value="${ListProduct.product}"></c:set>
-                                    <c:set var="c" value="${ListProduct.comments}"></c:set>
-                                        <div id="content" class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                                            <div >
-                                                <div  class="product-item bg-light mb-4">
-                                                    <div class="product-img position-relative overflow-hidden">
-                                                        <img class="img-fluid w-100" src="img/${p.picture}" alt="">
-                                                    <div class="product-action">
-                                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                                        <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="text-center py-4">
-                                                    <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
-                                                    <div class="d-flex align-items-center justify-content-center mt-2">
-                                                        <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
-                                                        <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
-                                                    </div>
-                                                    <div class="d-flex align-items-center justify-content-center mb-1">
-                                                        <div class="rate-star-class">
-                                                            <c:forEach begin="1" end="${c.rate}">
-                                                                <small class="fa fa-star fasize checked"></small>
-                                                            </c:forEach>
-
-                                                            <c:forEach begin="1" end="${5-c.rate}">
-                                                                <small class="fa fa-star fasize "></small>
-                                                            </c:forEach>
-                                                        </div>
-                                                        <small>(${ListProduct.totalComments})</small>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                                <div class="col-12">
-                                    <nav>
-                                        <ul class="pagination justify-content-center">
-                                            <c:if test="${currentPage>1}">
-                                                <c:url value="/shop" var="paginationPrevious">
-                                                    <c:param name="currentPage" value="${currentPage-1}" />
-                                                    <c:param name="choice" value="sort"/>
-                                                    <c:param name="sort" value="${sortCondition}"/>
-                                                </c:url>
-                                                <li class="page-item"><a class="page-link" href="${paginationPrevious}">Previous</span></a></li>
-                                                </c:if>
-                                                <c:forEach begin="1" end="${numberOfPage}" step="1" var="stepValue">
-                                                    <c:choose>
-                                                        <c:when test="${stepValue == currentPage}">
-                                                        <li class="page-item active"><a class="page-link" href="#">${stepValue}</a></li>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <c:url value="/shop" var="pagination">
-                                                                <c:param name="currentPage" value="${stepValue}" />
-                                                                <c:param name="choice" value="sort"/>
-                                                                <c:param name="sort" value="${sortCondition}"/>
-                                                            </c:url>
-                                                        <li class="page-item"><a class="page-link" href="${pagination}">${stepValue}</a></li>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </c:forEach>
-                                                <c:if test="${currentPage<numberOfPage}">
-                                                    <c:url value="/shop" var="paginationNext">
-                                                        <c:param name="currentPage" value="${currentPage+1}" />
-                                                        <c:param name="choice" value="sort"/>
-                                                        <c:param name="sort" value="${sortCondition}"/>
-                                                    </c:url>
-                                                <li class="page-item"><a class="page-link" href="${paginationNext}">Next</a></li>
-                                                </c:if>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </c:if>
-                        </c:if>
-                        <!--SEARCHING-->
-                        <c:if test="${not empty searching}">
-                            <c:forEach var="ListProduct" items="${searchingListProduct}" >
+                                    <li class="page-item"><a class="page-link" href="${paginationNext}">Next</a></li>
+                                    </c:if>
+                            </ul>
+                        </nav>
+                    </div>
+                </c:if>
+                <!--EMPTY FILTER-->
+                <c:if test="${empty filter}">
+                    <!--EMPTY SEARCHING-->
+                    <c:if test="${empty searching}">
+                        <!--EMPTY SORTING-->
+                        <c:if test="${empty sortSession}">
+                            <c:forEach var="ListProduct" items="${shopListProduct}" >
                                 <c:set var="p" value="${ListProduct.product}"></c:set>
                                 <c:set var="c" value="${ListProduct.comments}"></c:set>
                                     <div id="content" class="col-lg-4 col-md-6 col-sm-6 pb-1">
-                                        <div>
+                                        <div >
+                                            <div  class="product-item bg-light mb-4">
+                                                <div class="product-img position-relative overflow-hidden">
+                                                    <img class="img-fluid w-100" src="img/${p.picture}" alt="">
+                                                <div class="product-action">
+                                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="text-center py-4">
+                                                <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
+                                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                                    <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
+                                                    <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
+                                                </div>
+                                                <div class="d-flex align-items-center justify-content-center mb-1">
+                                                    <div class="rate-star-class">
+                                                        <c:forEach begin="1" end="${c.rate}">
+                                                            <small class="fa fa-star fasize checked"></small>
+                                                        </c:forEach>
+
+                                                        <c:forEach begin="1" end="${5-c.rate}">
+                                                            <small class="fa fa-star fasize "></small>
+                                                        </c:forEach>
+                                                    </div>
+                                                    <small>(${ListProduct.totalComments})</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                            <div class="col-12">
+                                <nav>
+                                    <ul class="pagination justify-content-center">
+                                        <c:if test="${currentPage>1}">
+                                            <c:url value="/shop" var="paginationPrevious">
+                                                <c:param name="currentPage" value="${currentPage-1}" />
+                                                <c:param name="choice" value="shop"/>
+                                            </c:url>
+                                            <li class="page-item"><a class="page-link" href="${paginationPrevious}">Previous</span></a></li>
+                                            </c:if>
+                                            <c:forEach begin="1" end="${numberOfPage}" step="1" var="stepValue">
+                                                <c:choose>
+                                                    <c:when test="${stepValue == currentPage}">
+                                                    <li class="page-item active"><a class="page-link" href="#">${stepValue}</a></li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:url value="/shop" var="pagination">
+                                                            <c:param name="currentPage" value="${stepValue}" />
+                                                            <c:param name="choice" value="shop"/>
+                                                        </c:url>
+                                                    <li class="page-item"><a class="page-link" href="${pagination}">${stepValue}</a></li>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+                                            <c:if test="${currentPage<numberOfPage}">
+                                                <c:url value="/shop" var="paginationNext">
+                                                    <c:param name="currentPage" value="${currentPage+1}" />
+                                                    <c:param name="choice" value="shop"/>
+                                                </c:url>
+                                            <li class="page-item"><a class="page-link" href="${paginationNext}">Next</a></li>
+                                            </c:if>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </c:if>
+                        <!--SORTING-->
+                        <c:if test="${not empty sortSession}">
+                            <c:forEach var="ListProduct" items="${shopListProduct}" >
+                                <c:set var="p" value="${ListProduct.product}"></c:set>
+                                <c:set var="c" value="${ListProduct.comments}"></c:set>
+                                    <div id="content" class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                                        <div >
                                             <div  class="product-item bg-light mb-4">
                                                 <div class="product-img position-relative overflow-hidden">
                                                     <img class="img-fluid w-100" src="img/${p.picture}" alt="">
@@ -537,9 +476,10 @@
                                 <nav>
                                     <ul class="pagination justify-content-center">
                                         <c:if test="${currentPage>1}">
-                                            <c:url value="/searching" var="paginationPrevious">
+                                            <c:url value="/shop" var="paginationPrevious">
                                                 <c:param name="currentPage" value="${currentPage-1}" />
-                                                <c:param name="txt" value="${txtValue}"/>
+                                                <c:param name="choice" value="sort"/>
+                                                <c:param name="sort" value="${sortCondition}"/>
                                             </c:url>
                                             <li class="page-item"><a class="page-link" href="${paginationPrevious}">Previous</span></a></li>
                                             </c:if>
@@ -549,18 +489,20 @@
                                                     <li class="page-item active"><a class="page-link" href="#">${stepValue}</a></li>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <c:url value="/searching" var="pagination">
+                                                        <c:url value="/shop" var="pagination">
                                                             <c:param name="currentPage" value="${stepValue}" />
-                                                            <c:param name="txt" value="${txtValue}"/>
+                                                            <c:param name="choice" value="sort"/>
+                                                            <c:param name="sort" value="${sortCondition}"/>
                                                         </c:url>
                                                     <li class="page-item"><a class="page-link" href="${pagination}">${stepValue}</a></li>
                                                     </c:otherwise>
                                                 </c:choose>
                                             </c:forEach>
                                             <c:if test="${currentPage<numberOfPage}">
-                                                <c:url value="/searching" var="paginationNext">
+                                                <c:url value="/shop" var="paginationNext">
                                                     <c:param name="currentPage" value="${currentPage+1}" />
-                                                    <c:param name="txt" value="${txtValue}"/>
+                                                    <c:param name="choice" value="sort"/>
+                                                    <c:param name="sort" value="${sortCondition}"/>
                                                 </c:url>
                                             <li class="page-item"><a class="page-link" href="${paginationNext}">Next</a></li>
                                             </c:if>
@@ -569,10 +511,86 @@
                             </div>
                         </c:if>
                     </c:if>
-                </div>
+                    <!--SEARCHING-->
+                    <c:if test="${not empty searching}">
+                        <c:forEach var="ListProduct" items="${searchingListProduct}" >
+                            <c:set var="p" value="${ListProduct.product}"></c:set>
+                            <c:set var="c" value="${ListProduct.comments}"></c:set>
+                                <div id="content" class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                                    <div>
+                                        <div  class="product-item bg-light mb-4">
+                                            <div class="product-img position-relative overflow-hidden">
+                                                <img class="img-fluid w-100" src="img/${p.picture}" alt="">
+                                            <div class="product-action">
+                                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center py-4">
+                                            <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
+                                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                                <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
+                                                <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                                <div class="rate-star-class">
+                                                    <c:forEach begin="1" end="${c.rate}">
+                                                        <small class="fa fa-star fasize checked"></small>
+                                                    </c:forEach>
+
+                                                    <c:forEach begin="1" end="${5-c.rate}">
+                                                        <small class="fa fa-star fasize "></small>
+                                                    </c:forEach>
+                                                </div>
+                                                <small>(${ListProduct.totalComments})</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                        <div class="col-12">
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    <c:if test="${currentPage>1}">
+                                        <c:url value="/searching" var="paginationPrevious">
+                                            <c:param name="currentPage" value="${currentPage-1}" />
+                                            <c:param name="txt" value="${txtValue}"/>
+                                        </c:url>
+                                        <li class="page-item"><a class="page-link" href="${paginationPrevious}">Previous</span></a></li>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${numberOfPage}" step="1" var="stepValue">
+                                            <c:choose>
+                                                <c:when test="${stepValue == currentPage}">
+                                                <li class="page-item active"><a class="page-link" href="#">${stepValue}</a></li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:url value="/searching" var="pagination">
+                                                        <c:param name="currentPage" value="${stepValue}" />
+                                                        <c:param name="txt" value="${txtValue}"/>
+                                                    </c:url>
+                                                <li class="page-item"><a class="page-link" href="${pagination}">${stepValue}</a></li>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                        <c:if test="${currentPage<numberOfPage}">
+                                            <c:url value="/searching" var="paginationNext">
+                                                <c:param name="currentPage" value="${currentPage+1}" />
+                                                <c:param name="txt" value="${txtValue}"/>
+                                            </c:url>
+                                        <li class="page-item"><a class="page-link" href="${paginationNext}">Next</a></li>
+                                        </c:if>
+                                </ul>
+                            </nav>
+                        </div>
+                    </c:if>
+                </c:if>
             </div>
-            <!-- Shop Product End -->
         </div>
+        <!-- Shop Product End -->
+    </div>
 
 </div>
 <!-- Shop End -->

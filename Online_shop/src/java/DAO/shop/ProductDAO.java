@@ -166,7 +166,7 @@ public class ProductDAO extends DBcontext {
         return listColor;
     }
 
-    public List<ProductInfor> getFilterProduct(int priceCondition, String colorCondition, int storageCondition, String brandCondition) throws SQLException {
+    public List<ProductInfor> getFilterProduct(int priceCondition, String colorCondition, int storageCondition, String brandCondition, String sort) throws SQLException {
         List<ProductInfor> listProduct = new ArrayList<ProductInfor>();
         Product p = new Product();
         Comments c = new Comments();
@@ -195,6 +195,9 @@ public class ProductDAO extends DBcontext {
                 array[3] = 4;
             }
             sql += " group by c.ProductID, p.ProductName, pd.UnitPrice, pd.ProductID, pd.Picture, pd.Coler, pd.ProductStorage, b.BrandName";
+            if(!"".equals(sort)){
+                sql += " order by pd.UnitPrice " + sort;
+            }
             ps = getConnection().prepareCall(sql);
             if (array[0] != 0) {
                 ps.setInt(count++, (priceCondition - 1) * 10000000);

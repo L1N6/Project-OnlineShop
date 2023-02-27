@@ -84,7 +84,7 @@ public class FilterController extends HttpServlet {
             req.getSession().removeAttribute("searching");
             req.getSession().removeAttribute("sortSession");
             //Paging
-            List<ProductInfor> listFilterProduct = new ProductDAO().getFilterProduct(price, color, storage, brand);
+            List<ProductInfor> listFilterProduct = new ProductDAO().getFilterProduct(price, color, storage, brand, "");
             List<ProductInfor> getFilterProduct = pcp.getPageOfResult(listFilterProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
             numberOfPage = pcp.getTotalPageOfResult(listFilterProduct, PaginationObject.getNumberOfRowEachPage());
             req.getSession().setAttribute("currentPage", currentPage);
@@ -121,9 +121,14 @@ public class FilterController extends HttpServlet {
             String color;
             int storage;
             String brand;
+            String sort;
             //get Brands for filter
             if (req.getParameter("txtBrandName") == null || "AllBrands".equals(req.getParameter("txtBrandName")) || req.getParameter("txtBrandName").isEmpty()) {
-                brand = null;
+                if(req.getSession().getAttribute("BrandFilter") != null){
+                    brand = req.getSession().getAttribute("BrandFilter").toString();
+                }else{
+                    brand = null;
+                }    
             } else {
                 brand = req.getParameter("txtBrandName");
             }
@@ -147,6 +152,13 @@ public class FilterController extends HttpServlet {
             } else {
                 storage = Integer.parseInt(req.getSession().getAttribute("StorageFilter").toString());
             }
+            
+            //sorting Filter Product
+            if(req.getParameter("sort") == null){
+                sort = "";
+            }else{
+                sort = req.getParameter("sort");
+            }
             int currentPage;
             int numberOfPage;
             String a = req.getParameter("currentPage");
@@ -158,7 +170,7 @@ public class FilterController extends HttpServlet {
             req.getSession().removeAttribute("searching");
             req.getSession().removeAttribute("sortSession");
             //Paging
-            List<ProductInfor> listFilterProduct = new ProductDAO().getFilterProduct(price, color, storage, brand);
+            List<ProductInfor> listFilterProduct = new ProductDAO().getFilterProduct(price, color, storage, brand, sort);
             List<ProductInfor> getFilterProduct = pcp.getPageOfResult(listFilterProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
             numberOfPage = pcp.getTotalPageOfResult(listFilterProduct, PaginationObject.getNumberOfRowEachPage());
             req.getSession().setAttribute("currentPage", currentPage);
@@ -181,6 +193,7 @@ public class FilterController extends HttpServlet {
             req.getSession().setAttribute("StorageFilter", storage);
             req.getSession().setAttribute("BrandFilter", brand);
             req.getSession().setAttribute("filter", "not null");
+            req.getSession().setAttribute("SortingFilter", sort);
             req.setAttribute("check", "not empty");
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {

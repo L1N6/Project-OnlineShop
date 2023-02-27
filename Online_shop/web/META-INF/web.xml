@@ -18,7 +18,7 @@
     </servlet>
     <servlet>
         <servlet-name>SendEmailServlet</servlet-name>
-        <servlet-class>Controller.SendEmailServlet</servlet-class>
+        <servlet-class>Controller_Contact.SendEmailServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SignUpController</servlet-name>

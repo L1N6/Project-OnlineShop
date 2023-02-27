@@ -8,14 +8,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %>
 <%--<c:if test="${Check !='true'}">
-    <c:redirect url = "/home" />
+    <c:redirect url = "/contact" />
 </c:if>--%>
 <!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
                 <nav class="breadcrumb bg-light mb-30">
-                    <a class="breadcrumb-item text-dark" href="#">Home</a>
+                    <a class="breadcrumb-item text-dark" href="/home">Home</a>
                     <span class="breadcrumb-item active">Contact</span>
                 </nav>
             </div>
@@ -31,7 +31,7 @@
             <div class="col-lg-7 mb-5">
                 <div class="contact-form bg-light p-30">
                     <div id="success"></div>
-                    <form action="contact" method="POST">
+                    <form action="/contact" method="POST">
                     <div class="control-group">
                         <input type="text" class="form-control" name="name" placeholder="Your Name"
                                required="required" data-validation-required-message="Please enter your name" />

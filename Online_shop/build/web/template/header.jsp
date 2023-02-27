@@ -66,7 +66,7 @@
                             </nav>
                         </div>
                         <a class="text-dark font-weight-bold mr-3" href="">About</a>
-                        <a class="text-dark font-weight-bold mr-3" href="<c:url value="/contact"/>">Contact</a>
+                        <a class="text-dark font-weight-bold mr-3" href="/contact">Contact</a>
                         <a href="#" class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown">CheckOut?</i></a>
                         <div class="dropdown-menu text-dark">
                             <a href="cart.jsp" class="dropdown-item">Shopping Cart</a>

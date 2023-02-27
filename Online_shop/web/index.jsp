@@ -31,8 +31,8 @@
                     <c:set var="count" value="${0}"/>
                     <c:forEach items="${Events}" var="event">
                         <c:if test="${count==0}">
-                            <div class="carousel-item position-relative active" style="height: 450px;">
-                                <img class="position-absolute w-100 h-100" src="img/${event.picture}" style="object-fit: cover;">
+                            <div class="carousel-item position-relative active " style="height: 450px;">
+                                <img class="position-absolute w-100 h-100 rounded" src="img/${event.picture}" style="object-fit: cover;">
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
                                         <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
@@ -42,7 +42,7 @@
                         </c:if>
                         <c:if test="${count==1}">
                         <div class="carousel-item position-relative" style="height:450px;">
-                            <img class="position-absolute w-100 h-100" src="img/${event.picture}" style="object-fit: cover;">
+                            <img class="position-absolute w-100 h-100 rounded" src="img/${event.picture}" style="object-fit: cover;">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>

@@ -7,12 +7,15 @@
 package Controller.Home;
 
 
-import DAL.BrandAndQuantity;
+import DAL.Home.BrandAndQuantity;
+import DAL.Home.Brands;
+
 import DAL.Home.Event;
 import DAL.Home.ProductDiscountUnitOnOrder;
 import DAO.Home.BrandDAO;
 import DAO.Home.EventDAO;
 import DAO.Home.ProductDAO1;
+
 
 
 
@@ -26,6 +29,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -43,13 +47,15 @@ public class HomeController extends HttpServlet{
             ArrayList<ProductDiscountUnitOnOrder> ListFeatured = new ProductDAO1().getProduct(2);
             ArrayList<ProductDiscountUnitOnOrder> ListBigAmount = new ProductDAO1().getProduct(3);
             ArrayList<Event> events = new EventDAO().getEvents();
-            
+            List<Brands> getAllBrands = new BrandDAO().getAllBrands();
+            req.getSession().setAttribute("NvabarBrands", getAllBrands);
             req.setAttribute("Events", events);
             req.setAttribute("ListFeatured", ListFeatured);
             req.setAttribute("ListBigAmount", ListBigAmount);
             req.setAttribute("ListSale", ListSale);
             req.setAttribute("List", brandList);
             req.setAttribute("Check", "true");
+            req.getSession().removeAttribute("BrandFilter");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } catch (SQLException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);

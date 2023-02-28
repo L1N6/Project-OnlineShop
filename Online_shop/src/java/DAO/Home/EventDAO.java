@@ -4,7 +4,7 @@
  */
 package DAO.Home;
 
-import DAL.BrandAndQuantity;
+import DAL.Home.BrandAndQuantity;
 import DAL.DBcontext;
 import DAL.Home.Event;
 import java.sql.PreparedStatement;

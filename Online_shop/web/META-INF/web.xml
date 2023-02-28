@@ -2,15 +2,15 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Shop</servlet-name>
-        <servlet-class>Controller.ShopViewController</servlet-class>
+        <servlet-class>Controller.shop.ShopViewController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchingProducts</servlet-name>
-        <servlet-class>Controller.SearchingController</servlet-class>
+        <servlet-class>Controller.shop.SearchingController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FilterProducts</servlet-name>
-        <servlet-class>Controller.FilterController</servlet-class>
+        <servlet-class>Controller.shop.FilterController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Test</servlet-name>
@@ -42,7 +42,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SendEmailServlet</servlet-name>
-        <url-pattern>/SendEmailServlet</url-pattern>
+        <url-pattern>/contact</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>SignIn</servlet-name>

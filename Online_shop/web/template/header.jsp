@@ -6,6 +6,7 @@
 
     <head>
         <meta charset="utf-8">
+
         <title>Group6 - Online Shop Website</title>
 
         <%String path = request.getContextPath(); %>

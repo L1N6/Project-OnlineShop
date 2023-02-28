@@ -5,11 +5,15 @@
         <group>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/CustomerDAO.java</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/BrandDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/shop/ProductDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/template/footer.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/shop/FilterController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/Error.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/CustomerAccount.java</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/shop/SearchingController.java</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/HomeController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/shop.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/nbproject/build-impl.xml~</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
             <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO1.java</file>

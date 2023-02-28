@@ -275,8 +275,8 @@
                                         <div class="text-center py-4">
                                             <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
                                             <div class="d-flex align-items-center justify-content-center mt-2">
-                                                <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></h5>
-                                                <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></del></h6>
+                                                <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
+                                                <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-center mb-1">
                                                 <div class="rate-star-class">

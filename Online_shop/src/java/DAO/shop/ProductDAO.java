@@ -1,3 +1,5 @@
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -164,15 +166,17 @@ public class ProductDAO extends DBcontext {
         return listColor;
     }
 
-    public List<ProductInfor> getFilterProduct(int priceCondition, String colorCondition, int storageCondition) throws SQLException {
+    public List<ProductInfor> getFilterProduct(int priceCondition, String colorCondition, int storageCondition, String brandCondition) throws SQLException {
         List<ProductInfor> listProduct = new ArrayList<ProductInfor>();
         Product p = new Product();
         Comments c = new Comments();
-        int array[] = new int[3];
+        int array[] = new int[4];
         int count = 1;
-        String sql = "select p.ProductID, p.Picture, ProductName, pd.Coler, pd.ProductStorage, pd.UnitPrice, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+        String sql = "select pd.ProductID, pd.Picture, p.ProductName,b.BrandName, pd.Coler, pd.ProductStorage, pd.UnitPrice, \n"
+                + "avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
                 + "from Comments c inner join Products p on c.ProductID = p.ProductID \n"
-                + "inner join ProductDetails pd on p.ProductID = pd.ProductID";
+                + "inner join ProductDetails pd on p.ProductID = pd.ProductID \n"
+                + "inner join Brands b on b.BrandID = p.BrandID ";
         try {
             if (priceCondition != 0) {
                 sql += " and pd.UnitPrice between ? and ?";
@@ -186,17 +190,24 @@ public class ProductDAO extends DBcontext {
                 sql += " and pd.ProductStorage = ?";
                 array[2] = 3;
             }
-            sql += " group by c.ProductID, p.ProductName, pd.UnitPrice, p.ProductID, p.Picture, pd.Coler, pd.ProductStorage";
+            if (brandCondition != null) {
+                sql += " and b.BrandName = ?";
+                array[3] = 4;
+            }
+            sql += " group by c.ProductID, p.ProductName, pd.UnitPrice, pd.ProductID, pd.Picture, pd.Coler, pd.ProductStorage, b.BrandName";
             ps = getConnection().prepareCall(sql);
-            if(array[0] != 0){
-                ps.setInt(count++, (priceCondition-1) * 10000000);
+            if (array[0] != 0) {
+                ps.setInt(count++, (priceCondition - 1) * 10000000);
                 ps.setInt(count++, priceCondition * 10000000);
             }
-            if(array[1] != 0){
+            if (array[1] != 0) {
                 ps.setString(count++, colorCondition);
             }
-            if(array[2] != 0){
-                ps.setInt(count, storageCondition);
+            if (array[2] != 0) {
+                ps.setInt(count++, storageCondition);
+            }
+            if (array[3] != 0) {
+                ps.setString(count, brandCondition);
             }
             rs = ps.executeQuery();
             while (rs.next()) {

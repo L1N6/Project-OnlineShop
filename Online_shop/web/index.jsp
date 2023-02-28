@@ -13,7 +13,7 @@
 <c:if test="${Check !='true'}">
     <c:redirect url = "/home" />
 </c:if>
-<div class="container-fluid bg-secondary">
+<div class="container-fluid bg-white">
     <div class="row px-xl-5">
         <div class="col-lg-12">
             <div id="header-carousel" class="carousel slide carousel-fade mb-30 mb-lg-0" data-ride="carousel">
@@ -62,28 +62,28 @@
 
 
     <!-- Featured Start -->
-    <div class="container-fluid pt-5 bg-secondary">
+    <div class="container-fluid pt-5 bg-white">
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-secondary mb-4" style="padding: 30px;">
+                <div class="d-flex align-items-center bg-white mb-4" style="padding: 30px;">
                     <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
                     <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-secondary mb-4" style="padding: 30px;">
+                <div class="d-flex align-items-center bg-white mb-4" style="padding: 30px;">
                     <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
                     <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-secondary mb-4" style="padding: 30px;">
+                <div class="d-flex align-items-center bg-white mb-4" style="padding: 30px;">
                     <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
                     <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                <div class="d-flex align-items-center bg-secondary mb-4" style="padding: 30px;">
+                <div class="d-flex align-items-center bg-white mb-4" style="padding: 30px;">
                     <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
                     <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
                 </div>
@@ -94,15 +94,15 @@
 
 
     <!-- Categories Start -->
-    <div class="container-fluid pt-5 bg-secondary">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 bg-secondary"><span class="bg-secondary pr-3">Brands</span></h2>
+    <div class="container-fluid pt-5 bg-white">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4 bg-white"><span class="bg-wite pr-3">Brands</span></h2>
         <div class="row px-xl-5 pb-3">
 
 
             <c:forEach var="brand" items="${List}">
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                     <a class="text-decoration-none" href="">
-                        <div class="cat-item d-flex align-items-center mb-4 bg-secondary">
+                        <div class="cat-item d-flex align-items-center mb-4 bg-white">
                             <div class="overflow-hidden" style="width: 100px; height: 100px;">
                                 <img class="img-fluid rounded" src="img/${brand.picture}" alt="">
                             </div>
@@ -122,12 +122,12 @@
 
 
     <!-- Products Start -->
-    <div class="container-fluid pt-5 pb-3 bg-secondary">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Best Sale Products</span></h2>
+    <div class="container-fluid pt-5 pb-3 bg-white">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-white pr-3">Best Sale Products</span></h2>
         <div class="row px-xl-5">
             <c:forEach begin="0" end="3" items="${ListSale}" var="sale">
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                <div class="product-item bg-secondary mb-4">
+                <div class="product-item bg-white mb-4">
                     <div class="product-img position-relative overflow-hidden ">
                         <img class="img-fluid w-100" src="img/${sale.picture}" alt="">
                         <div class="product-action">
@@ -161,8 +161,8 @@
 
         </div>
     </div>
-    <div class="container-fluid pt-5 pb-3 bg-secondary">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
+    <div class="container-fluid pt-5 pb-3 bg-white">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-white pr-3">Featured Products</span></h2>
         <div class="row px-xl-5">
 
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
@@ -202,7 +202,7 @@
 
     <!-- Products Start -->
     <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent Products</span></h2>
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-white pr-3">Recent Products</span></h2>
         <div class="row px-xl-5">
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">

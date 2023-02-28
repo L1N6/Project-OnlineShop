@@ -35,7 +35,7 @@
         <!-- Topbar Start -->
         <div class="container-fluid">
             <div class="row bg-dark py-1 px-xl-5">
-                <div class="col-lg-4 d-none d-lg-block">
+                <div class="col-lg-5 d-none d-lg-block">
                     <div class="d-inline-flex align-items-center h-100">
                         <a href="<c:url value="/home"/>" class="text-decoration-none mr-3">
                             <!--                        <span class="h1 text-uppercase text-primary bg-dark px-2">Online</span>
@@ -49,12 +49,12 @@
                                         <h6 class="text-white font-weight-bold m-0"><i class="fa fa-bars mr-2"></i>All Brands</h6>
                                     </c:when>
                                     <c:otherwise>
-                                        <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>${BrandFilter}</h6>
+                                        <h6 class="text-white m-0"><i class="fa fa-bars mr-2"></i>${BrandFilter}</h6>
                                         </c:otherwise>
                                     </c:choose>
                                 <!--                                <i class="fa fa-angle-down text-dark"></i>-->
                             </a>
-                            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light " id="navbar-vertical" style="width: calc(40% - 30px); z-index: 999;">
+                            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light " id="navbar-vertical" style="width: calc(45% - 30px); z-index: 999;">
                                 <div class="navbar-nav w-100">
                                     <a href="<c:url value="/filter"><c:param name="txtBrandName" value="AllBrands"/></c:url>" class="nav-item nav-link">All Brands</a>
                                     <c:forEach items="${NvabarBrands}" var="b">
@@ -88,7 +88,7 @@
                            </c:url>">Shop</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-2 text-left mt-3">
+                <div class="col-lg-3 col-2 text-left mt-3">
                     <form action="<c:url value="/searching"/>" method="Post">
                         <div class="input-group">
                             <input value="${txtValue}" type="text" class="form-control" placeholder="Search for products" name="txt">

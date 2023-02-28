@@ -61,7 +61,7 @@ body {
   line-height: 1.5;
   color: #6C757D;
   text-align: left;
-  background-color: #F5F5F5;
+/*  background-color: #F5F5F5;*/
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -97,6 +97,42 @@ address {
   margin-bottom: 1rem;
   font-style: normal;
   line-height: inherit;
+}
+
+.Return-home a{
+    display: inline-block;
+    margin-left: 45%;
+    margin-bottom: 160px;
+    border-radius: 25px;
+    border: 2px solid rgb(37, 150, 190);
+    color:rgb(37, 150, 190);
+    text-decoration: none;
+    padding: 10px 35px;
+}
+
+.Return-home :hover:not(.active){
+    background-color: rgb(37, 150, 190);
+    color: white;
+}
+
+.rate-star-class{
+   
+    margin-right: 0.25rem !important;
+
+
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    size: 10px;
+}
+.checked{
+  color: orange;
+}
+.fasize {
+    font-size: 1em;
+    
 }
 
 ol,
@@ -9552,7 +9588,7 @@ a.text-dark:hover, a.text-dark:focus {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(61, 70, 77, 0.5);
+  background: rgba(61, 70, 77, 0.05);
   z-index: 1;
 }
 
@@ -9701,7 +9737,25 @@ a.text-dark:hover, a.text-dark:focus {
   z-index: 11;
   animation: action 1s infinite alternate;
 }
+.rate-star-class{
+   
+    margin-right: 0.25rem !important;
 
+
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    size: 10px;
+}
+.checked{
+  color: orange;
+}
+.fasize {
+    font-size: 1em;
+    
+}
 @keyframes action {
   0% {
     transform: translateY(0);

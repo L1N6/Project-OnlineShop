@@ -2,6 +2,36 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/CustomerDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/BrandDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/shop/ProductDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/template/footer.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/shop/FilterController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/Error.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/CustomerAccount.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/shop/SearchingController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/HomeController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/shop.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/nbproject/build-impl.xml~</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/EventDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/shop/ShopViewController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/test/Test.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/index.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/CustomerDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/NewClass.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/Email.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAO/Home/ProductDAO1.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/Home/ProductDiscountUnitOnOrder.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/web/contact.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/Home/Event.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/BrandAndQuantity.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/nbproject/build-impl.xml</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/Controller/LogoutController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Project-OnlineShop/Online_shop/src/java/DAL/SendEmail.java</file>
+        </group>
     </open-files>
 </project-private>

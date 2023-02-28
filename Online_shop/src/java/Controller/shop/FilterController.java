@@ -124,7 +124,7 @@ public class FilterController extends HttpServlet {
             String sort;
             //get Brands for filter
             if (req.getParameter("txtBrandName") == null || "AllBrands".equals(req.getParameter("txtBrandName")) || req.getParameter("txtBrandName").isEmpty()) {
-                if(req.getSession().getAttribute("BrandFilter") != null){
+                if(req.getSession().getAttribute("BrandFilter") != null && req.getParameter("txtBrandName") == null){
                     brand = req.getSession().getAttribute("BrandFilter").toString();
                 }else{
                     brand = null;

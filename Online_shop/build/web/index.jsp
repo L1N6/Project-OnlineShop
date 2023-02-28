@@ -35,7 +35,8 @@
                                 <img class="position-absolute w-100 h-100 rounded" src="img/${event.picture}" style="object-fit: cover;">
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
-                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+                                        <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" 
+                                           href="<c:url value="/shop"><c:param name="choice" value="showList" /></c:url>">Shop Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +46,8 @@
                             <img class="position-absolute w-100 h-100 rounded" src="img/${event.picture}" style="object-fit: cover;">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
-                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop Now</a>
+                                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" 
+                                       href="<c:url value="/shop"><c:param name="choice" value="showList" /></c:url>">Shop Now</a>
                                 </div>
                             </div>
                         </div>

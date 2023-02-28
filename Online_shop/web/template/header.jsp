@@ -46,7 +46,7 @@
                         <div class="d-none d-lg-block mr-3">
                             <a class="text-body " data-toggle="collapse" href="#navbar-vertical" style="height: 5px;">
                                 <c:choose>
-                                    <c:when test="${empty BrandFilter}">
+                                    <c:when test="${empty BrandFilter || BrandFilter == 'AllBrands'}">
                                         <h6 class="text-dark font-weight-bold m-0"><i class="fa fa-bars mr-2"></i>All Brands</h6>
                                     </c:when>
                                     <c:otherwise>

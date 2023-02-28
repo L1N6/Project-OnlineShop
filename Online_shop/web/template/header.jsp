@@ -119,7 +119,6 @@
                                     <a class="dropdown-item" href="<c:url value="/Logout"><c:param name="req" value="remove"/></c:url>">SignOut</a>
                                 </c:if>  
                             </div>
-
                         </div>
                         <div class="d-inline-flex align-items-center d-block d-lg-none">
                             <a href="" class="btn px-0 ml-2">

@@ -3,13 +3,13 @@
     Created on : Jan 28, 2023, 8:09:19 AM
     Author     : LEGION
 --%>
-<%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %>
-<%--<c:if test="${Check !='true'}">
+<c:if test="${empty check}">
     <c:redirect url = "/contact" />
-</c:if>--%>
+</c:if>
 <!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">

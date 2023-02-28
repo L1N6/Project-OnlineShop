@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAO;
+package DAO.Home;
 
 import DAL.BrandAndQuantity;
 import DAL.DBcontext;
-import DAL.ProductDiscountUnitOnOrder;
+import DAL.Home.ProductDiscountUnitOnOrder;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

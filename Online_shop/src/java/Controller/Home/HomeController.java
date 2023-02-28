@@ -4,15 +4,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package Controller;
+package Controller.Home;
 
 
 import DAL.BrandAndQuantity;
-import DAL.Event;
-import DAL.ProductDiscountUnitOnOrder;
-import DAO.BrandDAO;
-import DAO.EventDAO;
-import DAO.ProductDAO1;
+import DAL.Home.Event;
+import DAL.Home.ProductDiscountUnitOnOrder;
+import DAO.Home.BrandDAO;
+import DAO.Home.EventDAO;
+import DAO.Home.ProductDAO1;
 
 
 

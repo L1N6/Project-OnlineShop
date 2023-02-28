@@ -54,7 +54,7 @@
     </servlet>
     <servlet>
         <servlet-name>Home</servlet-name>
-        <servlet-class>Controller.HomeController</servlet-class>
+        <servlet-class>Controller.Home.HomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForgotPass</servlet-name>
@@ -81,6 +81,4 @@
             30
         </session-timeout>
     </session-config>
-    
 </web-app>
-

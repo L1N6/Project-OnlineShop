@@ -137,15 +137,10 @@
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                         </div>
                     </div>
-<<<<<<< HEAD
                     <div class="text-center py-4 ">
                         <a class="h6 text-decoration-none text-truncate" href=""></a>
                         <div class="d-flex align-items-center justify-content-center mt-2 ">
-=======
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">${sale.productName}</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
->>>>>>> Develop
+
                             <h5>$<fmt:formatNumber maxFractionDigits="0" value="${sale.price *(1-sale.discount)}"/></h5><h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="2" value="${sale.price}"/></del></h6>
                         </div>
                         <div class="d-flex align-items-center justify-content-center mb-1">

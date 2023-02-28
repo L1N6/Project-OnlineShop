@@ -6,6 +6,7 @@
 
     <head>
         <meta charset="utf-8">
+
         <title>Group6 - Online Shop Website</title>
 
         <%String path = request.getContextPath(); %>
@@ -73,8 +74,8 @@
                             <a href="checkout.jsp" class="dropdown-item">Checkout</a>
                         </div>
                         <a class="text-dark font-weight-bold mr-3" href="<c:url value="/shop">
-                            <c:param name="choice" value="showList" />
-                        </c:url>">Shop</a>
+                               <c:param name="choice" value="showList" />
+                           </c:url>">Shop</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-2 text-left mt-3">

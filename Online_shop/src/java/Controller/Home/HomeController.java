@@ -4,21 +4,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-package Controller;
+package Controller.Home;
 
 
 import DAL.BrandAndQuantity;
 import DAL.Brands;
-import DAL.Event;
-import DAL.ProductDiscountUnitOnOrder;
-import DAO.BrandDAO;
-import DAO.EventDAO;
-import DAO.ProductDAO1;
+import DAL.Home.Event;
+import DAL.Home.ProductDiscountUnitOnOrder;
+import DAO.Home.BrandDAO;
+import DAO.Home.EventDAO;
+import DAO.Home.ProductDAO1;
 
-
-
-
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,11 +37,15 @@ public class HomeController extends HttpServlet{
         
         try {
             ArrayList<BrandAndQuantity> brandList = new BrandDAO().getBrands();
-            ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProductBestSale();
+            ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProduct(1);
+            ArrayList<ProductDiscountUnitOnOrder> ListFeatured = new ProductDAO1().getProduct(2);
+            ArrayList<ProductDiscountUnitOnOrder> ListBigAmount = new ProductDAO1().getProduct(3);
             ArrayList<Event> events = new EventDAO().getEvents();
             List<Brands> getAllBrands = new BrandDAO().getAllBrands();
             req.getSession().setAttribute("NvabarBrands", getAllBrands);
             req.setAttribute("Events", events);
+            req.setAttribute("ListFeatured", ListFeatured);
+            req.setAttribute("ListBigAmount", ListBigAmount);
             req.setAttribute("ListSale", ListSale);
             req.setAttribute("List", brandList);
             req.setAttribute("Check", "true");

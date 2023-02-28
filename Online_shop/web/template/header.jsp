@@ -44,47 +44,47 @@
                             <img src="./img/gradient-mobile-store-logo-design_23-2149697771.jpg" class="rounded" width="70" height="70"" alt="alt"/>
                         </a>
                         <div class="d-none d-lg-block mr-3">
-                            <a class="text-body" data-toggle="collapse" href="#navbar-vertical" style="height: 5px;">
+                            <a class="text-body text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 5px;">
                                 <c:choose>
                                     <c:when test="${empty BrandFilter}">
-                                        <h6 class="text-white font-weight-bold m-0"><i class="fa fa-bars mr-2"></i>All Brands</h6>
+                                        <h6 class="text-white font-weight-bold m-0 text-decoration-none"><i class="fa fa-bars mr-2"></i>All Brands</h6>
                                     </c:when>
                                     <c:otherwise>
-                                        <h6 class="text-white m-0"><i class="fa fa-bars mr-2"></i>${BrandFilter}</h6>
+                                        <h6 class="text-white m-0 text-decoration-none"><i class="fa fa-bars mr-2"></i>${BrandFilter}</h6>
                                         </c:otherwise>
                                     </c:choose>
                                 <!--                                <i class="fa fa-angle-down text-dark"></i>-->
                             </a>
                             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light " id="navbar-vertical" style="width: calc(45% - 30px); z-index: 999;">
                                 <div class="navbar-nav w-100">
-                                    <a href="<c:url value="/filter"><c:param name="txtBrandName" value="AllBrands"/></c:url>" class="nav-item nav-link">All Brands</a>
+                                    <a href="<c:url value="/filter"><c:param name="txtBrandName" value="AllBrands"/></c:url>" class="nav-item nav-link font-weight-bold">All Brands</a>
                                     <c:forEach items="${NvabarBrands}" var="b">
                                         <a href="<c:url value="/filter">
                                                <c:param name="txtBrandName" value="${b.brandName}"/>
-                                           </c:url>" class="nav-item nav-link font-weight-bold">${b.brandName}</a>
+                                           </c:url>" class="nav-item nav-link font-weight-bold text-decoration-none">${b.brandName}</a>
                                     </c:forEach>
                                 </div>
                             </nav>
                         </div>
-                        <a class="text-white font-weight-bold mr-3" href="">About</a>
-                        <a class="text-white font-weight-bold mr-3" href="/contact">Contact</a>
+                        <a class="text-white font-weight-bold mr-3 text-decoration-none" href="">About</a>
+                        <a class="text-white font-weight-bold mr-3 text-decoration-none" href="/contact">Contact</a>
                         <!--                        <a href="#" class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown">CheckOut</i></a>
                                                 <div class="dropdown-menu text-dark">
                                                     <a href="cart.jsp" class="dropdown-item">Shopping Cart</a>
                                                     <a href="checkout.jsp" class="dropdown-item">Checkout</a>
                                                 </div>-->
                         <div class="d-none d-lg-block mr-3">
-                            <a class="text-body text-white" data-toggle="collapse" href="#navbar-vertical1" style="height: 5px;">
+                            <a class="text-body text-white text-decoration-none" data-toggle="collapse" href="#navbar-vertical1" style="height: 5px;">
                                 <h6 class="text-white font-weight-bold m-0">CheckOut</h6>
                             </a>
-                            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical1" style="width: calc(30% - 30px); z-index: 999;">
+                            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light text-decoration-none" id="navbar-vertical1" style="width: calc(30% - 30px); z-index: 999;">
                                 <div class="navbar-nav w-100">
                                     <a href="cart.jsp" class="nav-item nav-link font-weight-bold">Cart</a>
                                     <a href="checkout.jsp" class="nav-item nav-link font-weight-bold">Checkout</a>
                                 </div>
                             </nav>
                         </div>
-                        <a class="text-white font-weight-bold mr-3" href="<c:url value="/shop">
+                        <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/shop">
                                <c:param name="choice" value="showList" />
                            </c:url>">Shop</a>
                     </div>

@@ -3,13 +3,9 @@
     Created on : Jan 28, 2023, 8:09:19 AM
     Author     : LEGION
 --%>
-<%--<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %>
-<%--<c:if test="${Check !='true'}">
-    <c:redirect url = "/home" />
-</c:if>--%>
 <!-- Breadcrumb Start -->
     <div class="container-fluid">
         <div class="row px-xl-5">
@@ -31,7 +27,7 @@
             <div class="col-lg-7 mb-5">
                 <div class="contact-form bg-light p-30">
                     <div id="success"></div>
-                    <form action="contact" method="POST">
+                    <form action="SendEmailServlet" method="POST">
                     <div class="control-group">
                         <input type="text" class="form-control" name="name" placeholder="Your Name"
                                required="required" data-validation-required-message="Please enter your name" />

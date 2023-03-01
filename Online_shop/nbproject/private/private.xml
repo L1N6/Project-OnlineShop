@@ -3,15 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GIT/code_ho/Online_shop/web/template/header.jsp</file>
-            <file>file:/D:/GIT/code_ho/Online_shop/web/Profile.jsp</file>
-            <file>file:/D:/GIT/code_ho/Online_shop/src/java/DAO/CustomerDAO.java</file>
-            <file>file:/D:/GIT/code_ho/Online_shop/src/java/Controller/ForgotPasswordController.java</file>
-            <file>file:/D:/GIT/code_ho/Online_shop/src/java/Controller/SignInController.java</file>
-            <file>file:/D:/GIT/code_ho/Online_shop/web/index.jsp</file>
-            <file>file:/D:/GIT/code_ho/Online_shop/src/java/DAL/Customer.java</file>
-            <file>file:/D:/GIT/code_ho/Online_shop/src/java/DAL/CustomerAccount.java</file>
-            <file>file:/D:/GIT/code_ho/Online_shop/src/java/Controller/ProfileController.java</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/web/index.jsp</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/web/META-INF/web.xml</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/src/java/Controller/shop/FilterController.java</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/src/java/DAO/Home/BrandDAO.java</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/src/java/DAL/shop/Product.java</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/web/template/footer.jsp</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/web/contact.jsp</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
+            <file>file:/D:/FPT/Spring_2023/SWP391/Git/Project-OnlineShop/Online_shop/src/java/DAL/Home/ProductDiscountUnitOnOrder.java</file>
         </group>
     </open-files>
 </project-private>

@@ -58,7 +58,7 @@
                             </c:if>
                                 
                             <c:if test="${not empty AccSession}">
-                                <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="profile"/></c:url>">Profile</a>
+                                <a class="dropdown-item" href="./ProfileController">Profile</a>
                                 <a class="dropdown-item" href="<c:url value="/LogoutController"><c:param name="req" value="remove"/></c:url>">SignOut</a>
                             </c:if>  
                             </div>

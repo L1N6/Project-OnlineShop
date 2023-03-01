@@ -8,26 +8,65 @@ import DAL.Account;
 import DAL.Customer;
 import DAL.CustomerAccount;
 import DAL.DBcontext;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author LEGION
  */
-public class CustomerDAO extends DBcontext {
+public class CustomerDAO {
+
     ResultSet rs;
     PreparedStatement ps;
-    public CustomerAccount getCustomerInfor(String CusID) throws SQLException {
+    Connection connection;
+
+    public CustomerDAO() {
+        try {
+            connection = new DBcontext().getConnection();
+        } catch (Exception e) {
+            System.out.println("loi ket noi DB cua AccountDAO ");
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            CustomerDAO customerDAO = new CustomerDAO();
+            CustomerAccount customerAccount = customerDAO.getCustomerInfor("ABCDE");
+            System.out.println(customerAccount);
+        } catch (Exception ex) {
+        }
+
+    }
+
+    public CustomerAccount getCustomerInfor(String CusID) {
         CustomerAccount customerAccount = null;
         try {
-            String sql = "select * from Customers c, Accounts a where c.CustomerID = a.CustomerID and c.CustomerID = ?;";
-            ps = getConnection().prepareStatement(sql);
+            String sql = ""
+                    + "SELECT a.[AccountID]\n"
+                    + "      ,a.[Email]\n"
+                    + "      ,a.[Password]\n"
+                    + "      ,a.[CustomerID]\n"
+                    + "	  ,c.ContactName\n"
+                    + "	  ,c.CompanyName\n"
+                    + "	  ,c.Address\n "
+                    + ",c.ContactTitle "
+                    + ",c.[Gender]"
+                    + "      ,a.[EmployeeID]\n"
+                    + "      ,a.[Role]\n"
+                    + "      ,a.[Status]\n"
+                    + "  FROM [Accounts] a JOIN Customers c ON a.CustomerID = c.CustomerID\n"
+                    + "   where c.CustomerID = ?";
+            System.out.println(CusID);
+            ps = connection.prepareStatement(sql);
             ps.setString(1, CusID);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 String Email = rs.getString("Email");
                 String CompanyName = rs.getString("CompanyName");
                 String ContactName = rs.getString("ContactName");
@@ -35,13 +74,16 @@ public class CustomerDAO extends DBcontext {
                 String Address = rs.getString("Address");
                 String CustomerID = rs.getString("CustomerID");
                 Customer customer = new Customer(CustomerID, CompanyName, ContactName, ContactTitle, Address, rs.getBoolean("Gender"));
-                Account acc = new Account(Email);
+                Account acc = new Account();
+                acc.setCustomerID(customer);
+                acc.setEmail(rs.getString("Email"));
+                acc.setEmployeeID(rs.getString("EmployeeID"));
                 customerAccount = new CustomerAccount(acc, customer);
+                System.out.println(customerAccount);
+                return customerAccount;
             }
-        } catch (SQLException e) {
-            getConnection().rollback();
-        } finally {
-            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        } catch (Exception e) {
+            System.out.println("Loi ham getCustomerInfor " + e.getMessage());
         }
         return customerAccount;
     }
@@ -50,18 +92,16 @@ public class CustomerDAO extends DBcontext {
         try {
             String sql = "Update Customers set ContactName= ?, CompanyName= ?,ContactTitle= ?,[Address]= ? \n"
                     + "where CustomerID = ? ";
-            ps = getConnection().prepareStatement(sql);
+            ps = connection.prepareStatement(sql);
             ps.setString(1, cus.getContactName());
             ps.setString(2, cus.getCompanyName());
             ps.setString(3, cus.getContactTitle());
             ps.setString(4, cus.getAddress());
             ps.setString(5, cus.getCustomerID());
             ps.executeUpdate();
-        } catch (SQLException e) {
-            getConnection().rollback();
-        } finally {
-            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        } catch (Exception e) {
         }
+
     }
 
     public ArrayList<CustomerAccount> getCustomerbyCondition(String condition, String cusName) throws SQLException {
@@ -74,12 +114,12 @@ public class CustomerDAO extends DBcontext {
             switch (condition) {
                 case "searchByCustomerName":
                     sql = "select * from Customers c left join Accounts ac on c.CustomerID = ac.CustomerID where c.ContactName like ?";
-                    ps = getConnection().prepareStatement(sql);
+                    ps = connection.prepareStatement(sql);
                     ps.setString(1, "%" + cusName + "%");
                     break;
                 default:
                     sql = "select * from Customers c left join Accounts ac on c.CustomerID = ac.CustomerID ";
-                    ps = getConnection().prepareStatement(sql);
+                    ps = connection.prepareStatement(sql);
                     break;
             }
             rs = ps.executeQuery();
@@ -95,10 +135,7 @@ public class CustomerDAO extends DBcontext {
                 customerAccount = new CustomerAccount(ac, c);
                 list.add(customerAccount);
             }
-        } catch (SQLException e) {
-            getConnection().rollback();
-        } finally {
-            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        } catch (Exception e) {
         }
         return list;
     }

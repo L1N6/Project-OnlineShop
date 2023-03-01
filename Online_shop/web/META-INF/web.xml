@@ -2,15 +2,15 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Shop</servlet-name>
-        <servlet-class>Controller.ShopViewController</servlet-class>
+        <servlet-class>Controller.shop.ShopViewController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>SearchingProducts</servlet-name>
-        <servlet-class>Controller.SearchingController</servlet-class>
+        <servlet-class>Controller.shop.SearchingController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FilterProducts</servlet-name>
-        <servlet-class>Controller.FilterController</servlet-class>
+        <servlet-class>Controller.shop.FilterController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Test</servlet-name>
@@ -23,6 +23,10 @@
     <servlet>
         <servlet-name>SignUpController</servlet-name>
         <servlet-class>Controller.SignUpController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Cart</servlet-name>
+        <servlet-class>Controller.Shopingcart.CartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
@@ -42,7 +46,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SendEmailServlet</servlet-name>
-        <url-pattern>/SendEmailServlet</url-pattern>
+        <url-pattern>/contact</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>SignIn</servlet-name>
@@ -54,7 +58,7 @@
     </servlet>
     <servlet>
         <servlet-name>Home</servlet-name>
-        <servlet-class>Controller.HomeController</servlet-class>
+        <servlet-class>Controller.Home.HomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ForgotPass</servlet-name>
@@ -76,10 +80,13 @@
         <servlet-name>ForgotPass</servlet-name>
         <url-pattern>/ForgotPass</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cart</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
 </web-app>

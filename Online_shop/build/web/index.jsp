@@ -59,6 +59,7 @@
 
     </div>
 </div>
+</div>
 <!-- Carousel End -->
 
 
@@ -289,8 +290,6 @@
                             </div>
                             <small>(${product.amountRate})</small>
                         </div>
-
-
                     </div>
                 </div>
             </div>

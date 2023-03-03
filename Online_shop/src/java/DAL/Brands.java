@@ -22,6 +22,11 @@ public class Brands {
         this.Picture= Picture;
     }
 
+    public Brands(String BrandName) {
+        this.BrandName = BrandName;
+    }
+    
+    
     public int getBrandID() {
         return BrandID;
     }
@@ -46,4 +51,11 @@ public class Brands {
         this.Picture = PictureString;
     }
     
+    public String getPicture() {
+        return Picture;
+    }
+
+    public void setPicture(String Picture) {
+        this.Picture = Picture;
+    }
 }

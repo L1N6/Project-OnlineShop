@@ -204,7 +204,7 @@ GO
 INSERT [dbo].[ProductDetails] ( ProductID, ProductStorage,[UnitPrice],Picture,Coler,[UnitsInStock],[UnitsOnOrder]) 
 VALUES (1,64,11490000,'iphone-11-den-1-1-1-org.jpg','DEN',92,236)
 INSERT [dbo].[ProductDetails] ( ProductID, ProductStorage,[UnitPrice],Picture,Coler,[UnitsInStock],[UnitsOnOrder]) 
-VALUES (1,128,1349000,'iphone-11-trang-1-org.jpg','TRANG',19,235)
+VALUES (1,128,13490000,'iphone-11-trang-1-org.jpg','TRANG',19,235)
 
 INSERT [dbo].[ProductDetails] ( ProductID, ProductStorage,[UnitPrice],Picture,Coler,[UnitsInStock],[UnitsOnOrder]) 
 VALUES (2,1000,34990000,'iphone-13-pro-max-1-2.jpg','XAM',114,254)

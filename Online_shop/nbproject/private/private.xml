@@ -3,22 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Home/Brands.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/shop/ProductDAO.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/Home/BrandDAO.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Home/BrandAndQuantity.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/shop.jsp</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/shop/ProductInfor.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/ProductDetails.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/index.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/shop/ProductDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/shop.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Home/Event.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/shop/ProductInfor.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/AjaxController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Home/BrandAndQuantity.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/detail.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/Home/BrandDAO.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/shop/Product.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/shop/ShopViewController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Home/ProductDiscountUnitOnOrder.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/AjaxController.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Home/Event.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/index.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/DetailProductController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/shop/ProductDetail.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Home/Brands.java</file>
         </group>
     </open-files>
 </project-private>

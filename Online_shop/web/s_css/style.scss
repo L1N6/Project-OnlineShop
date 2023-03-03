@@ -281,6 +281,11 @@ $input-placeholder-color: #999999;
     animation: action 1s infinite alternate;
 }
 
+.button:active {
+  border-color: #dc3545;
+}
+
+
 @-webkit-keyframes action {
     0% {
         transform: translateY(0);

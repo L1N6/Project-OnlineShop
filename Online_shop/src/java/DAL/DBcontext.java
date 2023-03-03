@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author LEGION
  */
 public class DBcontext {
-    private Connection connection;
+    public Connection connection;
     public DBcontext()
     {
         //@Students: You are allowed to edit user, pass, url variables to fit 
@@ -29,10 +29,11 @@ public class DBcontext {
         try {
             String user = "sa";
             String pass = "123123";
-            String url = "jdbc:sqlserver://DESKTOP-52OQN5G:1433;databaseName=SHOP_DB_Test_10";
+            String url = "jdbc:sqlserver://LAPTOP-2KN976EQ:1433;databaseName=SHOP_DB_Test_19";
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
+//            System.out.println("ok");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DBcontext.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,6 +61,7 @@ public class DBcontext {
             Logger.getLogger(DBcontext.class.getName()).log(Level.ALL,e.toString(),e);
         }
     }
+    
     
     
 

@@ -24,6 +24,14 @@
         <servlet-name>SignUpController</servlet-name>
         <servlet-class>Controller.SignUpController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetailProductController</servlet-name>
+        <servlet-class>Controller.DetailProductController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AjaxServlet</servlet-name>
+        <servlet-class>Controller.AjaxController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>
@@ -76,10 +84,17 @@
         <servlet-name>ForgotPass</servlet-name>
         <url-pattern>/ForgotPass</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailProductController</servlet-name>
+        <url-pattern>/detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AjaxServlet</servlet-name>
+        <url-pattern>/detailProduct</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
 </web-app>

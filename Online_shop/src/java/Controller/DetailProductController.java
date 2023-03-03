@@ -23,6 +23,7 @@ public class DetailProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String IDProduct = req.getParameter("productID");
+        System.out.println(IDProduct);
         //get product by product name
         Product product = new DAO.ProductDetails().getProductsByProductID(IDProduct);
         //get name product

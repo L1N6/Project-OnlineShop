@@ -21,17 +21,14 @@ import java.util.ArrayList;
 public class ProductDetails extends DBcontext {
 
     public static void main(String[] args) {
-        ArrayList<ProductDetail> p = new DAO.ProductDetails().getListStorageProductThrowID(4);
-        for (ProductDetail productDetail : p) {
-            System.out.println(productDetail.getProductStorage());
-        }
+        
 
     }
 
     public Product getProductsByProductID(String IDProduct) {
         Product product = new Product();
         try {
-            String sql = "SELECT * FROM [SHOP_DB_Test_19].[dbo].[Products] where ProductID = ?";
+            String sql = "SELECT * FROM [SHOP_DB_Test_21].[dbo].[Products] where ProductID = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, IDProduct);
             ResultSet rs = ps.executeQuery();
@@ -59,7 +56,7 @@ public class ProductDetails extends DBcontext {
     public Brands getBrandThrowBrandID(int brandID) {
         Brands brands = new Brands();
         try {
-            String sql = "SELECT * FROM [SHOP_DB_Test_19].[dbo].[Brands] where BrandID = ?";
+            String sql = "SELECT *  FROM [SHOP_DB_Test_21].[dbo].[Brands] where BrandID = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, brandID);
             ResultSet rs = ps.executeQuery();
@@ -79,12 +76,11 @@ public class ProductDetails extends DBcontext {
     public ArrayList<DAL.ProductDetail> getListAllAttributeProductThrowID(int productID) {
         ArrayList<DAL.ProductDetail> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM [SHOP_DB_Test_19].[dbo].[ProductDetails] where ProductID = ?";
+            String sql = "SELECT * FROM [SHOP_DB_Test_21].[dbo].[ProductDetails] where ProductID = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-
                 int ProductDetail = rs.getInt("ProductDetailID");
                 int ProductID = rs.getInt("ProductID");
                 int ProductStorage = rs.getInt("ProductStorage");
@@ -107,8 +103,8 @@ public class ProductDetails extends DBcontext {
         ArrayList<DAL.ProductDetail> list = new ArrayList<>();
         try {
             String sql = "SELECT ProductDetails.ProductStorage\n"
-                    + "  FROM [SHOP_DB_Test_19].[dbo].[ProductDetails] where ProductID = ? \n"
-                    + "  group by ProductDetails.ProductStorage;";
+                    + "FROM [SHOP_DB_Test_21].[dbo].[ProductDetails] where ProductID = ? \n"
+                    + "group by ProductDetails.ProductStorage;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
@@ -126,8 +122,8 @@ public class ProductDetails extends DBcontext {
         ArrayList<DAL.ProductDetail> list = new ArrayList<>();
         try {
             String sql = "SELECT ProductDetails.Coler\n"
-                    + "  FROM [SHOP_DB_Test_19].[dbo].[ProductDetails] where ProductID = ? \n"
-                    + "  group by ProductDetails.Coler;";
+                    + "FROM [SHOP_DB_Test_21].[dbo].[ProductDetails] where ProductID = ?\n"
+                    + "group by ProductDetails.Coler;";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
@@ -145,8 +141,9 @@ public class ProductDetails extends DBcontext {
     public int getUnitPriceByProductIdAndSmallestStorages(int productID) {
         int UnitPrice = 0;
         try {
-            String sql = "SELECT [UnitPrice] FROM [SHOP_DB_TEST_8].[dbo].[ProductStorages] "
-                    + "where ProductID = ? and Storage = (Select MIN(Storage) from ProductStorages)";
+            String sql = "SELECT ProductDetails.UnitPrice\n"
+                    + "FROM [SHOP_DB_Test_21].[dbo].[ProductDetails] where ProductDetails.ProductStorage = (\n"
+                    + "Select Min(ProductDetails.ProductStorage) from ProductDetails where ProductDetails.ProductID = ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
@@ -162,7 +159,7 @@ public class ProductDetails extends DBcontext {
     public ProductDetail getProductDetailByIDAndStorage(String id, String storage) {
         ProductDetail pd = new ProductDetail();
         try {
-            String sql = "SELECT * FROM [SHOP_DB_Test_19].[dbo].[ProductDetails] where ProductID = ?"
+            String sql = "SELECT * FROM [SHOP_DB_Test_21].[dbo].[ProductDetails] where ProductID = ?"
                     + " and ProductStorage = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);

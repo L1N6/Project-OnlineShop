@@ -9,29 +9,18 @@ package DAL.shop;
  * @author LEGION
  */
 public class ProductDetail extends Product{
-
-    private int ProductID;
-    private int ProductDetailID;
+    private int ProductDetail;
     private int ProductStorage;
     private double UnitPrice;
-    private String Picture;
-    private String Coler;
+    private String Color;
     private int UnitsInStock;
     private int UnitsOnOrder;
     private int Count;
     public ProductDetail() {
     }
 
-    public ProductDetail(int ProductID, int ProductDetailID, int ProductStorage,
-            double UnitPrice, String Coler, int UnitsInStock, int UnitsOnOrder) {
-        this.ProductID = ProductID;
-        this.Coler = Coler;
-        this.ProductStorage = ProductStorage;
-        this.UnitPrice = UnitPrice;
-        this.ProductDetailID = ProductDetailID;
-    }
     public ProductDetail(String Color, int Count) {
-        this.Coler = Color;
+        this.Color = Color;
         this.Count = Count;
     }
 
@@ -39,6 +28,24 @@ public class ProductDetail extends Product{
         this.ProductStorage = ProductStorage;
         this.Count = Count;
     }
+
+    public ProductDetail(int ProductDetail, int ProductStorage, double UnitPrice, String Color, int UnitsInStock, int UnitsOnOrder) {
+        this.ProductDetail = ProductDetail;
+        this.ProductStorage = ProductStorage;
+        this.UnitPrice = UnitPrice;
+        this.Color = Color;
+        this.UnitsInStock = UnitsInStock;
+        this.UnitsOnOrder = UnitsOnOrder;
+    }
+
+    public ProductDetail(int ProductStorage) {
+        this.ProductStorage = ProductStorage;
+    }
+
+    public ProductDetail(String Color) {
+        this.Color = Color;
+    }
+     
 
     
     public int getCount() {
@@ -52,47 +59,16 @@ public class ProductDetail extends Product{
     public ProductDetail(int UnitsInStock, int ProductID, String ProductName, String Picture, double Price) {
         super(ProductID, ProductName, Picture, Price);
         this.UnitsInStock = UnitsInStock;
-        this.UnitsOnOrder = UnitsOnOrder;
+    }
+    
+    public int getProductDetail() {
+        return ProductDetail;
+    }
+    
+    public void setProductDetail(int ProductDetail) {
+        this.ProductDetail = ProductDetail;
     }
 
-    public ProductDetail(int ProductID, int ProductDetailID, int ProductStorage, double UnitPrice,
-            String Coler, int UnitsInStock, int UnitsOnOrder, String Picture) {
-        this.ProductID = ProductID;
-        this.Coler = Coler;
-        this.ProductStorage = ProductStorage;
-        this.UnitPrice = UnitPrice;
-        this.ProductDetailID = ProductDetailID;
-        this.UnitsInStock = UnitsInStock;
-        this.UnitsOnOrder = UnitsOnOrder;
-        this.Picture = Picture;
-    }
-
-    public ProductDetail(int ProductDetailID, int ProductStorage, double UnitPrice, String Coler, 
-            int UnitsInStock, int UnitsOnOrder) {
-        this.ProductDetailID = ProductDetailID;
-        this.ProductStorage = ProductStorage;
-        this.UnitPrice = UnitPrice;
-        this.Coler = Coler;
-        this.UnitsInStock = UnitsInStock;
-        this.UnitsOnOrder = UnitsOnOrder;
-    }
-
-    public ProductDetail(int ProductStorage) {
-        this.ProductStorage = ProductStorage;
-    }
-
-    public ProductDetail(String Coler) {
-        this.Coler = Coler;
-    }
-   
-
-    public int getProductDetailID() {
-        return ProductDetailID;
-    }
-
-    public void setProductDetailID(int ProductDetailID) {
-        this.ProductDetailID = ProductDetailID;
-    }
 
     public int getProductStorage() {
         return ProductStorage;
@@ -110,12 +86,13 @@ public class ProductDetail extends Product{
         this.UnitPrice = UnitPrice;
     }
 
-    public String getColer() {
-        return Coler;
+
+    public String getColor() {
+        return Color;
     }
 
-    public void setColer(String Coler) {
-        this.Coler = Coler;
+    public void setColor(String Color) {
+        this.Color = Color;
     }
 
     public int getUnitsInStock() {
@@ -133,13 +110,5 @@ public class ProductDetail extends Product{
     public void setUnitsOnOrder(int UnitsOnOrder) {
         this.UnitsOnOrder = UnitsOnOrder;
     }
-
-    public String getPicture() {
-        return Picture;
-    }
-
-    public void setPicture(String Picture) {
-        this.Picture = Picture;
-    }
-
+    
 }

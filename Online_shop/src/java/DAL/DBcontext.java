@@ -28,8 +28,9 @@ public class DBcontext {
         //where StudentDBContext is located in dal package, 
         try {
             String user = "sa";
-            String pass = "123123";
-            String url = "jdbc:sqlserver://DESKTOP-52OQN5G:1433;databaseName=SHOP_DB_Test_21";
+            String pass = "123";
+            String url = "jdbc:sqlserver://localhost:1433;databaseName=SHOP_DB_Test_19";
+
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             connection = DriverManager.getConnection(url, user, pass);
         } catch (ClassNotFoundException | SQLException ex) {
@@ -37,6 +38,26 @@ public class DBcontext {
         }
     }
 
+    public static void main(String[] args) {
+        try {
+            DBcontext db = new DBcontext();
+            Connection connection = db.connection;
+            System.out.println("ok");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public  void openConnection(){
+        try {
+            DBcontext db = new DBcontext();
+            connection = db.connection;
+            System.out.println("ok");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public Connection getConnection() {
         return connection;
     }
@@ -53,7 +74,7 @@ public class DBcontext {
                 ps.close();
             }
             if(conn!=null) {
-                conn.close();
+                conn.close(); 
             }
         } catch (SQLException e) {
             Logger.getLogger(DBcontext.class.getName()).log(Level.ALL,e.toString(),e);

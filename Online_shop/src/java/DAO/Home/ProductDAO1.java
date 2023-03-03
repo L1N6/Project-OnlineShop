@@ -181,11 +181,5 @@ public class ProductDAO1 extends DBcontext {
         }
         return list;
     }
-    public static void main(String[] args) throws ParseException, SQLException {
-                    ArrayList<ProductDiscountUnitOnOrder> ListSale = new ProductDAO1().getProduct(3);
-                    for (ProductDiscountUnitOnOrder productDiscountUnitOnOrder : ListSale) {
-                        System.out.println(productDiscountUnitOnOrder.getProductID());
-            
-        }
-    }
+
 }

@@ -298,7 +298,7 @@
 
     </div>
     <div class="d-flex justify-content-center ">
-        <button class="btn btn-secondary rounded border p-3 pl-5 pr-5"><a href="shop" style="text-decoration: none; color: black"/>Xem tất cả ...</button>
+        <button class="btn btn-secondary rounded border p-3 pl-5 pr-5"><a href="shop" style="text-decoration: none; color: black"/>Show More</button>
     </div>
 </div>
 

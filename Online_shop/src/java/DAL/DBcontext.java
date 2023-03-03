@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * @author LEGION
  */
 public class DBcontext {
-    private Connection connection;
+    public Connection connection;
     public DBcontext()
     {
         //@Students: You are allowed to edit user, pass, url variables to fit 
@@ -80,6 +80,7 @@ public class DBcontext {
             Logger.getLogger(DBcontext.class.getName()).log(Level.ALL,e.toString(),e);
         }
     }
+    
     
     
 

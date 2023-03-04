@@ -142,7 +142,7 @@ public class ProductDetails extends DBcontext {
         int UnitPrice = 0;
         try {
             String sql = "SELECT ProductDetails.UnitPrice\n"
-                    + "FROM [SHOP_DB_Test_21].[dbo].[ProductDetails] where ProductDetails.ProductStorage = (\n"
+                    + "FROM [ProductDetails] where ProductDetails.ProductStorage = (\n"
                     + "Select Min(ProductDetails.ProductStorage) from ProductDetails where ProductDetails.ProductID = ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, productID);

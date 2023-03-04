@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %><!-- Breadcrumb Start -->
+<c:if test="${empty check}">
+    <c:redirect url="/detail" />
+</c:if>
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
@@ -39,7 +42,9 @@
 
         <div class="col-lg-7 h-auto mb-30">
             <div class="h-100 bg-light p-30">
-                <h3>${nameProduct}$ ${value.getProductStorage()}</h3>
+                <div id="unitPrice">
+                <h3>${nameProduct} $</h3>
+                </div>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -50,19 +55,24 @@
                     </div>
                     <small class="pt-1">(99 Reviews)</small>
                 </div>
-                <div id="unitPrice">  <h3  class="font-weight-semi-bold mb-4">$${priceProduct}</h3></div>
+                <div id="unitPrice" class="d-flex mt-2">
+                    <h3  class="font-weight-semi-bold mb-4" style="align-items: flex-start">$${priceProductDisCount}
+                    <h5 class="text-muted ml-2"><del>$${priceProduct}</del></h4>
+                    </h3>
+                </div>
                 <div class="d-flex mb-3" style="align-items: center">
                     <strong class="text-dark mr-3">Sizes:</strong>
-                        <c:forEach items="${listStorage}" var="value">
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <button onclick="productStorage(event ,'${value.getProductStorage()}','${product.getProductID()}')" 
-                                        style="color: #6C757D;background-color: white;border-color: red;
-                                        padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
-                                        type="submit" >
-                                    ${value.getProductStorage()}
-                                </button>
-                            </div>
-                        </c:forEach>
+                    <c:forEach items="${listStorage}" var="value">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <button onclick="productStorage(event, '${value.getProductStorage()}', '${product.getProductID()}')" 
+                                    style="color: #6C757D;background-color: white;border-color: red;
+                                    padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
+                                    type="submit" >
+                                ${value.getProductStorage()}
+                            </button>
+                        </div>
+                    </c:forEach>
+                    
                 </div>
                 <div class="d-flex mb-4">
                     <strong class="text-dark mr-3">Colors:</strong>
@@ -363,23 +373,23 @@
 <!-- Products End -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-    function productStorage(event, paramStorage, paramID) {
-        $.ajax({
-            url: "/Project_Swp/detailProduct",
-            type: "get", // send it through get method    
-            data: {productStorage: paramStorage, 
-                productID: paramID
-            }, // truyền giá trị của biến storageValue vào trong request 
-            success: function (data) {
-                var detailProduct = document.getElementById("unitPrice");
-                console.log(data);
-                detailProduct.innerHTML = "";
-                detailProduct.innerHTML = data;
-            },
-            error: function (xhr) {
-                // handle error
-            }
-        });
-    }
+                                    function productStorage(event, paramStorage, paramID) {
+                                        $.ajax({
+                                            url: "/Project_Swp/detailProduct",
+                                            type: "get", // send it through get method    
+                                            data: {productStorage: paramStorage,
+                                                productID: paramID
+                                            }, // truyền giá trị của biến storageValue vào trong request 
+                                            success: function (data) {
+                                                var detailProduct = document.getElementById("unitPrice");
+                                                console.log(data);
+                                                detailProduct.innerHTML = "";
+                                                detailProduct.innerHTML = data;
+                                            },
+                                            error: function (xhr) {
+                                                // handle error
+                                            }
+                                        });
+                                    }
 </script>
 <%@include file="template/footer.jsp" %>

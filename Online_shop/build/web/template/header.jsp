@@ -34,7 +34,7 @@
 
     <body>
         <!-- Topbar Start -->
-        <div class="container-fluid">
+        <div class="container-fluid mb-5">
             <div class="row bg-dark py-1 px-xl-5">
                 <div class="col-lg-5 d-none d-lg-block">
                     <div class="d-inline-flex align-items-center h-100">
@@ -149,7 +149,7 @@
         <!-- Topbar End -->
 
         <!-- Navbar Start -->
-        <div class="container-fluid bg-white mb-30">
+<!--        <div class="container-fluid bg-white mb-30">
             <div class="row px-xl-5">
 
                 <div class="col-lg-9">
@@ -164,5 +164,5 @@
                     </nav>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Navbar End -->

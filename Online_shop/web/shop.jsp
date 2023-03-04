@@ -281,11 +281,15 @@
                                         <div class="product-action">
                                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                            <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="text-center py-4">
-                                        <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
+                                        <a class="h6 text-decoration-none text-truncate" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>">${p.productName}</a>
                                         <div class="d-flex align-items-center justify-content-center mt-2">
                                             <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
                                             <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
@@ -371,11 +375,15 @@
                                                 <div class="product-action">
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>"><i class="fa fa-search"></i></a>
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
-                                                <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
+                                                <a class="h6 text-decoration-none text-truncate" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>">${p.productName}</a>
                                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                                     <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
                                                     <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
@@ -446,7 +454,9 @@
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>"><i class="fa fa-search"></i></a>
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
@@ -525,7 +535,9 @@
                                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>"><i class="fa fa-search"></i></a>
                                             </div>
                                         </div>
                                         <div class="text-center py-4">

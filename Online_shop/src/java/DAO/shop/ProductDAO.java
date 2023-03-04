@@ -172,11 +172,11 @@ public class ProductDAO extends DBcontext {
         Comments c = new Comments();
         int array[] = new int[4];
         int count = 1;
-        String sql = "select pd.ProductID, pd.Picture, p.ProductName,b.BrandName, pd.Coler, pd.ProductStorage, pd.UnitPrice, \n"
-                + "avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
-                + "from Comments c inner join Products p on c.ProductID = p.ProductID \n"
-                + "inner join ProductDetails pd on p.ProductID = pd.ProductID \n"
-                + "inner join Brands b on b.BrandID = p.BrandID ";
+        String sql = "select pd.ProductDetailID, pd.Picture, p.ProductName,b.BrandName, pd.Coler, pd.ProductStorage, pd.UnitPrice, \n" +
+"avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n" +
+"from Comments c inner join Products p on c.ProductID = p.ProductID \n" +
+"inner join ProductDetails pd on p.ProductID = pd.ProductID \n" +
+"inner join Brands b on b.BrandID = p.BrandID ";
         try {
             if (priceCondition != 0) {
                 sql += " and pd.UnitPrice between ? and ?";
@@ -194,7 +194,7 @@ public class ProductDAO extends DBcontext {
                 sql += " and b.BrandName = ?";
                 array[3] = 4;
             }
-            sql += " group by c.ProductID, p.ProductName, pd.UnitPrice, pd.ProductID, pd.Picture, pd.Coler, pd.ProductStorage, b.BrandName";
+            sql += " group by pd.ProductDetailID, p.ProductName, pd.UnitPrice, pd.ProductID, pd.Picture, pd.Coler, pd.ProductStorage, b.BrandName";
             if(!"".equals(sort)){
                 sql += " order by pd.UnitPrice " + sort;
             }
@@ -214,7 +214,7 @@ public class ProductDAO extends DBcontext {
             }
             rs = ps.executeQuery();
             while (rs.next()) {
-                int ProductID = rs.getInt("ProductID");
+                int ProductID = rs.getInt("ProductDetailID");
                 String ProductName = rs.getString("ProductName");
                 String Picture = rs.getString("Picture");
                 double Price = rs.getDouble("UnitPrice");

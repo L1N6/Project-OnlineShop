@@ -128,8 +128,16 @@ public class ProductDAO1 extends DBcontext {
                         int unitOnOrder = rs.getInt("UnitsOnOrder");
                         product = new ProductDiscountUnitOnOrder(productID, productName, picture, unitInStock, unitOnOrder, price, rate, amountRate);
                         list.add(product);
-                    }else{
+                        
+                    }else
+                        
                     
+                    
+                    {
+                        Date dateS = rs.getDate("StartEvent");
+                        Date dateE = rs.getDate("EndEvent");
+
+                    if (dateS.before(date) && date.before(dateE)) {
                         int productID = rs.getInt("ProductID");
                         String productName = rs.getString("ProductName");
                         String picture = rs.getString("Picture");
@@ -139,12 +147,11 @@ public class ProductDAO1 extends DBcontext {
                         int amountRate = rs.getInt("AmountRate");
                         int unitInStock = rs.getInt("UnitsInStock");
                         int unitOnOrder = rs.getInt("UnitsOnOrder");
-                         product = new ProductDiscountUnitOnOrder(productID, productName, picture, discount, unitInStock, unitOnOrder, price, rate, amountRate);
+                        product = new ProductDiscountUnitOnOrder(productID, productName, picture, discount, unitInStock, unitOnOrder, price, rate, amountRate);
                         list.add(product);
-                }
-                    if(list.size()>1 &&list.get(list.size()-1).getProductID()==list.get(list.size()-2).getProductID()){
-                            list.remove(list.size()-1);
-                        }
+                        
+                    
+                    
                     
             }
                
@@ -164,7 +171,7 @@ public class ProductDAO1 extends DBcontext {
                             return Float.compare(s2.getUnitOnOrder(), s1.getUnitOnOrder());
                         }
                     });
-                }else {
+                }else if(status == 3){
                     Collections.sort(list, new Comparator<ProductDiscountUnitOnOrder>() {
                         @Override
                         public int compare(ProductDiscountUnitOnOrder s1, ProductDiscountUnitOnOrder s2) {
@@ -173,7 +180,8 @@ public class ProductDAO1 extends DBcontext {
                     });
                 }
              
-
+            }
+            }
         } catch (SQLException e) {
             getConnection().rollback();
         } finally {

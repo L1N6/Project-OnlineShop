@@ -32,9 +32,9 @@ public class LogoutController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            request.getSession().removeAttribute("adminAccount");
-            request.getSession().removeAttribute("AccSession");
-            request.getSession().removeAttribute("CustomerInfor");
+            request.getSession().setAttribute("adminAccount",null);
+            request.getSession().setAttribute("AccSession",null);
+            request.getSession().setAttribute("CustomerInfor",null); 
             request.getRequestDispatcher("./index.jsp").forward(request, response);
         }
     } 

@@ -73,15 +73,9 @@
                             <a href="checkout.jsp" class="dropdown-item">Checkout</a>
                         </div>                        
                         <div class="d-none d-lg-block mr-3">
-                            <a class="text-body text-white text-decoration-none navbar-vertical1" data-toggle="collapse" href="#" style="height: 5px;">
+                            <a class="text-body text-white text-decoration-none navbar-vertical1" data-toggle="collapse" href="checkout.jsp" style="height: 5px;">
                                 <h6 class="text-white font-weight-bold m-0">CheckOut</h6>
                             </a>
-                            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light text-decoration-none" id="navbar-vertical1" style="width: calc(30% - 30px); z-index: 999;">
-                                <div class="navbar-nav w-100">
-                                    <a href="" class="nav-item nav-link font-weight-bold">Shopping Cart</a>
-                                    <a href="checkout.jsp" class="nav-item nav-link font-weight-bold">Checkout</a>
-                                </div>
-                            </nav>
                         </div>
                         <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/shop">
                                <c:param name="choice" value="showList" />

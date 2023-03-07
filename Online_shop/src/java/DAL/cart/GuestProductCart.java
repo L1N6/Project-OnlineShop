@@ -14,13 +14,30 @@ public class GuestProductCart {
     private int Quantity;
     private double Price;
     private String Picture;
+    private String Color;
 
-    public GuestProductCart(int ProductDetailID, String ProductName, double Price, String Picture) {
+    public String getColor() {
+        return Color;
+    }
+
+    public void setColor(String Color) {
+        this.Color = Color;
+    }
+
+    public GuestProductCart(int ProductDetailID, String ProductName, double Price, String Picture, String Color) {
         this.ProductDetailID = ProductDetailID;
         this.ProductName = ProductName;
         this.Price = Price;
         this.Picture = Picture;
+        this.Color = Color;
     }
+
+    @Override
+    public String toString() {
+        return "GuestProductCart{" + "ProductDetailID=" + ProductDetailID + ", ProductName=" + ProductName + ", Quantity=" + Quantity + ", Price=" + Price + ", Picture=" + Picture + ", Color=" + Color + '}';
+    }
+
+    
 
     public double getPrice() {
         return Price;

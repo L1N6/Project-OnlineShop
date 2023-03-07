@@ -4,6 +4,7 @@
  */
 package Controller.Shopingcart;
 
+import DAL.Account;
 import DAL.cart.GuestProductCart;
 import DAO.cart.CartDAO;
 import jakarta.servlet.ServletException;
@@ -30,38 +31,131 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int productDetailID = Integer.parseInt(req.getParameter("productDetailID"));
-        System.out.println(req.getSession().getAttribute("AccSession"));
-        try {
-            System.out.println(productDetailID);
-            int totalPrice;
-            if(req.getSession().getAttribute("AccSession") == null) {
-                totalPrice = 0;
-                GuestProductCart gProduct = new CartDAO().getGProductCart(productDetailID);
-                boolean exist = false;
-                for (GuestProductCart guestProduct : listGuestProductCart) {
-                    if (guestProduct.getProductDetailID() == productDetailID) {
-                        guestProduct.setQuantity(guestProduct.getQuantity() + 1);
-                        exist = true;
-                        break;
-                    }
-                }
-                if (!exist) {
-                    gProduct.setQuantity(1);
-                    listGuestProductCart.add(gProduct);
-                }
-                for (GuestProductCart guestProduct : listGuestProductCart) {
-                    totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
-                }
-                
-                
-            } else {
-
-            }
-            System.out.println(listGuestProductCart.size());
-        } catch (Exception e) {
+        String choice = req.getParameter("type");
+        if (choice == null) {
+            choice = "showCart";
         }
-        req.getRequestDispatcher("cart.jsp").forward(req, resp);
+        System.out.println(choice);
+        try {
+            int productDetailID;
+            if (req.getParameter("productDetailID") == null) {
+                productDetailID = 0;
+            } else {
+                productDetailID = Integer.parseInt(req.getParameter("productDetailID"));
+            }
+            String code = req.getParameter("txtCouponCode");
+            double CouponCode;
+            if (code == null) {
+                CouponCode = 0;
+            } else {
+                CouponCode = 0.1;
+            }
+            Account acc = (Account) req.getSession().getAttribute("AccSession");
+            double totalPrice = 0;
+            switch (choice) {
+                case "+":
+                    totalPrice = 0;
+                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                        if (guestProduct.getProductDetailID() == productDetailID) {
+                            guestProduct.setQuantity(guestProduct.getQuantity() + 1);
+                            break;
+                        }
+                    }
+                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                        totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                    }
+                    req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
+                    req.getSession().setAttribute("Subtotal", totalPrice);
+                    req.setAttribute("Code", code);
+                    req.setAttribute("Discount", CouponCode);
+                    req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                    break;
+                case "-":
+                    boolean checkZero = false;
+                    totalPrice = 0;
+                    int i = 0;
+                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                        if (guestProduct.getProductDetailID() == productDetailID) {
+                            if (guestProduct.getQuantity() == 1) {
+                                checkZero = true;
+                                break;
+                            } else {
+                                guestProduct.setQuantity(guestProduct.getQuantity() - 1);
+                                break;
+                            }
+                        }
+                        i++;
+                    }
+                    if (checkZero) {
+                        listGuestProductCart.remove(i);
+                    }
+                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                        totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                    }
+                    req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
+                    req.getSession().setAttribute("Subtotal", totalPrice);
+                    req.setAttribute("Code", code);
+                    req.setAttribute("Discount", CouponCode);
+                    req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                    break;
+                case "remove":{
+                    totalPrice = 0;
+                    i = 0;
+                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                        if (guestProduct.getProductDetailID() == productDetailID) {
+                            break;
+                        }
+                        i++;
+                    }
+                    listGuestProductCart.remove(i);
+                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                        totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                    }
+                    req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
+                    req.getSession().setAttribute("Subtotal", totalPrice);
+                    req.setAttribute("Code", code);
+                    req.setAttribute("Discount", CouponCode);
+                    req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                    break;
+                }
+                case "buyNow":
+                    if (acc == null && productDetailID != 0) {
+                        totalPrice = 0;
+                        GuestProductCart gProduct = new CartDAO().getGProductCart(productDetailID);
+                        boolean exist = false;
+                        for (GuestProductCart guestProduct : listGuestProductCart) {
+                            if (guestProduct.getProductDetailID() == productDetailID) {
+                                guestProduct.setQuantity(guestProduct.getQuantity() + 1);
+                                exist = true;
+                                break;
+                            }
+                        }
+                        if (!exist) {
+                            gProduct.setQuantity(1);
+                            listGuestProductCart.add(gProduct);
+                        }
+                        for (GuestProductCart guestProduct : listGuestProductCart) {
+                            totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                        }
+                        req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
+                        req.getSession().setAttribute("Subtotal", totalPrice);
+                    } else {
+
+                    }
+                    req.setAttribute("Code", code);
+                    req.setAttribute("Discount", CouponCode);
+                    req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                    break;
+                default:
+                    req.setAttribute("Code", code);
+                    req.setAttribute("Discount", CouponCode);
+                    req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("adkads");
+        }
+
     }
 
 }

@@ -4,8 +4,8 @@
  */
 package DAO.Home;
 
-import DAL.BrandAndQuantity;
-import DAL.Brands;
+import DAL.Home.BrandAndQuantity;
+import DAL.Home.Brands;
 import DAL.DBcontext;
 import DAL.Home.ProductDiscountUnitOnOrder;
 import java.sql.PreparedStatement;

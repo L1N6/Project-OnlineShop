@@ -11,7 +11,7 @@ package DAL;
 public class Account {
     private String Email;
     private String Pass;  
-    private String CustomerID;
+    private Customer CustomerID;
     private String EmployeeID;
     private int Role;
 
@@ -22,7 +22,7 @@ public class Account {
         this.Email = Email;
     }
 
-    public Account(String Email, String Pass, String CustomerID,String EmployeeID) {
+    public Account(String Email, String Pass, Customer CustomerID,String EmployeeID) {
         this.Email = Email;
         this.Pass = Pass;
         this.CustomerID = CustomerID;
@@ -30,7 +30,7 @@ public class Account {
         this.EmployeeID = EmployeeID;
     }
 
-    public Account(String Email, String Pass, String CustomerID, int Role,String EmployeeID) {
+    public Account(String Email, String Pass, Customer CustomerID, int Role,String EmployeeID) {
         this.Email = Email;
         this.Pass = Pass;
         this.CustomerID = CustomerID;
@@ -46,11 +46,11 @@ public class Account {
         this.Role = Role;
     }
 
-    public String getCustomerID() {
+    public Customer getCustomerID() {
         return CustomerID;
     }
 
-    public void setCustomerID(String CustomerID) {
+    public void setCustomerID(Customer CustomerID) {
         this.CustomerID = CustomerID;
     }
     

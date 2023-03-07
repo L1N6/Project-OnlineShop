@@ -15,7 +15,7 @@
         <div class="col-lg-3 col-md-4">
             <form action="<c:url value="/filter"/>" method="post">
                 <!-- Price Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-white pr-3">Price</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <c:choose>
                         <c:when test="${PriceFilter == 0}">
@@ -63,7 +63,7 @@
                 <!-- Price End -->
 
                 <!-- Color Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span></h5>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-white pr-3">Color</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <c:set var="total" value="${0}"/>
                     <c:forEach var="c" items="${listColor}">
@@ -134,7 +134,7 @@
 
 
                 <!-- Storage Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by Storage</span></h5>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-white pr-3">Storage</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <c:set var="total" value="${0}"/>
                     <c:forEach var="s" items="${listProductStorage}">
@@ -279,13 +279,20 @@
                                         <div class="product-img position-relative overflow-hidden">
                                             <img class="img-fluid w-100" src="img/${p.picture}" alt="">
                                         <div class="product-action">
-                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href="<c:url value="/cart">
+                                                   <c:param name="productDetailID" value="${p.productID}"/>
+                                                   <c:param name="type" value="buyNow"/>
+                                               </c:url>"><i class="fa fa-shopping-cart"></i></a>
                                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                            <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="text-center py-4">
-                                        <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
+                                        <a class="h6 text-decoration-none text-truncate" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>">${p.productName}</a>
                                         <div class="d-flex align-items-center justify-content-center mt-2">
                                             <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
                                             <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
@@ -369,13 +376,20 @@
                                                 <div class="product-img position-relative overflow-hidden">
                                                     <img class="img-fluid w-100" src="img/${p.picture}" alt="">
                                                 <div class="product-action">
-                                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/cart">
+                                                   <c:param name="productDetailID" value="${p.productID}"/>
+                                                   <c:param name="type" value="buyNow"/>
+                                               </c:url>"><i class="fa fa-shopping-cart"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>"><i class="fa fa-search"></i></a>
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
-                                                <a class="h6 text-decoration-none text-truncate" href="">${p.productName}</a>
+                                                <a class="h6 text-decoration-none text-truncate" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>">${p.productName}</a>
                                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                                     <h5>$<fmt:formatNumber maxFractionDigits="0" value="${p.price-(0.15*p.price)}"/></h5>
                                                     <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${p.price}"/></del></h6>
@@ -443,10 +457,15 @@
                                                 <div class="product-img position-relative overflow-hidden">
                                                     <img class="img-fluid w-100" src="img/${p.picture}" alt="">
                                                 <div class="product-action">
-                                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/cart">
+                                                   <c:param name="productDetailID" value="${p.productID}"/>
+                                                   <c:param name="type" value="buyNow"/>
+                                               </c:url>"><i class="fa fa-shopping-cart"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                                    <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>"><i class="fa fa-search"></i></a>
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
@@ -522,10 +541,15 @@
                                             <div class="product-img position-relative overflow-hidden">
                                                 <img class="img-fluid w-100" src="img/${p.picture}" alt="">
                                             <div class="product-action">
-                                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/cart">
+                                                   <c:param name="productDetailID" value="${p.productID}"/>
+                                                   <c:param name="type" value="buyNow"/>
+                                               </c:url>"><i class="fa fa-shopping-cart"></i></a>
                                                 <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail.jsp"/>"><i class="fa fa-search"></i></a>
+                                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
+                                                   <c:param name="productID" value="${p.productID}" />
+                                            </c:url>"><i class="fa fa-search"></i></a>
                                             </div>
                                         </div>
                                         <div class="text-center py-4">

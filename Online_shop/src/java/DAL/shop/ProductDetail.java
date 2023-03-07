@@ -29,6 +29,33 @@ public class ProductDetail extends Product{
         this.Count = Count;
     }
 
+    public ProductDetail(int ProductDetail, int ProductStorage, double UnitPrice, String Color, int UnitsInStock, int UnitsOnOrder, int ProductID, String ProductName, String Picture) {
+        super(ProductID, ProductName, Picture);
+        this.ProductDetail = ProductDetail;
+        this.ProductStorage = ProductStorage;
+        this.UnitPrice = UnitPrice;
+        this.Color = Color;
+        this.UnitsInStock = UnitsInStock;
+        this.UnitsOnOrder = UnitsOnOrder;
+    }
+
+    public ProductDetail(int ProductID, int ProductDetail, int ProductStorage, double UnitPrice, String Color, int UnitsInStock, int UnitsOnOrder, String Picture) {
+        super(ProductID, Picture);
+        this.ProductDetail = ProductDetail;
+        this.ProductStorage = ProductStorage;
+        this.UnitPrice = UnitPrice;
+        this.Color = Color;
+        this.UnitsInStock = UnitsInStock;
+        this.UnitsOnOrder = UnitsOnOrder;
+    }
+
+    public ProductDetail(int ProductStorage) {
+        this.ProductStorage = ProductStorage;
+    }
+
+    public ProductDetail(String Color) {
+        this.Color = Color;
+    }
     
     public int getCount() {
         return Count;

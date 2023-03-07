@@ -340,5 +340,6 @@
             </div>
         </div>
     </div>
+</div>
     <!-- Vendor End -->
     <%@include file="template/footer.jsp" %>

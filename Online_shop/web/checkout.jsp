@@ -144,20 +144,19 @@
         <div class="col-lg-4">
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order Total</span></h5>
             <div class="bg-light p-30 mb-5">
-                <c:forEach items="${GuestProductCart}" var="gProduct">
                     <div class="border-bottom">
                         <h6 class="mb-3">Products</h6>
+                        <c:forEach items="${GuestProductCart}" var="gProduct">
                         <div class="d-flex justify-content-between">
                             <p>${gProduct.productName} - ${gProduct.color}</p>
-                            <p>$$<fmt:formatNumber maxFractionDigits="0" value="${gProduct.price}"/></p>
+                            <p>$<fmt:formatNumber maxFractionDigits="0" value="${gProduct.price}"/></p>
                         </div>
-                        
+                        </c:forEach>
                     </div>
-                </c:forEach>
                     <div class="border-bottom pt-3 pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Subtotal</h6>
-                            <h6>$$<fmt:formatNumber maxFractionDigits="0" value="${Subtotal}"/></h6>
+                            <h6>    $<fmt:formatNumber maxFractionDigits="0" value="${Subtotal}"/></h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>

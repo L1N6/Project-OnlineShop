@@ -67,11 +67,8 @@
                             </nav>
                         </div>
                         <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/contact"/>">Contact</a>
-                        <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/cart"/>">Cart</a>
-                        <div class="dropdown-menu text-white font-weight-bold mr-3 text-decoration-none">
-                            <a href="<c:url value="/cart"/>" class="dropdown-item">Shopping Cart</a>
-                            <a href="checkout.jsp" class="dropdown-item">Checkout</a>
-                        </div>                        
+                        <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/cart">
+                               <c:param name="type" value="showCart"/></c:url>">Cart</a>
                         <div class="d-none d-lg-block mr-3">
                             <a class="text-body text-white text-decoration-none navbar-vertical1" data-toggle="collapse" href="checkout.jsp" style="height: 5px;">
                                 <h6 class="text-white font-weight-bold m-0">CheckOut</h6>

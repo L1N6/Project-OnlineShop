@@ -63,7 +63,7 @@ public class ProductDAO extends DBcontext {
         try {
             String sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
                     + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
-                    + "inner join ProductDetails pd on pd.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%%'\n"
+                    + "inner join ProductDetails pd on pd.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%'+?+'%'\n"
                     + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture";
             ps = getConnection().prepareCall(sql);
             ps.setString(1, condition);

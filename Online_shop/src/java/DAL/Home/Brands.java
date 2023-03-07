@@ -6,7 +6,7 @@ package DAL.Home;
 
 /**
  *
- * @author LEGION
+ * @author acer
  */
 public class Brands {
     private int BrandID;
@@ -14,6 +14,12 @@ public class Brands {
     private String Picture;
 
     public Brands() {
+    }
+
+    public Brands(int BrandID, String BrandName, String Picture) {
+        this.BrandID = BrandID;
+        this.BrandName = BrandName;
+        this.Picture= Picture;
     }
 
     public Brands(String BrandName) {
@@ -37,6 +43,14 @@ public class Brands {
         this.BrandName = BrandName;
     }
 
+    public String getPictureString() {
+        return Picture;
+    }
+
+    public void setPictureString(String PictureString) {
+        this.Picture = PictureString;
+    }
+    
     public String getPicture() {
         return Picture;
     }

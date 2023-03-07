@@ -49,7 +49,7 @@
             <div class="col-lg-4">
                 <form class="mb-30" action="">
                     <div class="input-group">
-                        <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                        <input type="text" class="form-control border-0 p-4" style="background-color: rgb(190, 197, 199, 1)" placeholder="Coupon Code">
                         <div class="input-group-append">
                             <button class="btn btn-primary">Apply Coupon</button>
                         </div>

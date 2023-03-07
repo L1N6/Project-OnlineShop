@@ -4,11 +4,17 @@
  */
 package Controller.Admin;
 
+import DAL.Admin.Product;
+import DAO.Admin.AdminDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -19,7 +25,14 @@ public class AdminManageProduct extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
-        req.getRequestDispatcher("manageproduct.jsp").forward(req, resp);
+        try {
+            ArrayList<Product> list = new AdminDAO().getProduct();
+            req.setAttribute("Product", list);
+            req.getRequestDispatcher("manageproduct.jsp").forward(req, resp);
+        }   catch (SQLException ex) {
+            Logger.getLogger(AdminManageProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     
 }

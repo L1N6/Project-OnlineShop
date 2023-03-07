@@ -30,7 +30,7 @@ public class ProductDetails extends DBcontext {
         Product product = new Product();
         try {
             String sql = "SELECT * FROM [SHOP_DB_Test_22].[dbo].[Products] where ProductID = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setString(1, IDProduct);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -58,7 +58,7 @@ public class ProductDetails extends DBcontext {
         Brands brands = new Brands();
         try {
             String sql = "SELECT *  FROM [SHOP_DB_Test_22].[dbo].[Brands] where BrandID = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, brandID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -78,7 +78,7 @@ public class ProductDetails extends DBcontext {
         ArrayList<ProductDetail> list = new ArrayList<>();
         try {
             String sql = "SELECT * FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductID = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -106,7 +106,7 @@ public class ProductDetails extends DBcontext {
             String sql = "SELECT ProductDetails.ProductStorage\n"
                     + "FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductID = ? \n"
                     + "group by ProductDetails.ProductStorage;";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -125,7 +125,7 @@ public class ProductDetails extends DBcontext {
             String sql = "SELECT ProductDetails.Coler\n"
                     + "FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductID = ?\n"
                     + "group by ProductDetails.Coler;";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -145,7 +145,7 @@ public class ProductDetails extends DBcontext {
             String sql = "SELECT ProductDetails.UnitPrice\n"
                     + "FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductDetails.ProductStorage = (\n"
                     + "Select Min(ProductDetails.ProductStorage) from ProductDetails where ProductDetails.ProductID = ?)";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -162,7 +162,7 @@ public class ProductDetails extends DBcontext {
         try {
             String sql = "SELECT * FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductID = ?"
                     + " and ProductStorage = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, storage);
             ResultSet rs = ps.executeQuery();

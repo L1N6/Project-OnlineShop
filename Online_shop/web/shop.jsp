@@ -15,7 +15,7 @@
         <div class="col-lg-3 col-md-4">
             <form action="<c:url value="/filter"/>" method="post">
                 <!-- Price Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Price</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <c:choose>
                         <c:when test="${PriceFilter == 0}">
@@ -63,7 +63,7 @@
                 <!-- Price End -->
 
                 <!-- Color Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span></h5>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">color</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <c:set var="total" value="${0}"/>
                     <c:forEach var="c" items="${listColor}">
@@ -134,7 +134,7 @@
 
 
                 <!-- Storage Start -->
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by Storage</span></h5>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Storage</span></h5>
                 <div class="bg-light p-4 mb-30">
                     <c:set var="total" value="${0}"/>
                     <c:forEach var="s" items="${listProductStorage}">

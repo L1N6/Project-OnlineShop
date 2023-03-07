@@ -15,6 +15,11 @@
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/cart.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/shop/SearchingController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/detail.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/ProductDetails.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/DetailProductController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/shop/ProductDetail.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/AjaxController.java</file>
         </group>
     </open-files>
 </project-private>

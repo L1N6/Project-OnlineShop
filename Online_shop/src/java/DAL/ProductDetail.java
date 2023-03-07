@@ -23,6 +23,17 @@ public class ProductDetail extends Product{
         super(ProductID, ProductName, Picture, Price);
         this.UnitsInStock = UnitsInStock;
     }
+
+    public ProductDetail(int ProductDetail, int ProductStorage, double UnitPrice, String Color, int UnitsInStock, int UnitsOnOrder, int ProductID, String ProductName, String Picture) {
+        super(ProductID, ProductName, Picture);
+        this.ProductDetail = ProductDetail;
+        this.ProductStorage = ProductStorage;
+        this.UnitPrice = UnitPrice;
+        this.Color = Color;
+        this.UnitsInStock = UnitsInStock;
+        this.UnitsOnOrder = UnitsOnOrder;
+    }
+    
     
     public int getProductDetail() {
         return ProductDetail;

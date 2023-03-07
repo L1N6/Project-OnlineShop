@@ -22,14 +22,44 @@ import java.util.ArrayList;
 public class ProductDetails extends DBcontext {
 
     public static void main(String[] args) {
+        ProductDetail pdt = new DAO.ProductDetails().getListPictureByIDAndColor("4", "Purple");
+        System.out.println(pdt.getPicture());
         
 
+    }
+
+    public ProductDetail getProductDetail(String idProduct) {
+        ProductDetail product = new ProductDetail();
+        try {
+            String sql = "SELECT * FROM [ProductDetails] \n"
+                    + "inner join Products on ProductDetails.ProductID = Products.ProductID\n"
+                    + "WHERE ProductDetailID = ?";
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, idProduct);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int ProductID = rs.getInt("ProductID");
+                String ProductName = rs.getString("ProductName");
+                int ProductDetail = rs.getInt("ProductDetailID");
+                int ProductStorage = rs.getInt("ProductStorage");
+                double UnitPrice = rs.getDouble("UnitPrice");
+                String Color = rs.getString("Coler");
+                int UnitsInStock = rs.getInt("UnitsInStock");
+                int UnitsOnOrder = rs.getInt("UnitsOnOrder");
+                String Picture = rs.getString("Picture");
+                product = new ProductDetail(ProductDetail, ProductStorage, UnitPrice, Color, UnitsInStock,
+                        UnitsOnOrder, ProductID, ProductName, Picture);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return product;
     }
 
     public Product getProductsByProductID(String IDProduct) {
         Product product = new Product();
         try {
-            String sql = "SELECT * FROM [SHOP_DB_Test_22].[dbo].[Products] where ProductID = ?";
+            String sql = "SELECT * FROM [Products] where ProductID = ?";
             PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setString(1, IDProduct);
             ResultSet rs = ps.executeQuery();
@@ -54,12 +84,12 @@ public class ProductDetails extends DBcontext {
     }
 
     //Get brand throw BrandID
-    public Brands getBrandThrowBrandID(int brandID) {
+    public Brands getBrandThrowBrandID(int IDProduct) {
         Brands brands = new Brands();
         try {
-            String sql = "SELECT *  FROM [SHOP_DB_Test_22].[dbo].[Brands] where BrandID = ?";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
-            ps.setInt(1, brandID);
+            String sql = "SELECT * FROM [Brands] WHERE BrandID = (SELECT Products.BrandID FROM [Products] where ProductID = ?)";
+            PreparedStatement ps =  getConnection().prepareStatement(sql);
+            ps.setInt(1, IDProduct);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int BrandID = rs.getInt("BrandID");
@@ -77,8 +107,8 @@ public class ProductDetails extends DBcontext {
     public ArrayList<ProductDetail> getListAllAttributeProductThrowID(int productID) {
         ArrayList<ProductDetail> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductID = ?";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
+            String sql = "SELECT * FROM [ProductDetails] where ProductID = ?";
+            PreparedStatement ps =  getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -104,7 +134,7 @@ public class ProductDetails extends DBcontext {
         ArrayList<ProductDetail> list = new ArrayList<>();
         try {
             String sql = "SELECT ProductDetails.ProductStorage\n"
-                    + "FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductID = ? \n"
+                    + "FROM [ProductDetails] where ProductID = ? \n"
                     + "group by ProductDetails.ProductStorage;";
             PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
@@ -123,7 +153,7 @@ public class ProductDetails extends DBcontext {
         ArrayList<ProductDetail> list = new ArrayList<>();
         try {
             String sql = "SELECT ProductDetails.Coler\n"
-                    + "FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductID = ?\n"
+                    + "FROM [ProductDetails] where ProductID = ?\n"
                     + "group by ProductDetails.Coler;";
             PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
@@ -143,7 +173,7 @@ public class ProductDetails extends DBcontext {
         int UnitPrice = 0;
         try {
             String sql = "SELECT ProductDetails.UnitPrice\n"
-                    + "FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductDetails.ProductStorage = (\n"
+                    + "FROM [ProductDetails] where ProductDetails.ProductStorage = (\n"
                     + "Select Min(ProductDetails.ProductStorage) from ProductDetails where ProductDetails.ProductID = ?)";
             PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
@@ -160,11 +190,39 @@ public class ProductDetails extends DBcontext {
     public ProductDetail getProductDetailByIDAndStorage(String id, String storage) {
         ProductDetail pd = new ProductDetail();
         try {
-            String sql = "SELECT * FROM [SHOP_DB_Test_22].[dbo].[ProductDetails] where ProductID = ?"
-                    + " and ProductStorage = ?";
-            PreparedStatement ps = getConnection().prepareStatement(sql);
+            String sql = "SELECT * FROM [ProductDetails] \n"
+                    + "  inner join Products on ProductDetails.ProductID = Products.ProductID\n"
+                    + "  where ProductDetails.ProductID = ? and ProductDetails.ProductStorage = ?";
+            PreparedStatement ps =  getConnection().prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, storage);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int ProductID = rs.getInt("ProductID");
+                String ProductName = rs.getString("ProductName");
+                int ProductDetail = rs.getInt("ProductDetailID");
+                int ProductStorage = rs.getInt("ProductStorage");
+                double UnitPrice = rs.getDouble("UnitPrice");
+                String Color = rs.getString("Coler");
+                int UnitsInStock = rs.getInt("UnitsInStock");
+                int UnitsOnOrder = rs.getInt("UnitsOnOrder");
+                String Picture = rs.getString("Picture");
+                pd = new ProductDetail(ProductDetail, ProductStorage, UnitPrice, Color, UnitsInStock,
+                        UnitsOnOrder, ProductID, ProductName, Picture);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return pd;
+    }
+
+    public ProductDetail getListPictureByIDAndColor(String id, String color) {
+        ProductDetail pdt = new ProductDetail();
+        try {
+            String sql = "SELECT * FROM [ProductDetails] WHERE ProductDetails.ProductID = ? and ProductDetails.Coler = ?";
+            PreparedStatement ps =  getConnection().prepareStatement(sql);
+            ps.setString(1, id);
+            ps.setString(2, color);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int ProductDetail = rs.getInt("ProductDetailID");
@@ -175,51 +233,12 @@ public class ProductDetails extends DBcontext {
                 String Color = rs.getString("Coler");
                 int UnitsInStock = rs.getInt("UnitsInStock");
                 int UnitsOnOrder = rs.getInt("UnitsOnOrder");
-                pd = new ProductDetail(ProductID, ProductDetail, ProductStorage,
+                pdt = new ProductDetail(ProductID, ProductDetail, ProductStorage,
                         UnitPrice, Color, UnitsInStock, UnitsOnOrder, Picture);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return pd;
+        return pdt;
     }
-
-    //get list color products by productID
-//    public ArrayList<ProductColors> getListColorOfAProductByProductID(int productID) {
-//        ArrayList<ProductColors> list = new ArrayList<>();
-//        try {
-//            String sql = "SELECT [Coler] FROM [SHOP_DB_TEST_8].[dbo].[ProductColors] \n"
-//                    + "join ProductStorages on ProductColors.ProductStorageID = ProductStorages.ProductStorageID\n"
-//                    + "join Products on ProductStorages.ProductID = Products.ProductID and Products.ProductID = ?;";
-//            PreparedStatement ps = connection.prepareStatement(sql);
-//            ps.setInt(1, productID);
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                String Coler = rs.getString("Coler");
-//                list.add(new ProductColors(Coler));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
-//    public ArrayList<ProductStorages> getListProductStoragThrowProductID(int productID) {
-//        ArrayList<ProductStorages> list = new ArrayList<>();
-//        try {
-//            String sql = "SELECT * FROM [SHOP_DB_TEST_8].[dbo].[ProductStorages] where [ProductID] = ?";
-//            PreparedStatement ps = connection.prepareStatement(sql);
-//            ps.setInt(1, productID);
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                int ProductStorageID = rs.getInt("ProductStorageID");
-//                int ProductID = rs.getInt("ProductID");
-//                int Storage = rs.getInt("Storage");
-//                double UnitPrice = rs.getDouble("UnitPrice");
-//                list.add(new ProductStorages(ProductStorageID, ProductID, Storage, UnitPrice));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
 }

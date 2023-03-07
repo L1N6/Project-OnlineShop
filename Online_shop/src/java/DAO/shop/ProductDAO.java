@@ -1,5 +1,3 @@
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -33,13 +31,14 @@ public class ProductDAO extends DBcontext {
         ProductDetail pd = new ProductDetail();
         try {
 
-            String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+            String sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
                     + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
-                    + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
+                    + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                    + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture";
             ps = getConnection().prepareCall(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int ProductID = rs.getInt("ProductID");
+                int ProductID = rs.getInt("ProductDetailID");
                 String ProductName = rs.getString("ProductName");
                 String Picture = rs.getString("Picture");
                 double Price = rs.getDouble("Price");
@@ -62,14 +61,15 @@ public class ProductDAO extends DBcontext {
         Product p = new Product();
         Comments c = new Comments();
         try {
-            String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
-                    + "from Comments c inner join Products p on c.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%'+?+'%'\n"
-                    + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
+            String sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+                    + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
+                    + "inner join ProductDetails pd on pd.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%'+?+'%'\n"
+                    + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture";
             ps = getConnection().prepareCall(sql);
             ps.setString(1, condition);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int ProductID = rs.getInt("ProductID");
+                int ProductID = rs.getInt("ProductDetailID");
                 String ProductName = rs.getString("ProductName");
                 String Picture = rs.getString("Picture");
                 double Price = rs.getDouble("Price");
@@ -92,21 +92,34 @@ public class ProductDAO extends DBcontext {
         Product p = new Product();
         Comments c = new Comments();
         String sql = "";
-        if (condition.equals("latest")) {
-            sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
-                    + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
-                    + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture\n"
-                    + "order by p.ProductID desc";
-        } else if (condition.equals("popularity")) {
-            sql = "select * from Products order by ProductID desc";
-        } else {
-
+        switch (condition) {
+            case "latest":
+                sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+                        + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
+                        + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                        + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture\n"
+                        + "order by pd.ProductDetailID desc";
+                break;
+            case "popularity":
+                sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments, pd.UnitsInStock \n"
+                        + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
+                        + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                        + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture, pd.UnitsInStock\n"
+                        + "order by pd.UnitsInStock desc";
+                break;
+            default:
+                sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+                        + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
+                        + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                        + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture\n"
+                        + "order by Average desc";
+                break;
         }
         try {
             ps = getConnection().prepareCall(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int ProductID = rs.getInt("ProductID");
+                int ProductID = rs.getInt("ProductDetailID");
                 String ProductName = rs.getString("ProductName");
                 String Picture = rs.getString("Picture");
                 double Price = rs.getDouble("Price");
@@ -172,11 +185,11 @@ public class ProductDAO extends DBcontext {
         Comments c = new Comments();
         int array[] = new int[4];
         int count = 1;
-        String sql = "select pd.ProductDetailID, pd.Picture, p.ProductName,b.BrandName, pd.Coler, pd.ProductStorage, pd.UnitPrice, \n" +
-"avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n" +
-"from Comments c inner join Products p on c.ProductID = p.ProductID \n" +
-"inner join ProductDetails pd on p.ProductID = pd.ProductID \n" +
-"inner join Brands b on b.BrandID = p.BrandID ";
+        String sql = "select pd.ProductDetailID, pd.Picture, p.ProductName,b.BrandName, pd.Coler, pd.ProductStorage, pd.UnitPrice, \n"
+                + "avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+                + "from Comments c inner join Products p on c.ProductID = p.ProductID \n"
+                + "inner join ProductDetails pd on p.ProductID = pd.ProductID \n"
+                + "inner join Brands b on b.BrandID = p.BrandID ";
         try {
             if (priceCondition != 0) {
                 sql += " and pd.UnitPrice between ? and ?";
@@ -195,7 +208,7 @@ public class ProductDAO extends DBcontext {
                 array[3] = 4;
             }
             sql += " group by pd.ProductDetailID, p.ProductName, pd.UnitPrice, pd.ProductID, pd.Picture, pd.Coler, pd.ProductStorage, b.BrandName";
-            if(!"".equals(sort)){
+            if (!"".equals(sort)) {
                 sql += " order by pd.UnitPrice " + sort;
             }
             ps = getConnection().prepareCall(sql);

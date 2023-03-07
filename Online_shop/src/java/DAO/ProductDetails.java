@@ -34,7 +34,7 @@ public class ProductDetails extends DBcontext {
             String sql = "SELECT * FROM [ProductDetails] \n"
                     + "inner join Products on ProductDetails.ProductID = Products.ProductID\n"
                     + "WHERE ProductDetailID = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setString(1, idProduct);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -60,7 +60,7 @@ public class ProductDetails extends DBcontext {
         Product product = new Product();
         try {
             String sql = "SELECT * FROM [Products] where ProductID = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setString(1, IDProduct);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -88,7 +88,7 @@ public class ProductDetails extends DBcontext {
         Brands brands = new Brands();
         try {
             String sql = "SELECT * FROM [Brands] WHERE BrandID = (SELECT Products.BrandID FROM [Products] where ProductID = ?)";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps =  getConnection().prepareStatement(sql);
             ps.setInt(1, IDProduct);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -108,7 +108,7 @@ public class ProductDetails extends DBcontext {
         ArrayList<ProductDetail> list = new ArrayList<>();
         try {
             String sql = "SELECT * FROM [ProductDetails] where ProductID = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps =  getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -136,7 +136,7 @@ public class ProductDetails extends DBcontext {
             String sql = "SELECT ProductDetails.ProductStorage\n"
                     + "FROM [ProductDetails] where ProductID = ? \n"
                     + "group by ProductDetails.ProductStorage;";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -155,7 +155,7 @@ public class ProductDetails extends DBcontext {
             String sql = "SELECT ProductDetails.Coler\n"
                     + "FROM [ProductDetails] where ProductID = ?\n"
                     + "group by ProductDetails.Coler;";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -175,7 +175,7 @@ public class ProductDetails extends DBcontext {
             String sql = "SELECT ProductDetails.UnitPrice\n"
                     + "FROM [ProductDetails] where ProductDetails.ProductStorage = (\n"
                     + "Select Min(ProductDetails.ProductStorage) from ProductDetails where ProductDetails.ProductID = ?)";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps = getConnection().prepareStatement(sql);
             ps.setInt(1, productID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -193,7 +193,7 @@ public class ProductDetails extends DBcontext {
             String sql = "SELECT * FROM [ProductDetails] \n"
                     + "  inner join Products on ProductDetails.ProductID = Products.ProductID\n"
                     + "  where ProductDetails.ProductID = ? and ProductDetails.ProductStorage = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps =  getConnection().prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, storage);
             ResultSet rs = ps.executeQuery();
@@ -220,7 +220,7 @@ public class ProductDetails extends DBcontext {
         ProductDetail pdt = new ProductDetail();
         try {
             String sql = "SELECT * FROM [ProductDetails] WHERE ProductDetails.ProductID = ? and ProductDetails.Coler = ?";
-            PreparedStatement ps = connection.prepareStatement(sql);
+            PreparedStatement ps =  getConnection().prepareStatement(sql);
             ps.setString(1, id);
             ps.setString(2, color);
             ResultSet rs = ps.executeQuery();

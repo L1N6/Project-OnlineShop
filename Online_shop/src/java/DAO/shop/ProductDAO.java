@@ -31,13 +31,14 @@ public class ProductDAO extends DBcontext {
         ProductDetail pd = new ProductDetail();
         try {
 
-            String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+            String sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
                     + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
-                    + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
+                    + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                    + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture";
             ps = getConnection().prepareCall(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int ProductID = rs.getInt("ProductID");
+                int ProductID = rs.getInt("ProductDetailID");
                 String ProductName = rs.getString("ProductName");
                 String Picture = rs.getString("Picture");
                 double Price = rs.getDouble("Price");
@@ -60,14 +61,15 @@ public class ProductDAO extends DBcontext {
         Product p = new Product();
         Comments c = new Comments();
         try {
-            String sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
-                    + "from Comments c inner join Products p on c.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%'+?+'%'\n"
-                    + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture";
+            String sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+                    + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
+                    + "inner join ProductDetails pd on pd.ProductID = p.ProductID and ProductName COLLATE SQL_Latin1_General_Cp850_CI_AS like '%%'\n"
+                    + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture";
             ps = getConnection().prepareCall(sql);
             ps.setString(1, condition);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int ProductID = rs.getInt("ProductID");
+                int ProductID = rs.getInt("ProductDetailID");
                 String ProductName = rs.getString("ProductName");
                 String Picture = rs.getString("Picture");
                 double Price = rs.getDouble("Price");
@@ -91,10 +93,11 @@ public class ProductDAO extends DBcontext {
         Comments c = new Comments();
         String sql = "";
         if (condition.equals("latest")) {
-            sql = "select p.ProductID, p.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+            sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
                     + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
-                    + "group by c.ProductID, p.ProductName, p.Price, p.ProductID, p.Picture\n"
-                    + "order by p.ProductID desc";
+                    + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                    + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture"
+                    + "order by pd.ProductDetailID desc";
         } else if (condition.equals("popularity")) {
             sql = "select * from Products order by ProductID desc";
         } else {
@@ -104,7 +107,7 @@ public class ProductDAO extends DBcontext {
             ps = getConnection().prepareCall(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                int ProductID = rs.getInt("ProductID");
+                int ProductID = rs.getInt("ProductDetailID");
                 String ProductName = rs.getString("ProductName");
                 String Picture = rs.getString("Picture");
                 double Price = rs.getDouble("Price");

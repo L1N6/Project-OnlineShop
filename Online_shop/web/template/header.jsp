@@ -34,7 +34,7 @@
 
     <body>
         <!-- Topbar Start -->
-        <div class="container-fluid">
+        <div class="container-fluid mb-5">
             <div class="row bg-dark py-1 px-xl-5">
                 <div class="col-lg-5 d-none d-lg-block">
                     <div class="d-inline-flex align-items-center h-100">
@@ -66,23 +66,16 @@
                                 </div>
                             </nav>
                         </div>
-                        <a class="text-white font-weight-bold mr-3 text-decoration-none" href="">About</a>
                         <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/contact"/>">Contact</a>
-                        <!--                        <a href="#" class="nav-link dropdown-toggle text-dark font-weight-bold" data-toggle="dropdown">CheckOut</i></a>
-                                                <div class="dropdown-menu text-dark">
-                                                    <a href="cart.jsp" class="dropdown-item">Shopping Cart</a>
-                                                    <a href="checkout.jsp" class="dropdown-item">Checkout</a>
-                                                </div>-->
+                        <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/cart"/>">Cart</a>
+                        <div class="dropdown-menu text-white font-weight-bold mr-3 text-decoration-none">
+                            <a href="<c:url value="/cart"/>" class="dropdown-item">Shopping Cart</a>
+                            <a href="checkout.jsp" class="dropdown-item">Checkout</a>
+                        </div>                        
                         <div class="d-none d-lg-block mr-3">
-                            <a class="text-body text-white text-decoration-none" data-toggle="collapse" href="#navbar-vertical1" style="height: 5px;">
+                            <a class="text-body text-white text-decoration-none navbar-vertical1" data-toggle="collapse" href="checkout.jsp" style="height: 5px;">
                                 <h6 class="text-white font-weight-bold m-0">CheckOut</h6>
                             </a>
-                            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light text-decoration-none" id="navbar-vertical1" style="width: calc(30% - 30px); z-index: 999;">
-                                <div class="navbar-nav w-100">
-                                    <a href="cart.jsp" class="nav-item nav-link font-weight-bold">Cart</a>
-                                    <a href="checkout.jsp" class="nav-item nav-link font-weight-bold">Checkout</a>
-                                </div>
-                            </nav>
                         </div>
                         <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/shop">
                                <c:param name="choice" value="showList" />
@@ -130,7 +123,6 @@
                                     <a class="dropdown-item" href="<c:url value="/Logout"><c:param name="req" value="remove"/></c:url>">SignOut</a>
                                 </c:if>  
                             </div>
-
                         </div>
                         <div class="d-inline-flex align-items-center d-block d-lg-none">
                             <a href="" class="btn px-0 ml-2">
@@ -149,20 +141,20 @@
         <!-- Topbar End -->
 
         <!-- Navbar Start -->
-        <div class="container-fluid bg-white mb-30">
-            <div class="row px-xl-5">
-
-                <div class="col-lg-9">
-                    <nav class="navbar navbar-expand-lg bg-white navbar-dark py-3 py-lg-0 px-0">
-                        <a href="" class="text-decoration-none d-block d-lg-none">
-                            <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
-                            <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </nav>
-                </div>
-            </div>
-        </div>
+        <!--        <div class="container-fluid bg-white mb-30">
+                    <div class="row px-xl-5">
+        
+                        <div class="col-lg-9">
+                            <nav class="navbar navbar-expand-lg bg-white navbar-dark py-3 py-lg-0 px-0">
+                                <a href="" class="text-decoration-none d-block d-lg-none">
+                                    <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
+                                    <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
+                                </a>
+                                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                            </nav>
+                        </div>
+                    </div>
+                </div>-->
         <!-- Navbar End -->

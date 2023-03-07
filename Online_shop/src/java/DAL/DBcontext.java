@@ -26,6 +26,7 @@ public class DBcontext {
         //But we recommend you to do it in another class
         // For example : StudentDBContext extends DBContext , 
         //where StudentDBContext is located in dal package, 
+        
         try {
             String user = "sa";
             String pass = "123123";

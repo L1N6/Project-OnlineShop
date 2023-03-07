@@ -67,13 +67,19 @@
                             </nav>
                         </div>
                         <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/contact"/>">Contact</a>
-                        <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/cart">
-                               <c:param name="type" value="showCart"/></c:url>">Cart</a>
                         <div class="d-none d-lg-block mr-3">
-                            <a class="text-body text-white text-decoration-none navbar-vertical1" data-toggle="collapse" href="checkout.jsp" style="height: 5px;">
-                                <h6 class="text-white font-weight-bold m-0">CheckOut</h6>
+                            <a class="text-body text-white text-decoration-none" data-toggle="collapse" href="#navbar-vertical1" style="height: 5px;">
+                                <h6 class="text-white font-weight-bold m-0">Shopping Cart</h6>
                             </a>
+                            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light text-decoration-none" id="navbar-vertical1" style="width: calc(30% - 30px); z-index: 999;">
+                                <div class="navbar-nav w-100">
+                                    <a href="<c:url value="/cart">
+                               <c:param name="type" value="showCart"/></c:url>" class="nav-item nav-link font-weight-bold">Cart</a>
+                                    <a href="checkout.jsp" class="nav-item nav-link font-weight-bold">Checkout</a>
+                                </div>
+                            </nav>
                         </div>
+                        
                         <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/shop">
                                <c:param name="choice" value="showList" />
                            </c:url>">Shop</a>
@@ -99,7 +105,7 @@
                         </a>
                         <a href="cart.jsp" class="btn px-0 ml-3">
                             <i class="fas fa-shopping-cart text-white"></i>
-                            <span class="badge text-white border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                            <span class="badge text-white border border-secondary rounded-circle" style="padding-bottom: 2px;">${0 + GuestProductCart.size()}</span>
                         </a>
                     </div>
                     <div class="d-inline-flex align-items-center">
@@ -116,8 +122,8 @@
                                 </c:if>
 
                                 <c:if test="${not empty AccSession}">
-                                    <a class="dropdown-item" href="<c:url value="/home"><c:param name="req" value="profile"/></c:url>">Profile</a>
-                                    <a class="dropdown-item" href="<c:url value="/Logout"><c:param name="req" value="remove"/></c:url>">SignOut</a>
+                                    <a class="dropdown-item" href="<c:url value="/ProfileController"><c:param name="req" value="profile"/></c:url>">Profile</a>
+                                    <a class="dropdown-item" href="<c:url value="/LogoutController"><c:param name="req" value="remove"/></c:url>">SignOut</a>
                                 </c:if>  
                             </div>
                         </div>

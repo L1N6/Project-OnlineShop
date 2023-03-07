@@ -92,16 +92,28 @@ public class ProductDAO extends DBcontext {
         Product p = new Product();
         Comments c = new Comments();
         String sql = "";
-        if (condition.equals("latest")) {
-            sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
-                    + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
-                    + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
-                    + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture"
-                    + "order by pd.ProductDetailID desc";
-        } else if (condition.equals("popularity")) {
-            sql = "select * from Products order by ProductID desc";
-        } else {
-
+        switch (condition) {
+            case "latest":
+                sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+                        + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
+                        + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                        + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture\n"
+                        + "order by pd.ProductDetailID desc";
+                break;
+            case "popularity":
+                sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments, pd.UnitsInStock \n"
+                        + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
+                        + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                        + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture, pd.UnitsInStock\n"
+                        + "order by pd.UnitsInStock desc";
+                break;
+            default:
+                sql = "select pd.ProductDetailID, pd.Picture, ProductName, p.Price, avg(c.Rate) as Average, sum(c.ProductID) as TotalComments \n"
+                        + "from Comments c inner join Products p on c.ProductID = p.ProductID\n"
+                        + "inner join ProductDetails pd on pd.ProductID = p.ProductID\n"
+                        + "group by c.ProductID, p.ProductName, p.Price, pd.ProductDetailID, pd.Picture\n"
+                        + "order by Average desc";
+                break;
         }
         try {
             ps = getConnection().prepareCall(sql);

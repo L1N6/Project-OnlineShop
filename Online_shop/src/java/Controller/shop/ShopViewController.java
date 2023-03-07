@@ -54,6 +54,7 @@ public class ShopViewController extends HttpServlet {
             switch (choice) {
                 case "sort":
                     String condition = req.getParameter("sort");
+                    System.out.println(condition);
                     List<ProductInfor> listSortingProduct = new ProductDAO().sortProducts(condition);
                     List<ProductInfor> sortProduct = pcp.getPageOfResult(listSortingProduct, currentPage, PaginationObject.getNumberOfRowEachPage());
                     numberOfPage = pcp.getTotalPageOfResult(listSortingProduct, PaginationObject.getNumberOfRowEachPage());

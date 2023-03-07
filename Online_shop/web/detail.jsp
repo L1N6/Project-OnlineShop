@@ -1,4 +1,4 @@
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %><!-- Breadcrumb Start -->
@@ -59,9 +59,9 @@
                             <small class="pt-1">(99 Reviews)</small>
                         </div>
                         <div  class="d-flex mt-2">
-                            <h3  class="font-weight-semi-bold mb-4" style="align-items: flex-start">$${priceProductDisCount}
-                            <h5 class="text-muted ml-2"><del>$${priceProduct}</del></h5>
-                        </h3>
+                            <h3  class="font-weight-semi-bold mb-4" style="align-items: flex-start">$<fmt:formatNumber maxFractionDigits="0" value="${priceProductDisCount}"/></h3>
+                            <h5 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${priceProduct}"/></del></h5>
+                        
                     </div>
                 </div>
                 <div class="d-flex mb-3" style="align-items: center">

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAL.shop;
+package DAL;
 
 /**
  *
@@ -15,18 +15,13 @@ public class ProductDetail extends Product{
     private String Color;
     private int UnitsInStock;
     private int UnitsOnOrder;
-    private int Count;
+
     public ProductDetail() {
     }
 
-    public ProductDetail(String Color, int Count) {
-        this.Color = Color;
-        this.Count = Count;
-    }
-
-    public ProductDetail(int ProductStorage, int Count) {
-        this.ProductStorage = ProductStorage;
-        this.Count = Count;
+    public ProductDetail(int UnitsInStock, int ProductID, String ProductName, String Picture, double Price) {
+        super(ProductID, ProductName, Picture, Price);
+        this.UnitsInStock = UnitsInStock;
     }
 
     public ProductDetail(int ProductDetail, int ProductStorage, double UnitPrice, String Color, int UnitsInStock, int UnitsOnOrder, int ProductID, String ProductName, String Picture) {
@@ -38,37 +33,7 @@ public class ProductDetail extends Product{
         this.UnitsInStock = UnitsInStock;
         this.UnitsOnOrder = UnitsOnOrder;
     }
-
-    public ProductDetail(int ProductID, int ProductDetail, int ProductStorage, double UnitPrice, String Color, int UnitsInStock, int UnitsOnOrder, String Picture) {
-        super(ProductID, Picture);
-        this.ProductDetail = ProductDetail;
-        this.ProductStorage = ProductStorage;
-        this.UnitPrice = UnitPrice;
-        this.Color = Color;
-        this.UnitsInStock = UnitsInStock;
-        this.UnitsOnOrder = UnitsOnOrder;
-    }
-
-    public ProductDetail(int ProductStorage) {
-        this.ProductStorage = ProductStorage;
-    }
-
-    public ProductDetail(String Color) {
-        this.Color = Color;
-    }
     
-    public int getCount() {
-        return Count;
-    }
-
-    public void setCount(int count) {
-        this.Count = count;
-    }
-
-    public ProductDetail(int UnitsInStock, int ProductID, String ProductName, String Picture, double Price) {
-        super(ProductID, ProductName, Picture, Price);
-        this.UnitsInStock = UnitsInStock;
-    }
     
     public int getProductDetail() {
         return ProductDetail;

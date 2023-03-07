@@ -59,6 +59,7 @@
 
     </div>
 </div>
+</div>
 <!-- Carousel End -->
 
 
@@ -134,7 +135,6 @@
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                         </div>
                     </div>
@@ -214,7 +214,6 @@
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                         </div>
                     </div>
@@ -263,7 +262,6 @@
                         <div class="product-action">
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                         </div>
                     </div>
@@ -289,8 +287,6 @@
                             </div>
                             <small>(${product.amountRate})</small>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -298,7 +294,7 @@
 
     </div>
     <div class="d-flex justify-content-center ">
-        <button class="btn btn-secondary rounded border p-3 pl-5 pr-5"><a href="shop" style="text-decoration: none; color: black"/>Xem tất cả ...</button>
+        <button class="btn btn-secondary rounded border p-3 pl-5 pr-5"><a href="shop" style="text-decoration: none; color: black"/>Show More</button>
     </div>
 </div>
 

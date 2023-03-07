@@ -17,8 +17,12 @@ public class SignInController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("check", "not empty");
-        req.getRequestDispatcher("./signIn.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("CustomerInfor") != null) {
+            resp.sendRedirect("home");
+        } else {
+            req.setAttribute("check", "not empty");
+            req.getRequestDispatcher("./signIn.jsp").forward(req, resp);
+        } 
     }
 
     @Override
@@ -44,7 +48,7 @@ public class SignInController extends HttpServlet {
                 } else {
                     req.getSession().setAttribute("AccSession", acc);
                 }
-                CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID());
+                CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID().getCustomerID());
                 req.getSession().setAttribute("CustomerInfor", inforAccount);
                 //Dieu huong toi index.jsp
                 resp.sendRedirect("home");

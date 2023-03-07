@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DAL.shop;
+package DAL;
 
 /**
  *
@@ -30,33 +30,12 @@ public class Product {
         this.Price = Price;
     }
 
-    public Product(int ProductID, String Picture) {
-        this.ProductID = ProductID;
-        this.Picture = Picture;
-    }
-
-    
-
        
     public Product(int ProductID, String ProductName, String Picture) {
         this.ProductID = ProductID;
         this.ProductName = ProductName;
         this.Picture = Picture;
     }
-
-    public Product(int ProductID, String ProductName, int BrandID, String Chip, int Ram, String Pin, String OperatingSystem, String PhoneScreen, String Picture, double Price) {
-        this.ProductID = ProductID;
-        this.ProductName = ProductName;
-        this.BrandID = BrandID;
-        this.Chip = Chip;
-        this.Ram = Ram;
-        this.Pin = Pin;
-        this.OperatingSystem = OperatingSystem;
-        this.PhoneScreen = PhoneScreen;
-        this.Picture = Picture;
-        this.Price = Price;
-    }
-    
     
     public double getPrice() {
         return Price;
@@ -136,11 +115,6 @@ public class Product {
 
     public void setPicture(String Picture) {
         this.Picture = Picture;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" + "ProductID=" + ProductID + ", ProductName=" + ProductName + ", BrandID=" + BrandID + ", Chip=" + Chip + ", Ram=" + Ram + ", Pin=" + Pin + ", OperatingSystem=" + OperatingSystem + ", PhoneScreen=" + PhoneScreen + ", Picture=" + Picture + ", Price=" + Price + '}';
     }
     
     

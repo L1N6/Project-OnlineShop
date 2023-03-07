@@ -24,13 +24,14 @@
     <div class="row px-xl-5" id="detailProduct">
         <div class="col-lg-5 mb-30">
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner bg-light">
+                <div id="Color"class="carousel-inner bg-light">
                     <c:forEach var="pic" items="${listProductDetail}" varStatus="loop">
                         <div class="carousel-item<c:if test="${loop.index == 0}"> active</c:if>">
                             <img class="w-100 h-100" style="width: 120%; height: 120%; object-fit: contain" src="img/${pic.getPicture()}" alt="Image">
                         </div>
                     </c:forEach>
-                </div>
+                    
+                </div>           
                 <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                     <i class="fa fa-2x fa-angle-left text-dark"></i>
                 </a>
@@ -43,48 +44,54 @@
         <div class="col-lg-7 h-auto mb-30">
             <div class="h-100 bg-light p-30">
                 <div id="unitPrice">
-                <h3>${nameProduct} $</h3>
-                </div>
-                <div class="d-flex mb-3">
-                    <div class="text-primary mr-2">
-                        <small class="fas fa-star"></small>
-                        <small class="fas fa-star"></small>
-                        <small class="fas fa-star"></small>
-                        <small class="fas fa-star-half-alt"></small>
-                        <small class="far fa-star"></small>
+                    <h3>${nameProduct}
+                        <c:if test="${storageProduct == 1000}"> 1TB</c:if>
+                        <c:if test="${storageProduct != 1000}"> ${storageProduct}GB</c:if>                   
+                        </h3>
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star-half-alt"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">(99 Reviews)</small>
+                        </div>
+                        <div  class="d-flex mt-2">
+                            <h3  class="font-weight-semi-bold mb-4" style="align-items: flex-start">$${priceProductDisCount}
+                            <h5 class="text-muted ml-2"><del>$${priceProduct}</del></h5>
+                        </h3>
                     </div>
-                    <small class="pt-1">(99 Reviews)</small>
-                </div>
-                <div id="unitPrice" class="d-flex mt-2">
-                    <h3  class="font-weight-semi-bold mb-4" style="align-items: flex-start">$${priceProductDisCount}
-                    <h5 class="text-muted ml-2"><del>$${priceProduct}</del></h4>
-                    </h3>
                 </div>
                 <div class="d-flex mb-3" style="align-items: center">
                     <strong class="text-dark mr-3">Sizes:</strong>
+                    <c:set var="paramStorage" value="storage"/>
                     <c:forEach items="${listStorage}" var="value">
                         <div class="custom-control custom-radio custom-control-inline">
-                            <button onclick="productStorage(event, '${value.getProductStorage()}', '${product.getProductID()}')" 
+                            <button onclick="productStorage(event, '${value.getProductStorage()}', '${product.getProductID()}', '${paramStorage}')" 
                                     style="color: #6C757D;background-color: white;border-color: red;
                                     padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
                                     type="submit" >
-                                ${value.getProductStorage()}
-                            </button>
-                        </div>
+                                <c:if test="${value.getProductStorage() == 1000}"> 1TB</c:if>
+                                <c:if test="${value.getProductStorage() != 1000}"> ${value.getProductStorage()}GB</c:if>
+                                </button>
+                            </div>
                     </c:forEach>
-                    
+
                 </div>
                 <div class="d-flex mb-4">
                     <strong class="text-dark mr-3">Colors:</strong>
-                    <form>
-                        <c:forEach items="${listColor}" var="color">
-                            <span class="custom-control custom-radio custom-control-inline"> 
-                                <input type="radio" class="custom-control-input" id="${color.getColer()}" name="color">
-                                <label class="custom-control-label" for="${color.getColer()}">
-                                    <c:out value="${color.getColer()}" /></label>
-                            </span>
-                        </c:forEach>
-                    </form>
+                    <c:set var="paramColor" value="color"/>
+                    <c:forEach items="${listColor}" var="color">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <button onclick="productColor(event, '${color.getColor()}', '${product.getProductID()}', '${paramColor}')" 
+                                    style="color: #6C757D;background-color: white;border-color: red;
+                                    padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
+                                    type="submit" >  ${color.getColor()}                            
+                            </button>        
+                        </div>
+                    </c:forEach>
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
@@ -373,23 +380,44 @@
 <!-- Products End -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-                                    function productStorage(event, paramStorage, paramID) {
-                                        $.ajax({
-                                            url: "/Project_Swp/detailProduct",
-                                            type: "get", // send it through get method    
-                                            data: {productStorage: paramStorage,
-                                                productID: paramID
-                                            }, // truyền giá trị của biến storageValue vào trong request 
-                                            success: function (data) {
-                                                var detailProduct = document.getElementById("unitPrice");
-                                                console.log(data);
-                                                detailProduct.innerHTML = "";
-                                                detailProduct.innerHTML = data;
-                                            },
-                                            error: function (xhr) {
-                                                // handle error
-                                            }
-                                        });
-                                    }
+                                function productStorage(event, paramStorage, paramID, paramCheckStorage) {
+                                    $.ajax({
+                                        url: "/Project_Swp/detailProduct",
+                                        type: "get", // send it through get method    
+                                        data: {productStorage: paramStorage,
+                                            productID: paramID,
+                                            paramCheck: paramCheckStorage
+                                        }, // truyền giá trị của biến storageValue vào trong request 
+                                        success: function (data) {
+                                            var detailProduct = document.getElementById("unitPrice");
+                                            console.log(data);
+                                            detailProduct.innerHTML = "";
+                                            detailProduct.innerHTML = data;
+                                        },
+                                        error: function (xhr) {
+                                            // handle error
+                                        }
+                                    });
+                                }
+                                
+                                function productColor(event, paramColor, paramID, paramCheckColor) {
+                                    $.ajax({
+                                        url: "/Project_Swp/detailProduct",
+                                        type: "get", // send it through get method    
+                                        data: {productColor: paramColor,
+                                            productID: paramID,
+                                            paramCheck: paramCheckColor
+                                        }, // truyền giá trị của biến storageValue vào trong request 
+                                        success: function (data) {
+                                            var detailProduct = document.getElementById("Color");
+                                            console.log(data);
+                                            detailProduct.innerHTML = "";
+                                            detailProduct.innerHTML = data;
+                                        },
+                                        error: function (xhr) {
+                                            // handle error
+                                        }
+                                    });
+                                }
 </script>
 <%@include file="template/footer.jsp" %>

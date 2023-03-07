@@ -7,13 +7,15 @@
 package Controller.Home;
 
 
-import DAL.BrandAndQuantity;
-import DAL.Brands;
+import DAL.Home.BrandAndQuantity;
+import DAL.Home.Brands;
+
 import DAL.Home.Event;
 import DAL.Home.ProductDiscountUnitOnOrder;
 import DAO.Home.BrandDAO;
 import DAO.Home.EventDAO;
 import DAO.Home.ProductDAO1;
+
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

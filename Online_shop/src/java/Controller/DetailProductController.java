@@ -4,9 +4,9 @@
  */
 package Controller;
 
-import DAL.Brands;
-import DAL.Product;
-import DAL.ProductDetail;
+import DAL.Home.Brands;
+import DAL.shop.Product;
+import DAL.shop.ProductDetail;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,25 +20,26 @@ public class DetailProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String IDProduct = req.getParameter("productID");
-
+        System.out.println(IDProduct);
 
         if (IDProduct == null) {
             resp.sendRedirect("index.jsp");
         } else {
             System.out.println(IDProduct);
             //get product by product name
-            Product product = new DAO.ProductDetails().getProductsByProductID(IDProduct);
-            //get name product
+            ProductDetail product = new DAO.ProductDetails().getProductDetail(IDProduct);
+            //get name product & storage
             String nameProduct = product.getProductName();
+            int storageProduct = product.getProductStorage();
             //get smallest price of products
-            double price = product.getPrice();
+            double price = product.getUnitPrice();
             DecimalFormat decimalFormat = new DecimalFormat("0.0");
             String formattedNum = decimalFormat.format(price);
             String formattedNumDisCount = decimalFormat.format(price - 0.15*price);
             System.out.println(formattedNum);
             // get brand id by product and get brand name;
-            int brandID = product.getBrandID();
-            Brands brand = new DAO.ProductDetails().getBrandThrowBrandID(brandID);
+            int idProduct = product.getProductID();
+            Brands brand = new DAO.ProductDetails().getBrandThrowBrandID(idProduct);
             //get list product detail own picture and color
             ArrayList<ProductDetail> listProductDetail = new DAO.ProductDetails().
                     getListAllAttributeProductThrowID(product.getProductID());
@@ -49,6 +50,7 @@ public class DetailProductController extends HttpServlet {
             req.setAttribute("nameProduct", nameProduct);
             req.setAttribute("product", product);
             req.setAttribute("brandName", brand.getBrandName());
+            req.setAttribute("storageProduct", storageProduct);
             req.setAttribute("priceProduct", formattedNum);
             req.setAttribute("priceProductDisCount", formattedNumDisCount);
             req.setAttribute("listColor", listColor);

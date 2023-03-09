@@ -26,7 +26,7 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        
     }
 
     @Override
@@ -35,7 +35,6 @@ public class CartController extends HttpServlet {
         if (choice == null) {
             choice = "showCart";
         }
-        System.out.println(choice);
         try {
             int productDetailID;
             if (req.getParameter("productDetailID") == null) {
@@ -146,6 +145,39 @@ public class CartController extends HttpServlet {
                     req.setAttribute("Discount", CouponCode);
                     req.getRequestDispatcher("cart.jsp").forward(req, resp);
                     break;
+                    
+                case "addToCart":
+                    int quantity = Integer.parseInt(req.getParameter("txtQuantity"));
+                    System.out.println(quantity);
+                    if (acc == null && productDetailID != 0) {
+                        totalPrice = 0;
+                        GuestProductCart gProduct = new CartDAO().getGProductCart(productDetailID);
+                        boolean exist = false;
+                        for (GuestProductCart guestProduct : listGuestProductCart) {
+                            if (guestProduct.getProductDetailID() == productDetailID) {
+                                if(guestProduct.getQuantity() != 1){
+                                    guestProduct.setQuantity(guestProduct.getQuantity() + quantity);
+                                }else{
+                                    guestProduct.setQuantity(guestProduct.getQuantity() + 1);
+                                }
+                                exist = true;
+                                break;
+                            }
+                        }
+                        if (!exist) {
+                            gProduct.setQuantity(quantity);
+                            listGuestProductCart.add(gProduct);
+                        }
+                        for (GuestProductCart guestProduct : listGuestProductCart) {
+                            totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                        }
+                        req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
+                        req.getSession().setAttribute("Subtotal", totalPrice);
+                    } else {
+
+                    }
+                    resp.sendRedirect("detail?productID="+productDetailID+"&?numberQuantity="+quantity+"");
+                    break;
                 default:
                     req.setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
@@ -153,7 +185,8 @@ public class CartController extends HttpServlet {
                     break;
             }
         } catch (Exception e) {
-            System.out.println("adkads");
+            System.out.println(e.getMessage());
+            resp.sendRedirect("Error");
         }
 
     }

@@ -20,12 +20,10 @@ public class DetailProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String IDProduct = req.getParameter("productID");
-        System.out.println(IDProduct);
 
         if (IDProduct == null) {
             resp.sendRedirect("index.jsp");
         } else {
-            System.out.println(IDProduct);
             //get product by product name
             ProductDetail product = new DAO.ProductDetails().getProductDetail(IDProduct);
             //get name product & storage
@@ -36,7 +34,6 @@ public class DetailProductController extends HttpServlet {
             DecimalFormat decimalFormat = new DecimalFormat("0.0");
             String formattedNum = decimalFormat.format(price);
             String formattedNumDisCount = decimalFormat.format(price - 0.15*price);
-            System.out.println(formattedNum);
             // get brand id by product and get brand name;
             int idProduct = product.getProductID();
             Brands brand = new DAO.ProductDetails().getBrandThrowBrandID(idProduct);
@@ -56,7 +53,15 @@ public class DetailProductController extends HttpServlet {
             req.setAttribute("listColor", listColor);
             req.setAttribute("listStorage", listStorage);
             req.setAttribute("listProductDetail", listProductDetail);
-            req.getRequestDispatcher("/detail.jsp").forward(req, resp);
+            req.setAttribute("ID", IDProduct);
+            System.out.println(req.getParameter("numberQuantity"));
+            if(req.getParameter("numberQuantity") == null){
+                req.setAttribute("Quanity", 1);
+            }else{
+                req.setAttribute("Quanity", req.getParameter("numberQuantity"));
+            }
+            
+            req.getRequestDispatcher("detail.jsp").forward(req, resp);
         }
     }
 

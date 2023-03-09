@@ -30,8 +30,6 @@ public class AjaxController extends HttpServlet {
         String colorProductAjax = req.getParameter("productColor");
         String paramCheck = req.getParameter("paramCheck");
         if ("storage".equals(paramCheck)) {
-            System.out.println("storage: " + storageProductAjax);
-            System.out.println("productID: " + productIDAjax);
             ProductDetail productDetail
                     = new DAO.ProductDetails().getProductDetailByIDAndStorage(productIDAjax, storageProductAjax);
             //Get price product and format
@@ -70,9 +68,6 @@ public class AjaxController extends HttpServlet {
                     + "                    </h3>");
         }
         if ("color".equals(paramCheck)) {
-            System.out.println("color: " + paramCheck);
-            System.out.println("color mau: " + colorProductAjax);
-            System.out.println("id " + productIDAjax);
             ProductDetail pdt = new DAO.ProductDetails().getListPictureByIDAndColor(productIDAjax, colorProductAjax);
             PrintWriter out = resp.getWriter();
             out.print("<img class=\"w-100 h-100\" style=\"width: 120%; height: 120%; object-fit: contain\" src=\"img/"+pdt.getPicture()+"\" alt=\"Image\">");

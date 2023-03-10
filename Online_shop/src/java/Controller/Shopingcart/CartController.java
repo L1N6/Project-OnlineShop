@@ -54,7 +54,8 @@ public class CartController extends HttpServlet {
             switch (choice) {
                 case "+":
                     totalPrice = 0;
-                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                    if(acc == null && productDetailID != 0){
+                        for (GuestProductCart guestProduct : listGuestProductCart) {
                         if (guestProduct.getProductDetailID() == productDetailID) {
                             guestProduct.setQuantity(guestProduct.getQuantity() + 1);
                             break;
@@ -68,12 +69,16 @@ public class CartController extends HttpServlet {
                     req.setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
                     req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                    } else if (acc != null && productDetailID != 0) {
+                        
+                    }
                     break;
                 case "-":
                     boolean checkZero = false;
                     totalPrice = 0;
                     int i = 0;
-                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                    if(acc == null && productDetailID != 0){
+                        for (GuestProductCart guestProduct : listGuestProductCart) {
                         if (guestProduct.getProductDetailID() == productDetailID) {
                             if (guestProduct.getQuantity() == 1) {
                                 checkZero = true;
@@ -96,11 +101,15 @@ public class CartController extends HttpServlet {
                     req.setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
                     req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                    } else if (acc != null && productDetailID != 0) {
+                        
+                    }
                     break;
                 case "remove":{
                     totalPrice = 0;
                     i = 0;
-                    for (GuestProductCart guestProduct : listGuestProductCart) {
+                    if (acc == null && productDetailID != 0) {
+                       for (GuestProductCart guestProduct : listGuestProductCart) {
                         if (guestProduct.getProductDetailID() == productDetailID) {
                             break;
                         }
@@ -114,7 +123,11 @@ public class CartController extends HttpServlet {
                     req.getSession().setAttribute("Subtotal", totalPrice);
                     req.setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
-                    req.getRequestDispatcher("cart.jsp").forward(req, resp);
+                    req.getRequestDispatcher("cart.jsp").forward(req, resp); 
+                    } else if (acc != null && productDetailID != 0) {
+                        
+                    }
+                    
                     break;
                 }
                 case "buyNow":
@@ -138,7 +151,7 @@ public class CartController extends HttpServlet {
                         }
                         req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
                         req.getSession().setAttribute("Subtotal", totalPrice);
-                    } else {
+                    } else if (acc != null && productDetailID != 0) {
                         
                     }
                     req.setAttribute("Code", code);
@@ -172,7 +185,7 @@ public class CartController extends HttpServlet {
                         }
                         req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
                         req.getSession().setAttribute("Subtotal", totalPrice);
-                    } else {
+                    } else if (acc != null && productDetailID != 0) {
                         
                     }
                     resp.sendRedirect("detail?productID="+productDetailID+"&?numberQuantity="+quantity+"");

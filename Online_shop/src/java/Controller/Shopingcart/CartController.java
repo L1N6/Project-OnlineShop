@@ -50,7 +50,7 @@ public class CartController extends HttpServlet {
                 CouponCode = 0.1;
             }
             Account acc = (Account) req.getSession().getAttribute("AccSession");
-            double totalPrice = 0;
+            double totalPrice;
             switch (choice) {
                 case "+":
                     totalPrice = 0;
@@ -139,7 +139,7 @@ public class CartController extends HttpServlet {
                         req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
                         req.getSession().setAttribute("Subtotal", totalPrice);
                     } else {
-
+                        
                     }
                     req.setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
@@ -148,7 +148,6 @@ public class CartController extends HttpServlet {
                     
                 case "addToCart":
                     int quantity = Integer.parseInt(req.getParameter("txtQuantity"));
-                    System.out.println(quantity);
                     if (acc == null && productDetailID != 0) {
                         totalPrice = 0;
                         GuestProductCart gProduct = new CartDAO().getGProductCart(productDetailID);
@@ -174,7 +173,7 @@ public class CartController extends HttpServlet {
                         req.getSession().setAttribute("GuestProductCart", listGuestProductCart);
                         req.getSession().setAttribute("Subtotal", totalPrice);
                     } else {
-
+                        
                     }
                     resp.sendRedirect("detail?productID="+productDetailID+"&?numberQuantity="+quantity+"");
                     break;

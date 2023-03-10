@@ -33,7 +33,6 @@ public class AjaxController extends HttpServlet {
             ProductDetail productDetail
                     = new DAO.ProductDetails().getProductDetailByIDAndStorage(productIDAjax, storageProductAjax);
             //Get price product and format
-            System.out.println(productDetail.getUnitPrice());
             DecimalFormat decimalFormat = new DecimalFormat("#,###.##");
             String formattedNum = decimalFormat.format(productDetail.getUnitPrice());
             // discount price

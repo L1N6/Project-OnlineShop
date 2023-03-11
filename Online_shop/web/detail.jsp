@@ -20,6 +20,7 @@
 
 
 <!-- Shop Detail Start -->
+<c:set var="productDetailID" value="${ID}"/>
 <div class="container-fluid pb-5">
     <div class="row px-xl-5" id="detailProduct">
         <div class="col-lg-5 mb-30">
@@ -30,7 +31,10 @@
                             <img class="w-100 h-100" style="width: 120%; height: 120%; object-fit: contain" src="img/${pic.getPicture()}" alt="Image">
                         </div>
                     </c:forEach>
+<<<<<<< HEAD
 
+=======
+>>>>>>> Develop
                 </div>           
                 <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                     <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -93,6 +97,7 @@
                         </div>
                     </c:forEach>
                 </div>
+<<<<<<< HEAD
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
                         <div class="input-group-btn">
@@ -109,6 +114,44 @@
                     </div>
                     <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
                         Cart</button>
+=======
+                <form action="<c:url value="/cart"/>" method="Get">
+                        <input type="hidden" name="type" value="addToCart">
+                        <input type="hidden" name="productDetailID" value="${productDetailID}">
+                      <div class="d-flex align-items-center mb-4 pt-2">
+                          <div class="input-group mr-3" style="width: 130px;">
+                              <div class="input-group-btn">
+                                  <a class="btn btn-primary btn-minus" >
+                                      <i class="fa fa-minus"></i>
+                                  </a>
+                              </div>
+                              <input type="text" class="form-control bg-secondary border-0 text-center" name="txtQuantity" id="Quantity" value="${Quanity}">
+                              <div class="input-group-btn">
+                                  <a class="btn btn-primary btn-plus" >
+                                      <i class="fa fa-plus"></i>
+                                  </a>
+                              </div>
+                          </div>
+                          <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                      </div>
+                </form>
+                <div class="d-flex pt-2">
+                    <strong class="text-dark mr-2">Share on:</strong>
+                    <div class="d-inline-flex">
+                        <a class="text-dark px-2" href="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-dark px-2" href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="text-dark px-2" href="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="text-dark px-2" href="">
+                            <i class="fab fa-pinterest"></i>
+                        </a>
+                    </div>
+>>>>>>> Develop
                 </div>
             </div>
         </div>
@@ -405,5 +448,27 @@ for (var i = 0; i < buttons.length; i++) {
                                         }
                                     });
                                 }
+</script>
+<script>
+    // Get the input element by its ID
+    var quantity = document.getElementById('Quantity');
+
+    // Get the minus button by its class
+    var btnMinus = document.querySelector('.btn-minus');
+
+    // Get the plus button by its class
+    var btnPlus = document.querySelector('.btn-plus');
+
+    // Decrement the value of the input element when the minus button is clicked
+    btnMinus.addEventListener('click', function () {
+        var currentValue = parseInt(quantity.value);
+        quantity.value = currentValue > 1 ? currentValue - 1 : 1;
+    });
+
+    // Increment the value of the input element when the plus button is clicked
+    btnPlus.addEventListener('click', function () {
+        var currentValue = parseInt(quantity.value);
+        quantity.value = currentValue + 1;
+    });
 </script>
 <%@include file="template/footer.jsp" %>

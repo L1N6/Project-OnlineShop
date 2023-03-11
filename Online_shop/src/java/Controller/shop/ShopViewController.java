@@ -89,7 +89,10 @@ public class ShopViewController extends HttpServlet {
             req.getSession().setAttribute("BrandFilter", null);
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
+            
             Logger.getLogger(ShopViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (NumberFormatException exception){
+            resp.sendRedirect("Error");
         }
     }
 

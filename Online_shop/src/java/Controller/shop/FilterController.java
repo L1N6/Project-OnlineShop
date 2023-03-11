@@ -110,7 +110,10 @@ public class FilterController extends HttpServlet {
             req.setAttribute("check", "not empty");
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
+            
             Logger.getLogger(FilterController.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (NumberFormatException exception){
+            resp.sendRedirect("Error");
         }
     }
 
@@ -197,7 +200,11 @@ public class FilterController extends HttpServlet {
             req.setAttribute("check", "not empty");
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
+            
             Logger.getLogger(FilterController.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }catch (NumberFormatException exception){
+            resp.sendRedirect("Error");
         }
     }
 }

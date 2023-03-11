@@ -68,13 +68,8 @@
                         </div>
                         <a class="text-white font-weight-bold mr-3 text-decoration-none" href="<c:url value="/contact"/>">Contact</a>
                         <div class="d-none d-lg-block mr-3">
-<<<<<<< HEAD
                             <a class="text-body text-white text-decoration-none" data-toggle="collapse" href="#navbar-verticall" style="height: 5px;">
                                 <h6 class="text-white font-weight-bold m-0">CheckOut</h6>
-=======
-                            <a class="text-body text-white text-decoration-none" data-toggle="collapse" href="#navbar-vertical1" style="height: 5px;">
-                                <h6 class="text-white font-weight-bold m-0">Shopping Cart</h6>
->>>>>>> Login2
                             </a>
                             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light text-decoration-none" id="navbar-verticall" style="width: calc(30% - 30px); z-index: 999;">
                                 <div class="navbar-nav w-100">

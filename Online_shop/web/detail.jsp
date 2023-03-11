@@ -30,7 +30,7 @@
                             <img class="w-100 h-100" style="width: 120%; height: 120%; object-fit: contain" src="img/${pic.getPicture()}" alt="Image">
                         </div>
                     </c:forEach>
-                    
+
                 </div>           
                 <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                     <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -60,8 +60,8 @@
                         </div>
                         <div  class="d-flex mt-2">
                             <h3  class="font-weight-semi-bold mb-4" style="align-items: flex-start">$<fmt:formatNumber maxFractionDigits="0" value="${priceProductDisCount}"/></h3>
-                            <h5 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${priceProduct}"/></del></h5>
-                        
+                        <h5 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${priceProduct}"/></del></h5>
+
                     </div>
                 </div>
                 <div class="d-flex mb-3" style="align-items: center">
@@ -71,7 +71,7 @@
                         <div class="custom-control custom-radio custom-control-inline">
                             <button onclick="productStorage(event, '${value.getProductStorage()}', '${product.getProductID()}', '${paramStorage}')" 
                                     style="color: #6C757D;background-color: white;border-color: red;
-                                    padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
+                                    padding: 10;border: 2px solid red;border-radius: 10px "; 
                                     type="submit" >
                                 <c:if test="${value.getProductStorage() == 1000}"> 1TB</c:if>
                                 <c:if test="${value.getProductStorage() != 1000}"> ${value.getProductStorage()}GB</c:if>
@@ -110,23 +110,6 @@
                     <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
                         Cart</button>
                 </div>
-                <div class="d-flex pt-2">
-                    <strong class="text-dark mr-2">Share on:</strong>
-                    <div class="d-inline-flex">
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a class="text-dark px-2" href="">
-                            <i class="fab fa-pinterest"></i>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -139,11 +122,6 @@
                     <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">Product Description</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                        <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
-                    </div>
                     <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Additional Information</h4>
                         <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
@@ -380,6 +358,14 @@
 <!-- Products End -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
+    var buttons = document.getElementsByClassName("btn");
+
+for (var i = 0; i < buttons.length; i++) {
+  document.getElementsByClassName("btn")[i].addEventListener("click", function() {
+    this.classList.add("test_skill");
+  });
+}
+    
                                 function productStorage(event, paramStorage, paramID, paramCheckStorage) {
                                     $.ajax({
                                         url: "/Project_Swp/detailProduct",
@@ -399,7 +385,7 @@
                                         }
                                     });
                                 }
-                                
+
                                 function productColor(event, paramColor, paramID, paramCheckColor) {
                                     $.ajax({
                                         url: "/Project_Swp/detailProduct",

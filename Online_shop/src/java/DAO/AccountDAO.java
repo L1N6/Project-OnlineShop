@@ -31,13 +31,14 @@ public class AccountDAO {
             ps.setString(2, pass);
             rs = ps.executeQuery();
             while (rs.next()) {
+                int AccountID = rs.getInt("AccountID");
                 String Email = rs.getString("Email");
                 String Password = rs.getString("Password");
                 String CusID = rs.getString("CustomerID");
                 int role = rs.getInt("Role");
                 String EmpID = rs.getString("EmployeeID");
 
-                acc = new Account(Email, Password, new Customer(CusID), role, EmpID);
+                acc = new Account(AccountID, Email, pass, new Customer(CusID), EmpID, role);
             }
         } catch (SQLException e) {
         } finally {

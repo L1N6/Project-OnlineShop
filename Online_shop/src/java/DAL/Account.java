@@ -9,6 +9,7 @@ package DAL;
  * @author LEGION
  */
 public class Account {
+    private int AccountID;
     private String Email;
     private String Pass;  
     private Customer CustomerID;
@@ -20,6 +21,15 @@ public class Account {
     
     public Account(String Email) {
         this.Email = Email;
+    }
+
+    public Account(int AccountID, String Email, String Pass, Customer CustomerID, String EmployeeID, int Role) {
+        this.AccountID = AccountID;
+        this.Email = Email;
+        this.Pass = Pass;
+        this.CustomerID = CustomerID;
+        this.EmployeeID = EmployeeID;
+        this.Role = Role;
     }
 
     public Account(String Email, String Pass, Customer CustomerID,String EmployeeID) {
@@ -38,6 +48,14 @@ public class Account {
         this.EmployeeID = EmployeeID;
     }
 
+    public int getAccountID() {
+        return AccountID;
+    }
+
+    public void setAccountID(int AccountID) {
+        this.AccountID = AccountID;
+    }
+    
     public int getRole() {
         return Role;
     }

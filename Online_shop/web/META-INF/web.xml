@@ -40,6 +40,10 @@
         <servlet-name>Error</servlet-name>
         <servlet-class>Controller.ErrorController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>Controller.Checkout.CheckoutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>
@@ -107,6 +111,10 @@
     <servlet-mapping>
         <servlet-name>Error</servlet-name>
         <url-pattern>/Error</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

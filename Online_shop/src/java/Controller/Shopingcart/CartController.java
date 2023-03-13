@@ -83,7 +83,7 @@ public class CartController extends HttpServlet {
                         req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
                         req.getSession().setAttribute("Subtotal", totalPrice);
                     }
-                    req.setAttribute("Code", code);
+                    req.getSession().setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
                     req.getRequestDispatcher("cart.jsp").forward(req, resp);
                     break;
@@ -138,7 +138,7 @@ public class CartController extends HttpServlet {
                         req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
                         req.getSession().setAttribute("Subtotal", totalPrice);
                     }
-                    req.setAttribute("Code", code);
+                    req.getSession().setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
                     req.getRequestDispatcher("cart.jsp").forward(req, resp);
                     break;
@@ -215,7 +215,7 @@ public class CartController extends HttpServlet {
                         req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
                         req.getSession().setAttribute("Subtotal", totalPrice);
                     }
-                    req.setAttribute("Code", code);
+                    req.getSession().setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
                     req.getRequestDispatcher("cart.jsp").forward(req, resp);
                     break;
@@ -280,7 +280,7 @@ public class CartController extends HttpServlet {
                         req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
                         req.getSession().setAttribute("Subtotal", totalPrice);
                     }
-                    req.setAttribute("Code", code);
+                    req.getSession().setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
                     req.getRequestDispatcher("cart.jsp").forward(req, resp);
                     break;

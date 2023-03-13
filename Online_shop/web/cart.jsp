@@ -108,12 +108,11 @@
                             <h5>Total</h5>
                             <h5>$<fmt:formatNumber maxFractionDigits="0" value="${Subtotal - (Subtotal * Discount)}"/></h5>
                         </div>
-                            <form action="<c:url value="/checkout.jsp"/>">
-                            <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
-                        </form>
+                            <form action="<c:url value="/checkout"/>" method="get">
+                                <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                            </form>
                     </div>
                 </div>
-                
         </div>
     </div>
 </div>

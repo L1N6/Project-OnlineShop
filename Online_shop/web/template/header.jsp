@@ -80,7 +80,7 @@
                                 <div class="navbar-nav w-100">
                                     <a href="<c:url value="/cart">
                                <c:param name="type" value="showCart"/></c:url>" class="nav-item nav-link font-weight-bold">Cart</a>
-                                    <a href="checkout.jsp" class="nav-item nav-link font-weight-bold">Checkout</a>
+                               <a href="<c:url value="/checkout"/>" class="nav-item nav-link font-weight-bold">Checkout</a>
                                 </div>
                             </nav>
                         </div>

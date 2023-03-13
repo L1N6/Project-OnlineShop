@@ -200,7 +200,12 @@
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5>$<fmt:formatNumber maxFractionDigits="0" value="${Subtotal -(Subtotal * Discount)}"/></h5>
+                        <c:if test="${not empty Code}">
+                            <h5>$<fmt:formatNumber maxFractionDigits="0" value="${Subtotal -(Subtotal * 0.1)}"/></h5>
+                        </c:if>
+                        <c:if test="${empty Code}">
+                            <h5>$<fmt:formatNumber maxFractionDigits="0" value="${Subtotal -(Subtotal * 0)}"/></h5>
+                        </c:if>
                     </div>
                 </div>
             </div>

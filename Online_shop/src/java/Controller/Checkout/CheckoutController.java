@@ -45,7 +45,7 @@ public class CheckoutController extends HttpServlet {
             } catch (SQLException ex) {
                 Logger.getLogger(CheckoutController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        } 
         req.getRequestDispatcher("checkout.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();

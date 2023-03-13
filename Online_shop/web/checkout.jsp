@@ -23,7 +23,8 @@
 
 
 <!-- Checkout Start -->
-<div class="container-fluid">
+<form id="myForm" action="<c:url value="/order"/>" method="get">
+    <div class="container-fluid">
     <div class="row px-xl-5">
         <c:if test="${empty AccSession}">
             <div class="col-lg-8 table-responsive mb-5">
@@ -58,79 +59,40 @@
                 </c:if>
             </div>
             <div class="col-lg-8">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing Address</span></h5>
-                <div class="bg-light p-30 mb-5">
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Doe">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>Address</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
-                            <label>City</label>
-                            <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="newaccount">
-                                <label class="custom-control-label" for="newaccount">Create an account</label>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="shipto">
-                                <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse mb-5" id="shipping-address">
-                    <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Shipping Address</span></h5>
-                    <div class="bg-light p-30">
+                    <h5 class="section-title position-relative text-uppercase mb-3">
+                        <span class="bg-secondary pr-3">Billing Address</span>
+                    </h5>
+                    <div class="bg-light p-30 mb-5">
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label>First Name</label>
-                                <input class="form-control" type="text" placeholder="John">
+                                <input class="form-control" type="text" placeholder="John" name="txtFirstName" id="txtFirstName">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="Doe">
+                                <input class="form-control" type="text" placeholder="Doe" name="txtLastName" id="txtLastName">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
-                                <input class="form-control" type="text" placeholder="example@email.com">
+                                <input class="form-control" type="text" placeholder="example@gmail.com" name="txtEmail" id="txtEmail">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Mobile No</label>
-                                <input class="form-control" type="text" placeholder="+123 456 789">
+                                <input class="form-control" type="text" placeholder="+84 12345678" name="txtPhoneNumber" id="txtPhoneNumber">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>Address</label>
-                                <input class="form-control" type="text" placeholder="123 Street">
+                                <input class="form-control" type="text" placeholder="123 Street" name="txtAddress" id="txtAddress">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>City</label>
-                                <input class="form-control" type="text" placeholder="New York">
+                                <input class="form-control" type="text" placeholder="New York" name="txtCity" id="txtCity">
                             </div>
                         </div>
                     </div>
-                </div>
+                <h5 style="color: red"><c:out value="${msg}"/></h5>
             </div>
+            
         </c:if>
         <c:if test="${not empty AccSession}">
             <div class="col-lg-8 table-responsive mb-5">
@@ -236,5 +198,91 @@
         </div>
     </div>
 </div>
+</form>
 <!-- Checkout End -->
 <%@include file="template/footer.jsp" %>
+<script>
+    const nameRegex = /^[a-zA-Z\s]*$/; // Only letters and spaces
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Email format
+    const phoneRegex = /^(84|\+84|0)(3[2-9]|5[2689]|7[0|6-9]|8[1-9]|9[0-9])([0-9]{7})$/; // Phone number format
+    const addressRegex = /^[a-zA-Z0-9\s,'-]*$/; // Letters, digits, spaces, and some punctuation
+    const form = document.getElementById('myForm');
+
+// Add an event listener to the form's submit event
+    form.addEventListener('submit', function (event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // Get the form field values
+        const firstName = document.getElementById('txtFirstName').value;
+        const lastName = document.getElementById('txtLastName').value;
+        const email = document.getElementById('txtEmail').value;
+        const phoneNumber = document.getElementById('txtPhoneNumber').value;
+        const address = document.getElementById('txtAddress').value;
+        const city = document.getElementById('txtCity').value;
+        // Validate the form fields
+
+        if (firstName === '') {
+            alert('Please enter your first name');
+            document.getElementById('txtFirstName').focus();
+            return false;
+        }
+        if (lastName === '') {
+            alert('Please enter your last name');
+            document.getElementById('txtLastName').focus();
+            return false;
+        }
+        if (email === '') {
+            alert('Please enter your email');
+            document.getElementById('txtEmail').focus();
+            return false;
+        }
+        if (phoneNumber === '') {
+            alert('Please enter your phone number');
+            document.getElementById('txtPhoneNumber').focus();
+            return false;
+        }
+        if (address === '') {
+            alert('Please enter your address');
+            document.getElementById('txtAddress').focus();
+            return false;
+        }
+        if (city === '') {
+            alert('Please enter your city');
+            document.getElementById('txtCity').focus();
+            return false;
+        }
+
+        if (!firstName.match(nameRegex)) {
+            alert("Please enter a valid first name.");
+            return false;
+        }
+
+        if (!lastName.match(nameRegex)) {
+            alert("Please enter a valid last name.");
+            return false;
+        }
+
+        if (!email.match(emailRegex)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+
+        if (!phoneNumber.match(phoneRegex)) {
+            alert("Please enter a valid phone number.");
+            return false;
+        }
+
+        if (!address.match(addressRegex)) {
+            alert("Please enter a valid address.");
+            return false;
+        }
+
+        if (!city.match(nameRegex)) {
+            alert("Please enter a valid city.");
+            return false;
+        }
+        // Submit the form if all fields are valid
+        form.submit();
+    });
+</script>;

@@ -48,6 +48,10 @@
         <servlet-name>Order</servlet-name>
         <servlet-class>Controller.Checkout.OrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GoogleLogin</servlet-name>
+        <servlet-class>Controller.loginWithGoogleAccount.LoginGoogleAccountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>
@@ -123,6 +127,10 @@
     <servlet-mapping>
         <servlet-name>Order</servlet-name>
         <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GoogleLogin</servlet-name>
+        <url-pattern>/googleAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

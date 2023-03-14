@@ -39,8 +39,7 @@ public class OrderDAO extends DBcontext{
             ps.setString(5, guest.getAddress());
             ps.executeUpdate();
             //
-            String sql = "insert into Orders (CustomerID,OrderDate,RequiredDate,ShipAddress,ShipCity,PhoneNumber,ShipCountry)\n" +
-"values(?,?,?,?,?,?,?);";
+            String sql = "insert into Orders (CustomerID,OrderDate,RequiredDate,ShipAddress,ShipCity,PhoneNumber,ShipCountry,[Status]) values(?,?,?,?,?,?,?,?);";
             ps = getConnection().prepareStatement(sql);
             String oderDate = dateFormat.format(calendar.getTime());
             calendar.add(Calendar.DATE, 7);
@@ -52,6 +51,7 @@ public class OrderDAO extends DBcontext{
             ps.setString(5, guest.getCity());
             ps.setString(6, guest.getPhoneNumber());
             ps.setString(7, "VietNam");
+            ps.setInt(8, 0);
             ps.executeUpdate();
             //
             String sqlgetOrder = "select top(1)* from Orders order by OrderID desc";
@@ -72,8 +72,7 @@ public class OrderDAO extends DBcontext{
         Calendar calendar = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            String sql = "insert into Orders (CustomerID,OrderDate,RequiredDate,ShipAddress,ShipCity,PhoneNumber,ShipCountry)\n" +
-"values(?,?,?,?,?,?,?);";
+            String sql = "insert into Orders (CustomerID,OrderDate,RequiredDate,ShipAddress,ShipCity,PhoneNumber,ShipCountry,[Status]) values(?,?,?,?,?,?,?,?);";
             PreparedStatement ps = getConnection().prepareStatement(sql);
             String oderDate = dateFormat.format(calendar.getTime());
             calendar.add(Calendar.DATE, 7);
@@ -85,6 +84,7 @@ public class OrderDAO extends DBcontext{
             ps.setString(5, "Ha noi");
             ps.setString(6, "1234567890");
             ps.setString(7, "VietNam");
+            ps.setInt(8, 0);
             ps.executeUpdate();
             //
             String sqlgetOrder = "select top(1)* from Orders order by OrderID desc";

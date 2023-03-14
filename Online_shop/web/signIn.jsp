@@ -25,7 +25,7 @@
               <label class="form-label" for="typePasswordX-2">Password</label>
             </div>
             <div>
-                <a class="form-check d-flex justify-content-end mb-4" href="#"> Forgot Password</a>
+                <a class="form-check d-flex justify-content-end mb-4" href="<c:url value="/ForgotPasswordController"/>"> Forgot Password</a>
             </div>
             <!-- Checkbox -->
             <div class="form-check d-flex justify-content-start mb-4">
@@ -38,8 +38,9 @@
             
             <hr class="my-4">
 
-            <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
-              type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button>
+            <a href="https://accounts.google.com/o/oauth2/auth?scope=mail&redirect_uri=http://localhost:9999/Project_Swp/googleAccount
+&response_type=code&client_id=719822410434-haqr6pmal8ccb5aoea6881ta519ue5no.apps.googleusercontent.com&approval_prompt=force" class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;"
+              type="submit"><i class="fab fa-google me-2"></i> Sign in with google</a>
             <button class="btn btn-lg btn-block btn-primary mb-2" style="background-color: #3b5998;"
               type="submit"><i class="fab fa-facebook-f me-2"></i> Sign in with facebook</button>
 </form>

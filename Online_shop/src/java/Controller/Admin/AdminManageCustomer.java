@@ -4,6 +4,7 @@
  */
 package Controller.Admin;
 
+import DAL.Admin.AccountCustomer;
 import DAL.Admin.Product;
 import DAL.Home.Brands;
 import DAO.Admin.AdminDAO;
@@ -23,21 +24,29 @@ import java.util.logging.Logger;
  *
  * @author blabl
  */
-public class AdminManageProduct extends HttpServlet{
+
+public class AdminManageCustomer extends HttpServlet{
+  
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        
-        try {
-            ArrayList<Product> list = new AdminDAO().getProduct();
-            List<Brands> brandlist = new BrandDAO().getAllBrands();
-            req.setAttribute("Product", list);
-            req.setAttribute("Brand", brandlist);
-            req.getRequestDispatcher("manageProduct.jsp").forward(req, resp);
-        }   catch (SQLException ex) {
-            Logger.getLogger(AdminManageProduct.class.getName()).log(Level.SEVERE, null, ex);
+       
+            ArrayList<AccountCustomer> list = new AdminDAO().getAccountCustomer();
+            req.setAttribute("list", list);
+            req.getRequestDispatcher("manageAccount.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id =  req.getParameter("accountID");
+        String status =  req.getParameter("status");
+        if(status.equals("1")){
+            status = "2";
+        }else{
+            status = "1";
         }
-        
+        new AdminDAO().changeStatusCustomer(id, status,"update Accounts Set Status = ? where accountid = ?");
+        resp.sendRedirect("customer");
     }
     
 }

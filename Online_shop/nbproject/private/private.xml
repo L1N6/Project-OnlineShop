@@ -3,40 +3,64 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/web/index.jsp</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/NewClass.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Email.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Admin/ViewProduct.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/Home/EventDAO.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminManageCustomer.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/Home/ProductDAO1.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/Home/BrandDAO.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Home/ProductDiscountUnitOnOrder.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Admin/LoginAdmin.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Admin/Product.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/SignUpController.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/BrandDAO.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Home/Event.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/shop.jsp</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/js/bootstrap.bundle.min.js.map</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/EventDAO.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/signIn.jsp</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/nbproject/build-impl.xml</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Home/BrandAndQuantity.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Home/Brands.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/Admin/AdminDAO.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Admin/CustomerOrder.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/ProductDetails.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/CustomerDAO.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/js/bootstrap.bundle.js.map</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/signUp.jsp</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Account.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Admin/LogoutAdmin.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/META-INF/web.xml</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/contact.jsp</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/LogoutController.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/Admin/AdminAccountDAO.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO1.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/index.jsp</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/NewClass.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminManageOrder.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Email.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/js/bootstrap.esm.min.js.map</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Home/ProductDiscountUnitOnOrder.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Admin/LoginAdmin.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Admin/AccountCustomer.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/js/bootstrap.min.js</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/SignUpController.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/js/bootstrap.esm.min.js</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/nbproject/build-impl.xml</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Home/BrandAndQuantity.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Admin/Event.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/Admin/AdminDAO.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/CustomerDAO.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/js/bootstrap.bundle.min.js</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Admin/ProductDetails.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminManageComment.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/js/bootstrap.bundle.js</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/AjaxController.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/checkout.jsp</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/shop/ProductDAO.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/web/js/bootstrap.js</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/web/META-INF/context.xml</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminManageProduct.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/AccountDAO.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/Controller/LogoutController.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Admin/AccountComment.java</file>
+            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/Admin/Account.java</file>
             <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAL/SendEmail.java</file>
-            <file>file:/E:/Project-OnlineShop/Online_shop/src/java/DAO/ProductDAO1.java</file>
         </group>
     </open-files>
 </project-private>

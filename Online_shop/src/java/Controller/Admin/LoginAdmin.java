@@ -4,25 +4,13 @@
  */
 package Controller.Admin;
 
-import Controller.Home.HomeController;
-import DAL.Home.BrandAndQuantity;
-import DAL.Home.Brands;
-import DAL.Home.Event;
-import DAL.Home.ProductDiscountUnitOnOrder;
-import DAO.Home.BrandDAO;
-import DAO.Home.EventDAO;
-import DAO.Home.ProductDAO1;
+import DAL.Admin.Account;
+import DAO.Admin.AdminAccountDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.apache.coyote.http11.Http11AprProtocol;
 
 /**
  *
@@ -32,8 +20,29 @@ public class LoginAdmin extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+        if(req.getSession().getAttribute("Logined") != null){
+            resp.sendRedirect("product");
+        }else{    
+        req.getRequestDispatcher("login.jsp").forward(req, resp);
+        }
+   }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String email = req.getParameter("email");
+        String pass = req.getParameter("password");
+        
+        Account acc = new AdminAccountDAO().getAccount(email, pass);
+        
+        if(acc.getRole() == 0){
+            req.setAttribute("msg", "Email or Password fail");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);  
+        }else if(acc.getRole() == 1){
+            req.getSession().setAttribute("Employee", acc);
+            req.getSession().setAttribute("Logined", true);
+            resp.sendRedirect("product");
+        }
         
     }
-    
+
 }

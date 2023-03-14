@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-        <%@ page contentType="text/html; charset=UTF-8" %>
-        <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:if test="${Logined == false || Employee == null  }">
+    <c:redirect url = "/Admin/login"/>
+</c:if>
 
 <html lang="en">
 
@@ -57,25 +60,25 @@
                 </div>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="order.html">
+                    <a class="nav-link" href="order">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Manage Order</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="warehouse.html">
+                    <a class="nav-link" href="product">
                         <i class='fa fa-mobile'></i>
                         <span>Manage Product</span></a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="accounts.html">
+                    <a class="nav-link" href="customer">
                         <i class='fa fa-user'></i>
                         <span>Manage Account</span></a>
                 </li>
-                
+
                 <li class="nav-item">
-                    <a class="nav-link" href="accounts.html">
+                    <a class="nav-link" href="comment">
                         <i class='fa fa-user'></i>
                         <span>Manage Comment</span></a>
                 </li>
@@ -106,7 +109,7 @@
                             </button>
                         </form>
 
-                        
+
 
                         <ul class="navbar-nav ml-auto">
 
@@ -116,21 +119,18 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">AdminOnlineShop</span>
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">${Employee.firstname} ${ Employee.lastname}</span>
                                     <img class="img-profile rounded-circle"
                                          src="img/undraw_profile.svg">
+                                    
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                     aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a>
-                                </div>
+                                
+                                    
+                                
                             </li>
 
                         </ul>
-
+                          <a href="logout">Logout </a>          
                     </nav>
                     <!-- End of Topbar -->
 

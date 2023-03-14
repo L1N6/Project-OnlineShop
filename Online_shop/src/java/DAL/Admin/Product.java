@@ -9,6 +9,7 @@ package DAL.Admin;
  * @author blabl
  */
 public class Product {
+    
     private int productID;
     private String productName;
     private int brandID;
@@ -25,6 +26,25 @@ public class Product {
     private int rate;
     private int amountRate;
     private String brandName;
+
+    public Product(int productID, String productName, int brandID, String chip, int ram, String pin, String phoneScreen, String picture, int unitOnStock, int unitOnOrder, float price, int rate, int amountRate, String brandName) {
+        this.productID = productID;
+        this.productName = productName;
+        this.brandID = brandID;
+        this.chip = chip;
+        this.ram = ram;
+        this.pin = pin;
+        this.phoneScreen = phoneScreen;
+        this.picture = picture;
+        this.unitOnStock = unitOnStock;
+        this.unitOnOrder = unitOnOrder;
+        this.price = price;
+        this.rate = rate;
+        this.amountRate = amountRate;
+        this.brandName = brandName;
+    }
+    
+    
 
     public Product(int productID, String productName, int unitOnStock, int unitOnOrder, String brandName) {
         this.productID = productID;

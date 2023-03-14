@@ -28,6 +28,14 @@ public class Customer {
     public Customer(String CustomerID) {
         this.CustomerID = CustomerID;
     }
+
+    public Customer(String CustomerID, String CompanyName, String ContactName, String ContactTitle, String Address) {
+        this.CustomerID = CustomerID;
+        this.CompanyName = CompanyName;
+        this.ContactName = ContactName;
+        this.ContactTitle = ContactTitle;
+        this.Address = Address;
+    }
      
 
     public Customer(String CustomerID, String CompanyName, String ContactName, String ContactTitle, String Address, boolean gender) {

@@ -92,7 +92,6 @@
                     </div>
                 <h5 style="color: red"><c:out value="${msg}"/></h5>
             </div>
-            
         </c:if>
         <c:if test="${not empty AccSession}">
             <div class="col-lg-8 table-responsive mb-5">
@@ -141,7 +140,7 @@
                 <div class="border-bottom pt-3 pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6>    $<fmt:formatNumber maxFractionDigits="0" value="${Subtotal}"/></h6>
+                        <h6>$<fmt:formatNumber maxFractionDigits="0" value="${Subtotal}"/></h6>
                     </div>
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Coupon Code</h6>
@@ -182,7 +181,7 @@
                     </div>
                     <div class="form-group">
                         <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                            <input type="radio" class="custom-control-input" name="payment" id="directcheck" checked>
                             <label class="custom-control-label" for="directcheck">Direct Check</label>
                         </div>
                     </div>
@@ -192,7 +191,12 @@
                             <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                         </div>
                     </div>
-                    <button class="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
+                    <c:if test="${empty AccSession}">
+                        <button class="btn btn-block btn-primary font-weight-bold py-3" onclick="return check()">Place Order</button>
+                    </c:if>
+                    <c:if test="${not empty AccSession}">
+                        <a href="<c:url value="/order"/>" class="btn btn-block btn-primary font-weight-bold py-3" onclick="return check()">Place Order</a>
+                    </c:if>
                 </div>
             </div>
         </div>
@@ -285,4 +289,13 @@
         // Submit the form if all fields are valid
         form.submit();
     });
+    
+    function check() {
+        let text;
+        if (confirm("Are you sure to order") === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 </script>;

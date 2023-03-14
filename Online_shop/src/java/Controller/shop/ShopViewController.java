@@ -87,6 +87,7 @@ public class ShopViewController extends HttpServlet {
             req.getSession().setAttribute("ColorFilter", "All");
             req.getSession().setAttribute("StorageFilter", 0);
             req.getSession().setAttribute("BrandFilter", null);
+            req.setAttribute("OrderSuccessful", req.getParameter("Order"));
             req.getRequestDispatcher("shop.jsp").forward(req, resp);
         } catch (SQLException ex) {
             

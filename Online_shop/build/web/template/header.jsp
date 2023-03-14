@@ -121,12 +121,12 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-light dropdown-toggl bg-secondary font-weight-bold" data-toggle="dropdown">My Account</button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <c:if test="${empty AccSession}">
+                                <c:if test="${empty AccSession && empty GoogleAccount}">
                                     <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign in</a>
                                     <a  class="dropdown-item" href="<%=path%>/SignUp" type="button">Sign up</a>
                                 </c:if>
 
-                                <c:if test="${not empty AccSession}">
+                                <c:if test="${not empty AccSession || not empty GoogleAccount}">
                                     <a class="dropdown-item" href="<c:url value="/ProfileController"><c:param name="req" value="profile"/></c:url>">Profile</a>
                                     <a class="dropdown-item" href="<c:url value="/LogoutController"><c:param name="req" value="remove"/></c:url>">SignOut</a>
                                 </c:if>  

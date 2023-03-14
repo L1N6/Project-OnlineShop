@@ -6,6 +6,7 @@ package Controller.Shopingcart;
 
 import DAL.Account;
 import DAL.cart.ProductCart;
+import DAL.loginGoogle.GooglePojo;
 import DAO.cart.CartDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -53,18 +54,37 @@ public class CartController extends HttpServlet {
             switch (choice) {
                 case "+":
                     if (acc == null && productDetailID != 0) {
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            if (guestProduct.getProductDetailID() == productDetailID) {
-                                guestProduct.setQuantity(guestProduct.getQuantity() + 1);
-                                break;
-                            }
-                        }
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
-                        }
-                        req.getSession().setAttribute("ProductCart", listGuestProductCart);
-                        req.getSession().setAttribute("Subtotal", totalPrice);
+                        if (req.getSession().getAttribute("GoogleAccount") != null) {//Customer using Google Account
+                            GooglePojo googlePojo = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                            int accountID = googlePojo.getAccountID();
 
+                            List<ProductCart> listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+
+                            for (ProductCart cusProductCart : listCustomerProductCarts) {
+                                if (cusProductCart.getProductDetailID() == productDetailID) {
+                                    new CartDAO().updateCustomerProductCart(accountID, productDetailID, (cusProductCart.getQuantity() + 1));
+                                    break;
+                                }
+                            }
+                            listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                            for (ProductCart guestProduct : listCustomerProductCarts) {
+                                totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
+                        } else {
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                if (guestProduct.getProductDetailID() == productDetailID) {
+                                    guestProduct.setQuantity(guestProduct.getQuantity() + 1);
+                                    break;
+                                }
+                            }
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listGuestProductCart);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
+                        }
                     } //Customer
                     else if (acc != null && productDetailID != 0) {
                         int accountID = acc.getAccountID();
@@ -91,26 +111,53 @@ public class CartController extends HttpServlet {
                     boolean checkZero = false;
                     int i = 0;
                     if (acc == null && productDetailID != 0) {
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            if (guestProduct.getProductDetailID() == productDetailID) {
-                                if (guestProduct.getQuantity() == 1) {
-                                    checkZero = true;
-                                    break;
-                                } else {
-                                    guestProduct.setQuantity(guestProduct.getQuantity() - 1);
-                                    break;
+                        if (req.getSession().getAttribute("GoogleAccount") != null) {//Customer using Google Account
+                            GooglePojo googlePojo = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                            int accountID = googlePojo.getAccountID();
+                            List<ProductCart> listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                            for (ProductCart cusProductCart : listCustomerProductCarts) {
+                                if (cusProductCart.getProductDetailID() == productDetailID) {
+                                    if (cusProductCart.getQuantity() == 1) {
+                                        checkZero = true;
+                                        break;
+                                    } else {
+                                        new CartDAO().updateCustomerProductCart(accountID, productDetailID, (cusProductCart.getQuantity() - 1));
+                                        break;
+                                    }
                                 }
+                                i++;
                             }
-                            i++;
+                            if (checkZero) {
+                                new CartDAO().DeleteCustomerProductCart(accountID, productDetailID);
+                            }
+                            listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                            for (ProductCart customerProduct : listCustomerProductCarts) {
+                                totalPrice += customerProduct.getPrice() * customerProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
+                        } else {
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                if (guestProduct.getProductDetailID() == productDetailID) {
+                                    if (guestProduct.getQuantity() == 1) {
+                                        checkZero = true;
+                                        break;
+                                    } else {
+                                        guestProduct.setQuantity(guestProduct.getQuantity() - 1);
+                                        break;
+                                    }
+                                }
+                                i++;
+                            }
+                            if (checkZero) {
+                                listGuestProductCart.remove(i);
+                            }
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listGuestProductCart);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
                         }
-                        if (checkZero) {
-                            listGuestProductCart.remove(i);
-                        }
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
-                        }
-                        req.getSession().setAttribute("ProductCart", listGuestProductCart);
-                        req.getSession().setAttribute("Subtotal", totalPrice);
 
                     } //Customer
                     else if (acc != null && productDetailID != 0) {
@@ -145,20 +192,34 @@ public class CartController extends HttpServlet {
                 case "remove": {
                     i = 0;
                     if (acc == null && productDetailID != 0) {
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            if (guestProduct.getProductDetailID() == productDetailID) {
-                                break;
+                        if (req.getSession().getAttribute("GoogleAccount") != null) {//Customer using Google Account
+                            GooglePojo googlePojo = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                            int accountID = googlePojo.getAccountID();
+
+                            new CartDAO().DeleteCustomerProductCart(accountID, productDetailID);
+                            List<ProductCart> listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                            for (ProductCart customerProduct : listCustomerProductCarts) {
+                                totalPrice += customerProduct.getPrice() * customerProduct.getQuantity();
                             }
-                            i++;
+                            req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
+                        } else {
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                if (guestProduct.getProductDetailID() == productDetailID) {
+                                    break;
+                                }
+                                i++;
+                            }
+                            listGuestProductCart.remove(i);
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listGuestProductCart);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
+                            req.setAttribute("Code", code);
+                            req.setAttribute("Discount", CouponCode);
                         }
-                        listGuestProductCart.remove(i);
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
-                        }
-                        req.getSession().setAttribute("ProductCart", listGuestProductCart);
-                        req.getSession().setAttribute("Subtotal", totalPrice);
-                        req.setAttribute("Code", code);
-                        req.setAttribute("Discount", CouponCode);
+
                     } //Customer
                     else if (acc != null && productDetailID != 0) {
                         int accountID = acc.getAccountID();
@@ -175,24 +236,48 @@ public class CartController extends HttpServlet {
                 }
                 case "buyNow":
                     if (acc == null && productDetailID != 0) {
-                        ProductCart gProduct = new CartDAO().getGProductCart(productDetailID);
-                        boolean exist = false;
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            if (guestProduct.getProductDetailID() == productDetailID) {
-                                guestProduct.setQuantity(guestProduct.getQuantity() + 1);
-                                exist = true;
-                                break;
+                        if (req.getSession().getAttribute("GoogleAccount") != null) {//Customer using Google Account
+                            GooglePojo googlePojo = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                            int accountID = googlePojo.getAccountID();
+                            boolean exist = false;
+                            List<ProductCart> listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                            for (ProductCart customerProduct : listCustomerProductCarts) {
+                                if (customerProduct.getProductDetailID() == productDetailID) {
+                                    new CartDAO().updateCustomerProductCart(accountID, productDetailID, (customerProduct.getQuantity() + 1));
+                                    exist = true;
+                                    break;
+                                }
                             }
+                            if (!exist) {
+                                new CartDAO().addCustomerProductCart(accountID, productDetailID);
+                            }
+                            listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                            for (ProductCart customerProduct : listCustomerProductCarts) {
+                                totalPrice += customerProduct.getPrice() * customerProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
+                        } else {
+                            ProductCart gProduct = new CartDAO().getGProductCart(productDetailID);
+                            boolean exist = false;
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                if (guestProduct.getProductDetailID() == productDetailID) {
+                                    guestProduct.setQuantity(guestProduct.getQuantity() + 1);
+                                    exist = true;
+                                    break;
+                                }
+                            }
+                            if (!exist) {
+                                gProduct.setQuantity(1);
+                                listGuestProductCart.add(gProduct);
+                            }
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listGuestProductCart);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
                         }
-                        if (!exist) {
-                            gProduct.setQuantity(1);
-                            listGuestProductCart.add(gProduct);
-                        }
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
-                        }
-                        req.getSession().setAttribute("ProductCart", listGuestProductCart);
-                        req.getSession().setAttribute("Subtotal", totalPrice);
+
                     } //Customer
                     else if (acc != null && productDetailID != 0) {
                         boolean exist = false;
@@ -222,29 +307,52 @@ public class CartController extends HttpServlet {
                 case "addToCart":
                     int quantity = Integer.parseInt(req.getParameter("txtQuantity"));
                     if (acc == null && productDetailID != 0) {
-                        totalPrice = 0;
-                        ProductCart gProduct = new CartDAO().getGProductCart(productDetailID);
-                        boolean exist = false;
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            if (guestProduct.getProductDetailID() == productDetailID) {
-                                if (guestProduct.getQuantity() != 1) {
-                                    guestProduct.setQuantity(guestProduct.getQuantity() + quantity);
-                                } else {
-                                    guestProduct.setQuantity(guestProduct.getQuantity() + 1);
+                        if (req.getSession().getAttribute("GoogleAccount") != null) {//Customer using Google Account
+                            GooglePojo googlePojo = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                            int accountID = googlePojo.getAccountID();
+                            boolean exist = false;
+                            List<ProductCart> listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                            for (ProductCart customerProduct : listCustomerProductCarts) {
+                                if (customerProduct.getProductDetailID() == productDetailID) {
+                                    new CartDAO().updateCustomerProductCart(accountID, productDetailID, (customerProduct.getQuantity() + 1));
+                                    exist = true;
+                                    break;
                                 }
-                                exist = true;
-                                break;
                             }
+                            if (!exist) {
+                                new CartDAO().addCustomerProductCart(accountID, productDetailID);
+                            }
+                            listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                            for (ProductCart customerProduct : listCustomerProductCarts) {
+                                totalPrice += customerProduct.getPrice() * customerProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
+                        } else {
+                            ProductCart gProduct = new CartDAO().getGProductCart(productDetailID);
+                            boolean exist = false;
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                if (guestProduct.getProductDetailID() == productDetailID) {
+                                    if (guestProduct.getQuantity() != 1) {
+                                        guestProduct.setQuantity(guestProduct.getQuantity() + quantity);
+                                    } else {
+                                        guestProduct.setQuantity(guestProduct.getQuantity() + 1);
+                                    }
+                                    exist = true;
+                                    break;
+                                }
+                            }
+                            if (!exist) {
+                                gProduct.setQuantity(quantity);
+                                listGuestProductCart.add(gProduct);
+                            }
+                            for (ProductCart guestProduct : listGuestProductCart) {
+                                totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
+                            }
+                            req.getSession().setAttribute("ProductCart", listGuestProductCart);
+                            req.getSession().setAttribute("Subtotal", totalPrice);
                         }
-                        if (!exist) {
-                            gProduct.setQuantity(quantity);
-                            listGuestProductCart.add(gProduct);
-                        }
-                        for (ProductCart guestProduct : listGuestProductCart) {
-                            totalPrice += guestProduct.getPrice() * guestProduct.getQuantity();
-                        }
-                        req.getSession().setAttribute("ProductCart", listGuestProductCart);
-                        req.getSession().setAttribute("Subtotal", totalPrice);
+
                     } //Customer
                     else if (acc != null && productDetailID != 0) {
                         boolean exist = false;
@@ -279,6 +387,16 @@ public class CartController extends HttpServlet {
                         }
                         req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
                         req.getSession().setAttribute("Subtotal", totalPrice);
+                    //Customer Using Account Google        
+                    } else if (req.getSession().getAttribute("GoogleAccount") != null) {
+                        GooglePojo googlePojo = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                        int accountID = googlePojo.getAccountID();
+                        List<ProductCart> listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                        for (ProductCart customerProduct : listCustomerProductCarts) {
+                            totalPrice += customerProduct.getPrice() * customerProduct.getQuantity();
+                        }
+                        req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
+                        req.getSession().setAttribute("Subtotal", totalPrice);
                     }
                     req.getSession().setAttribute("Code", code);
                     req.setAttribute("Discount", CouponCode);
@@ -287,6 +405,7 @@ public class CartController extends HttpServlet {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
             resp.sendRedirect("Error");
         }

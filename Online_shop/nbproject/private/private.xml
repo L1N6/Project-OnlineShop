@@ -3,26 +3,32 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/index.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/shop/ProductDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/signIn.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/shop.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/cart/CartDAO.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Shopingcart/CartController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Customer.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/checkout/Order.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/CustomerDAO.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/checkout/GuestOrder.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Checkout/CheckoutController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/loginGoogle/Constant.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/checkout.jsp</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/checkout/OrderDetail.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/checkout/OrderDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/SendEmail.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/cart.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/DetailProductController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/loginWithGoogleAccount/LoginGoogleAccountController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/index.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/cart/ProductCart.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/META-INF/web.xml</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/contact.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/CustomerAccount.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/ForgotPasswordController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/SignInController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/AccountDAO.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/shop/ShopViewController.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/cart.jsp</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/DetailProductController.java</file>
-            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Checkout/OrderController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
         </group>
     </open-files>
 </project-private>

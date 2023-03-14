@@ -114,12 +114,12 @@ public class OrderDAO extends DBcontext{
         }
     }
     
-    public void deleteCartDetail(Account acc){
+    public void deleteCartDetail(int accountID){
         try {
             String sql;
                 sql = "DELETE FROM CartDetails WHERE AccountID = ?;";
                 PreparedStatement ps = getConnection().prepareCall(sql);
-                ps.setInt(1, acc.getAccountID());
+                ps.setInt(1, accountID);
                 ps.executeUpdate();
         } catch (Exception e) {
         }

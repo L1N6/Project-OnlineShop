@@ -8,7 +8,7 @@ package DAL.loginGoogle;
  *
  * @author LEGION
  */
-public class Constant {
+public class Constants {
     public static String GOOGLE_CLIENT_ID = "719822410434-haqr6pmal8ccb5aoea6881ta519ue5no.apps.googleusercontent.com";
   public static String GOOGLE_CLIENT_SECRET = "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";
   public static String GOOGLE_REDIRECT_URI = "http://localhost:9999/Project_Swp/googleAccount";

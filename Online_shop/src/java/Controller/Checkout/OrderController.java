@@ -10,6 +10,7 @@ import DAL.CustomerAccount;
 import DAL.cart.ProductCart;
 import DAL.checkout.GuestOrder;
 import DAL.checkout.Order;
+import DAL.loginGoogle.GooglePojo;
 import DAO.checkout.OrderDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -22,9 +23,10 @@ import java.util.List;
  *
  * @author LEGION
  */
-public class OrderController extends HttpServlet{
+public class OrderController extends HttpServlet {
 
     OrderDAO OrderDAO = new OrderDAO();
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
@@ -33,34 +35,44 @@ public class OrderController extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Account acc = (Account) req.getSession().getAttribute("AccSession");
-        if(req.getSession().getAttribute("ProductCart") == null){
+        if (req.getSession().getAttribute("ProductCart") == null) {
             req.setAttribute("msg", "Your cart had no product for order !");
             req.getRequestDispatcher("checkout.jsp").forward(req, resp);
-        }else{
-            List<ProductCart> listProductCarts = (List<ProductCart>)req.getSession().getAttribute("ProductCart");
-            if(acc == null){
-                String Name = req.getParameter("txtFirstName") + req.getParameter("txtLastName");
-                String Email = req.getParameter("txtEmail");
-                String PhoneNumber = req.getParameter("txtPhoneNumber");
-                String Address = req.getParameter("txtAddress");
-                String City = req.getParameter("txtCity");
-                String customerID = randomString(5);
-                GuestOrder guest = new GuestOrder(customerID, Name, Email, PhoneNumber, Address, City);
-                Order order = new OrderDAO().addOrderGuest(guest);
-                OrderDAO.addOrderDetail(order, listProductCarts);
-            }else{
-                CustomerAccount customerInfor = (CustomerAccount)req.getSession().getAttribute("CustomerInfor");
+        } else {
+            List<ProductCart> listProductCarts = (List<ProductCart>) req.getSession().getAttribute("ProductCart");
+            if (acc == null) {
+                if (req.getSession().getAttribute("GoogleAccount") != null) {
+                    GooglePojo googlePojo = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                int accountID = googlePojo.getAccountID();
+                    CustomerAccount customerInfor = (CustomerAccount) req.getSession().getAttribute("CustomerInfor");
+                    Customer customer = customerInfor.getCustomer();
+                    Order order = new OrderDAO().addOrderCustomer(customer);
+                    OrderDAO.addOrderDetail(order, listProductCarts);
+                    OrderDAO.deleteCartDetail(accountID);
+                } else {
+                    String Name = req.getParameter("txtFirstName") + req.getParameter("txtLastName");
+                    String Email = req.getParameter("txtEmail");
+                    String PhoneNumber = req.getParameter("txtPhoneNumber");
+                    String Address = req.getParameter("txtAddress");
+                    String City = req.getParameter("txtCity");
+                    String customerID = randomString(5);
+                    GuestOrder guest = new GuestOrder(customerID, Name, Email, PhoneNumber, Address, City);
+                    Order order = new OrderDAO().addOrderGuest(guest);
+                    OrderDAO.addOrderDetail(order, listProductCarts);
+                }
+            } else {
+                CustomerAccount customerInfor = (CustomerAccount) req.getSession().getAttribute("CustomerInfor");
                 Customer customer = customerInfor.getCustomer();
                 Order order = new OrderDAO().addOrderCustomer(customer);
                 OrderDAO.addOrderDetail(order, listProductCarts);
-                OrderDAO.deleteCartDetail(acc);
+                OrderDAO.deleteCartDetail(acc.getAccountID());
             }
             req.getSession().removeAttribute("ProductCart");
             req.getSession().removeAttribute("Subtotal");
             resp.sendRedirect("shop?Order='not empty'");
         }
     }
-    
+
     public String randomString(int n) {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         StringBuilder sb = new StringBuilder(n);
@@ -70,5 +82,5 @@ public class OrderController extends HttpServlet{
         }
         return sb.toString();
     }
-    
+
 }

@@ -6,6 +6,7 @@ package Controller.Checkout;
 
 import DAL.Account;
 import DAL.cart.ProductCart;
+import DAL.loginGoogle.GooglePojo;
 import DAO.cart.CartDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -32,23 +33,29 @@ public class CheckoutController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             Account acc = (Account) req.getSession().getAttribute("AccSession");
-        double totalPrice = 0;
-        if (acc != null) {
-            try {
-                int accountID = acc.getAccountID();
+            double totalPrice = 0;
+            if (acc != null) {
+                    int accountID = acc.getAccountID();
+                    List<ProductCart> listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
+                    for (ProductCart customerProduct : listCustomerProductCarts) {
+                        totalPrice += customerProduct.getPrice() * customerProduct.getQuantity();
+                    }
+                    req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
+                    req.getSession().setAttribute("Subtotal", totalPrice);
+            } else if (req.getSession().getAttribute("GoogleAccount") != null) {
+                GooglePojo googlePojo = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                int accountID = googlePojo.getAccountID();
                 List<ProductCart> listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);
                 for (ProductCart customerProduct : listCustomerProductCarts) {
                     totalPrice += customerProduct.getPrice() * customerProduct.getQuantity();
                 }
                 req.getSession().setAttribute("ProductCart", listCustomerProductCarts);
                 req.getSession().setAttribute("Subtotal", totalPrice);
-            } catch (SQLException ex) {
-                Logger.getLogger(CheckoutController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } 
-        req.getRequestDispatcher("checkout.jsp").forward(req, resp);
+            req.getRequestDispatcher("checkout.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
+            Logger.getLogger(CheckoutController.class.getName()).log(Level.SEVERE, null, e);
             System.out.println(e.getMessage());
             resp.sendRedirect("Error");
         }

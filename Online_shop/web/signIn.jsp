@@ -25,7 +25,7 @@
               <label class="form-label" for="typePasswordX-2">Password</label>
             </div>
             <div>
-                <a class="form-check d-flex justify-content-end mb-4" href="#"> Forgot Password</a>
+                <a class="form-check d-flex justify-content-end mb-4" href="./ForgotPasswordController"> Forgot Password</a>
             </div>
             <!-- Checkbox -->
             <div class="form-check d-flex justify-content-start mb-4">

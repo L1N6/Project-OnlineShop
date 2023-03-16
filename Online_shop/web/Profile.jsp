@@ -96,17 +96,6 @@
                                     </c:choose>
                                 </div>
                             </div> <hr>
-                            <!--                        <div class="row">
-                                                        <div class="col-sm-3">
-                                                            <p class="mb-0">Pass</p>
-                                                        </div>
-                                                        <div class="col-sm-9">
-                                                            <p id="s4" class="text-muted mb-0">${customerAccount.account.getPass()}</p>
-                                                            <p><input name="pass" id="a4" pattern="[a-zA-ZÀ-ỹ0-9\s,'-]{3,}" form="updateUser" style="display: none" type="text" 
-                                                                      class="form-control" required value="${customerAccount.account.getPass()}"/></p>
-                            
-                                                        </div>
-                                                    </div>-->
                             <div class="row">
                                 <div class="col-sm-3">
                                 </div>

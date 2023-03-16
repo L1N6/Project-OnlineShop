@@ -25,12 +25,20 @@
         <div class="col-lg-5 mb-30">
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 <div id="Color"class="carousel-inner bg-light">
-                    <c:forEach var="pic" items="${listProductDetail}" varStatus="loop">
-                        <div class="carousel-item<c:if test="${loop.index == 0}"> active</c:if>">
-                            <img class="w-100 h-100" style="width: 120%; height: 120%; object-fit: contain" src="img/${pic.getPicture()}" alt="Image">
-                        </div>
-                    </c:forEach>
-                    
+                    <c:if test="${empty pdt}">
+                        <c:forEach var="pic" items="${listProductDetail}" varStatus="loop">
+                            <div class="carousel-item<c:if test="${loop.index == 0}"> active</c:if>">
+                                <img class="w-100 h-100" style="width: 120%; height: 120%; object-fit: contain" src="img/${pic.getPicture()}" alt="Image">
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${not empty pdt}">
+                        <c:forEach var="pic" items="${pdt}" varStatus="loop">
+                            <div class="carousel-item<c:if test="${loop.index == 0}"> active</c:if>">
+                                <img class="w-100 h-100" style="width: 120%; height: 120%; object-fit: contain" src="img/${pic.getPicture()}" alt="Image">
+                            </div>
+                        </c:forEach>
+                    </c:if>
                 </div>           
                 <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                     <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -49,47 +57,61 @@
                         <c:if test="${storageProduct != 1000}"> ${storageProduct}GB</c:if>                   
                         </h3>
                         <div class="d-flex mb-3">
-                            <div class="text-primary mr-2">
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star"></small>
-                                <small class="fas fa-star-half-alt"></small>
-                                <small class="far fa-star"></small>
-                            </div>
-                            <small class="pt-1">(99 Reviews)</small>
+                            <div class="rate-star-class">
+                            <c:if test="${rateProduct.getTotalComment() ne 0}">
+                                <c:set var="AVGRate" value="${Math.ceil(rateProduct.getTotalRate()/rateProduct.getTotalComment())}"/>
+                            </c:if>
+                            <c:set var="minValue" value="${AVGRate < 5 ? AVGRate : 5}" />
+                            <c:forEach begin="1" end="${minValue}">
+                                <small class="fa fa-star fasize checked"></small>  
+                            </c:forEach>
+                            <c:forEach begin="1" end="${5-minValue}">
+                                <small class="fa fa-star fasize"></small>     
+                            </c:forEach>
                         </div>
-                        <div  class="d-flex mt-2">
+                        <small>(${rateProduct.getTotalComment()})</small>
+
+                    </div>
+                    <c:set var="formattedNumNew" value="${formattedNumNew}"/>
+                    <c:set var="formattedNumDisCountNew" value="${formattedNumDisCountNew}"/>
+                    <div  class="d-flex mt-2">
+                        <c:if test="${not empty formattedNumNew}">
+                            <h3  class="font-weight-semi-bold mb-4" style="align-items: flex-start">$<fmt:formatNumber maxFractionDigits="0" value="${formattedNumDisCountNew}"/></h3>
+                            <h5 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${formattedNumNew}"/></del></h5>
+                        </c:if>
+                        <c:if test="${empty formattedNumNew}">
                             <h3  class="font-weight-semi-bold mb-4" style="align-items: flex-start">$<fmt:formatNumber maxFractionDigits="0" value="${priceProductDisCount}"/></h3>
                             <h5 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${priceProduct}"/></del></h5>
-                        
+                        </c:if>
                     </div>
                 </div>
                 <div class="d-flex mb-3" style="align-items: center">
-                    <strong class="text-dark mr-3">Sizes:</strong>
+                    <strong class="text-dark mr-3">Storage:</strong>
                     <c:set var="paramStorage" value="storage"/>
                     <c:forEach items="${listStorage}" var="value">
                         <div class="custom-control custom-radio custom-control-inline">
-                            <button onclick="productStorage(event, '${value.getProductStorage()}', '${product.getProductID()}', '${paramStorage}')" 
-                                    style="color: #6C757D;background-color: white;border-color: red;
+                            <button onclick="location.href = 'detail?productID=${product.getProductDetail()}&\n\
+productStorage=${value.getProductStorage()}&\n\
+paramCheck=${paramStorage}'" style="color: #6C757D;background-color: white;border-color: red;
                                     padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
-                                    type="submit" >
+                                    type="submit">
                                 <c:if test="${value.getProductStorage() == 1000}"> 1TB</c:if>
                                 <c:if test="${value.getProductStorage() != 1000}"> ${value.getProductStorage()}GB</c:if>
                                 </button>
                             </div>
                     </c:forEach>
-
                 </div>
                 <div class="d-flex mb-4">
                     <strong class="text-dark mr-3">Colors:</strong>
                     <c:set var="paramColor" value="color"/>
-                    <c:forEach items="${listColor}" var="color">
+                    <c:forEach items="${listColor}" var="color">                        
                         <div class="custom-control custom-radio custom-control-inline">
-                            <button onclick="productColor(event, '${color.getColor()}', '${product.getProductID()}', '${paramColor}')" 
-                                    style="color: #6C757D;background-color: white;border-color: red;
-                                    padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
-                                    type="submit" >  ${color.getColor()}                            
-                            </button>        
+                            <button onclick="location.href = 'detail?productID=${product.getProductDetail()}&\n\
+productColor=${color.getColor()}&paramCheck=${paramColor}'" 
+                                    style="color: #6C757D;background-color: white;border-color: grey;padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
+                                    type="submit">  
+                                ${color.getColor()}                            
+                            </button>
                         </div>
                     </c:forEach>
                 </div>
@@ -134,49 +156,36 @@
         <div class="col">
             <div class="bg-light p-30">
                 <div class="nav nav-tabs mb-4">
-                    <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
                     <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
                     <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
                 </div>
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="tab-pane-1">
-                        <h4 class="mb-3">Product Description</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                        <p>Dolore magna est eirmod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
-                    </div>
                     <div class="tab-pane fade" id="tab-pane-2">
-                        <h4 class="mb-3">Additional Information</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                        <h4 class="mb-3">Specifications</h4>
                         <div class="row">
                             <div class="col-md-6">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item px-0">
-                                        Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                                        Chip: ${spec.getChip()}
                                     </li>
                                     <li class="list-group-item px-0">
-                                        Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                                        Ram: ${spec.getRam()} GB
                                     </li>
                                     <li class="list-group-item px-0">
-                                        Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
+                                        Pin: ${spec.getPin()}
                                     </li>
                                 </ul> 
                             </div>
                             <div class="col-md-6">
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item px-0">
-                                        Sit erat duo lorem duo ea consetetur, et eirmod takimata.
+                                        Storage: ${spec.getProductStorage()} GB
                                     </li>
                                     <li class="list-group-item px-0">
-                                        Amet kasd gubergren sit sanctus et lorem eos sadipscing at.
+                                        OperatingSystem: ${spec.getOperatingSystem()}
                                     </li>
                                     <li class="list-group-item px-0">
-                                        Duo amet accusam eirmod nonumy stet et et stet eirmod.
-                                    </li>
-                                    <li class="list-group-item px-0">
-                                        Takimata ea clita labore amet ipsum erat justo voluptua. Nonumy.
+                                        Mode: ${spec.getUnitsInStock()} 
                                     </li>
                                 </ul> 
                             </div>
@@ -185,7 +194,7 @@
                     <div class="tab-pane fade" id="tab-pane-3">
                         <div class="row">
                             <div class="col-md-6">
-                                <h4 class="mb-4">1 review for "Product Name"</h4>
+                                <h4 class="mb-4">1 review for "${nameProduct}"</h4>
                                 <div class="media mb-4">
                                     <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
                                     <div class="media-body">
@@ -204,29 +213,33 @@
                             <div class="col-md-6">
                                 <h4 class="mb-4">Leave a review</h4>
                                 <small>Your email address will not be published. Required fields are marked *</small>
-                                <div class="d-flex my-3">
-                                    <p class="mb-0 mr-2">Your Rating * :</p>
-                                    <div class="text-primary">
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
+                                <form method="get" action="detail" onsubmit="return validateForm()">
+                                    <input type="hidden" name="productID" value="${product.getProductDetail()}">
+                                    <input type="hidden" name="review" value="review">
+                                    <div class="d-flex my-3">
+                                        <p class="mb-0 mr-2">Your Rating * :</p>
+                                        <div class="text-primary">
+                                            <input type="button" name="number" value="1">
+                                            <input type="button" name="number" value="2">
+                                            <input type="button" name="number" value="3">
+                                            <input type="button" name="number" value="4">
+                                            <input type="button" name="number" value="5">
+                                        </div>
                                     </div>
-                                </div>
-                                <form>
                                     <div class="form-group">
                                         <label for="message">Your Review *</label>
-                                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                                        <textarea id="message" cols="30" rows="5" class="form-control" name="message" autocomplete="off">${message}</textarea>
+                                        <c:if test="${not empty messageError}">
+                                            <span id="messageError" style="color:red"><c:out value="${messageError}" /></span>
+                                        </c:if>
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Your Name *</label>
-                                        <input type="text" class="form-control" id="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Your Email *</label>
-                                        <input type="email" class="form-control" id="email">
-                                    </div>
+                                        <input type="text" class="form-control" id="name" name="name" value="${name}" autocomplete="off">
+                                        <c:if test="${not empty nameError}">
+                                            <span id="nameError" style="color:red"><c:out value="${nameError}" /></span>
+                                        </c:if>
+                                    </div>                                    
                                     <div class="form-group mb-0">
                                         <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
                                     </div>
@@ -248,131 +261,48 @@
     <div class="row px-xl-5">
         <div class="col">
             <div class="owl-carousel related-carousel">
-                <div class="product-item bg-light">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                <c:forEach items="${mayAlsoYouLike}" var="itemNearLike">
+                    <div class="product-item bg-light">                  
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="img/${itemNearLike.getPicture()}" alt="">
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" href="<c:url value="/detail">
+                                   <c:param name="productID" value="${itemNearLike.productDetail}" />
+                               </c:url>">${itemNearLike.productName}</a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                <h5>$<fmt:formatNumber maxFractionDigits="0" value="${itemNearLike.getUnitPrice()*0.85}"/></h5>
+                                <h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="0" value="${itemNearLike.getUnitPrice()}"/></del></h6>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+                                <div class="rate-star-class">
+                                    <c:if test="${itemNearLike.getTotalComment() ne 0}">
+                                        <c:set var="AVGRate1" value="${Math.ceil(itemNearLike.getTotalRate()/itemNearLike.getTotalComment())}"/>
+                                        <c:set var="minValue" value="${AVGRate1 < 5 ? AVGRate1 : 5}" />
+                                        <c:forEach begin="1" end="${minValue}">
+                                            <small class="fa fa-star fasize checked"></small>  
+                                        </c:forEach>
+                                        <c:forEach begin="1" end="${5 - minValue}">
+                                            <small class="fa fa-star fasize"></small>     
+                                        </c:forEach>
+                                    </c:if>
+                                    <c:if test="${itemNearLike.getTotalComment() eq 0}">
+                                        <c:forEach begin="1" end="${5}">
+                                            <small class="fa fa-star fasize"></small>     
+                                        </c:forEach>
+                                    </c:if>
+                                </div>
+                                <small>(${itemNearLike.getTotalComment()})</small>
+                            </div>
                         </div>
                     </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item bg-light">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item bg-light">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/product-3.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item bg-light">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="product-item bg-light">
-                    <div class="product-img position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="img/product-5.jpg" alt="">
-                        <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
-                        </div>
-                    </div>
-                    <div class="text-center py-4">
-                        <a class="h6 text-decoration-none text-truncate" href="">Product Name Goes Here</a>
-                        <div class="d-flex align-items-center justify-content-center mt-2">
-                            <h5>$123.00</h5><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center mb-1">
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small class="fa fa-star text-primary mr-1"></small>
-                            <small>(99)</small>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>               
             </div>
         </div>
     </div>
@@ -380,44 +310,14 @@
 <!-- Products End -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-                                function productStorage(event, paramStorage, paramID, paramCheckStorage) {
-                                    $.ajax({
-                                        url: "/Project_Swp/detailProduct",
-                                        type: "get", // send it through get method    
-                                        data: {productStorage: paramStorage,
-                                            productID: paramID,
-                                            paramCheck: paramCheckStorage
-                                        }, // truyền giá trị của biến storageValue vào trong request 
-                                        success: function (data) {
-                                            var detailProduct = document.getElementById("unitPrice");
-                                            console.log(data);
-                                            detailProduct.innerHTML = "";
-                                            detailProduct.innerHTML = data;
-                                        },
-                                        error: function (xhr) {
-                                            // handle error
-                                        }
-                                    });
-                                }
-                                
-                                function productColor(event, paramColor, paramID, paramCheckColor) {
-                                    $.ajax({
-                                        url: "/Project_Swp/detailProduct",
-                                        type: "get", // send it through get method    
-                                        data: {productColor: paramColor,
-                                            productID: paramID,
-                                            paramCheck: paramCheckColor
-                                        }, // truyền giá trị của biến storageValue vào trong request 
-                                        success: function (data) {
-                                            var detailProduct = document.getElementById("Color");
-                                            console.log(data);
-                                            detailProduct.innerHTML = "";
-                                            detailProduct.innerHTML = data;
-                                        },
-                                        error: function (xhr) {
-                                            // handle error
-                                        }
-                                    });
-                                }
+function validateForm() {
+    var accSession = '<%= session.getAttribute("AccSession") %>';
+    if (accSession == null) {
+      alert("Bạn cần đăng nhập để thực hiện chức năng này!");
+      window.location.href = "signIn"; // chuyển hướng đến trang signIn
+      return false; // ngăn không cho submit form
+    }
+    return true; // cho phép submit form
+  }
 </script>
 <%@include file="template/footer.jsp" %>

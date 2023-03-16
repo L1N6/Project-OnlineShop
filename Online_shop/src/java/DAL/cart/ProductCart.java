@@ -8,7 +8,7 @@ package DAL.cart;
  *
  * @author LEGION
  */
-public class GuestProductCart {
+public class ProductCart {
     private int ProductDetailID;
     private String ProductName;
     private int Quantity;
@@ -24,7 +24,16 @@ public class GuestProductCart {
         this.Color = Color;
     }
 
-    public GuestProductCart(int ProductDetailID, String ProductName, double Price, String Picture, String Color) {
+    public ProductCart(int ProductDetailID, String ProductName, int Quantity, double Price, String Picture, String Color) {
+        this.ProductDetailID = ProductDetailID;
+        this.ProductName = ProductName;
+        this.Quantity = Quantity;
+        this.Price = Price;
+        this.Picture = Picture;
+        this.Color = Color;
+    }
+
+    public ProductCart(int ProductDetailID, String ProductName, double Price, String Picture, String Color) {
         this.ProductDetailID = ProductDetailID;
         this.ProductName = ProductName;
         this.Price = Price;
@@ -54,7 +63,7 @@ public class GuestProductCart {
     public void setPrice(double Price) {
         this.Price = Price;
     }
-    public GuestProductCart() {
+    public ProductCart() {
     }
 
     public int getProductDetailID() {

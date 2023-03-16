@@ -33,7 +33,7 @@ public class SendEmail {
         boolean test = false;
 //        String toEmail = Email;
 //        String toEmail = "quanganhbyepk@gmail.com";
-        String toEmail = "thanhtungf21@gmail.com";
+        String toEmail = email;
         String fromEmail = "linhtqhe161230@fpt.edu.vn";
         String password = "yansfqhgheqnozxe";
 

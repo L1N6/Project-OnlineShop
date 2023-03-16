@@ -80,7 +80,7 @@
                                 <div class="navbar-nav w-100">
                                     <a href="<c:url value="/cart">
                                <c:param name="type" value="showCart"/></c:url>" class="nav-item nav-link font-weight-bold">Cart</a>
-                                    <a href="checkout.jsp" class="nav-item nav-link font-weight-bold">Checkout</a>
+                               <a href="<c:url value="/checkout"/>" class="nav-item nav-link font-weight-bold">Checkout</a>
                                 </div>
                             </nav>
                         </div>
@@ -108,9 +108,9 @@
                             <i class="fas fa-heart text-white"></i>
                             <span class="badge text-white border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                         </a>
-                        <a href="cart.jsp" class="btn px-0 ml-3">
+                        <a href="<c:url value="/cart"><c:param name="type" value="showCart"/></c:url>" class="btn px-0 ml-3">
                             <i class="fas fa-shopping-cart text-white"></i>
-                            <span class="badge text-white border border-secondary rounded-circle" style="padding-bottom: 2px;">${0 + GuestProductCart.size()}</span>
+                            <span class="badge text-white border border-secondary rounded-circle" style="padding-bottom: 2px;">${0 + ProductCart.size()}</span>
                         </a>
                     </div>
                     <div class="d-inline-flex align-items-center">
@@ -121,26 +121,16 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-light dropdown-toggl bg-secondary font-weight-bold" data-toggle="dropdown">My Account</button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <c:if test="${empty AccSession}">
+                                <c:if test="${empty AccSession && empty GoogleAccount}">
                                     <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign in</a>
                                     <a  class="dropdown-item" href="<%=path%>/SignUp" type="button">Sign up</a>
                                 </c:if>
 
-                                <c:if test="${not empty AccSession}">
+                                <c:if test="${not empty AccSession || not empty GoogleAccount}">
                                     <a class="dropdown-item" href="<c:url value="/ProfileController"><c:param name="req" value="profile"/></c:url>">Profile</a>
-                                    <a class="dropdown-item" href="<c:url value="/LogoutController"><c:param name="req" value="remove"/></c:url>">SignOut</a>
+                                    <a class="dropdown-item" href="./LogoutController">SignOut</a>
                                 </c:if>  
                             </div>
-                        </div>
-                        <div class="d-inline-flex align-items-center d-block d-lg-none">
-                            <a href="" class="btn px-0 ml-2">
-                                <i class="fas fa-heart text-dark"></i>
-                                <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-                            </a>
-                            <a href="" class="btn px-0 ml-2">
-                                <i class="fas fa-shopping-cart text-dark"></i>
-                                <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-                            </a>
                         </div>
                     </div>
                 </div>

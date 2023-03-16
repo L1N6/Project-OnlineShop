@@ -102,7 +102,8 @@
 
             <c:forEach var="brand" items="${List}">
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <a class="text-decoration-none" href="">
+                    <a class="text-decoration-none" href="<c:url value="/filter">
+                           <c:param name="txtBrandName" value="${brand.brandName}"/></c:url>">
                         <div class="cat-item d-flex align-items-center mb-4 bg-white">
                             <div class="overflow-hidden" style="width: 100px; height: 100px;">
                                 <img class="img-fluid rounded" src="img/${brand.picture}" alt="">

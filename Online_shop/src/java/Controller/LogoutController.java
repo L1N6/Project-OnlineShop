@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(name="LogoutController", urlPatterns={"/LogoutController"})
 public class LogoutController extends HttpServlet {
    
-    /** 
+    /**     
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -35,6 +35,9 @@ public class LogoutController extends HttpServlet {
             request.getSession().setAttribute("adminAccount",null);
             request.getSession().setAttribute("AccSession",null);
             request.getSession().setAttribute("CustomerInfor",null); 
+            request.getSession().removeAttribute("ProductCart");
+            request.getSession().removeAttribute("Subtotal");
+            request.getSession().removeAttribute("GoogleAccount");
             request.getRequestDispatcher("./index.jsp").forward(request, response);
         }
     } 

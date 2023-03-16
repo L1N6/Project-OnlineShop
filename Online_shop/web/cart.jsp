@@ -20,10 +20,10 @@
                         <th>Remove</th>
                     </tr>
                 </thead>
-                <c:forEach items="${GuestProductCart}" var="gProduct">
+                <c:forEach items="${ProductCart}" var="gProduct">
                     <tbody class="align-middle">
                         <tr>
-                            <td class="align-middle"><img src="img/${gProduct.picture}" alt="" style="width: 50px;">${gProduct.productName} - ${gProduct.color}</td>
+                            <td style="text-align: left; padding-left: 7%"><img src="img/${gProduct.picture}" alt="" style="width: 50px;">${gProduct.productName} - ${gProduct.color}</td>
                             <td class="align-middle">$<fmt:formatNumber maxFractionDigits="0" value="${gProduct.price}"/></td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -68,7 +68,7 @@
                     </tbody>
                 </c:forEach>
             </table>
-            <c:if test="${empty GuestProductCart}">
+            <c:if test="${empty ProductCart}">
                 <p>Your cart have no Products. Please choose the product for order <a href="<c:url value="/shop"/>">Here!</a></p>
             </c:if>
         </div>
@@ -108,12 +108,11 @@
                             <h5>Total</h5>
                             <h5>$<fmt:formatNumber maxFractionDigits="0" value="${Subtotal - (Subtotal * Discount)}"/></h5>
                         </div>
-                            <form action="<c:url value="/checkout.jsp"/>">
-                            <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
-                        </form>
+                            <form action="<c:url value="/checkout"/>" method="get">
+                                <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                            </form>
                     </div>
                 </div>
-                
         </div>
     </div>
 </div>

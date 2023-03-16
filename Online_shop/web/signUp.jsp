@@ -13,7 +13,7 @@
         <div class="container">
             <div class="row gx-lg-5 align-items-center" >
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    </div>
+                </div>
 
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="card">
@@ -34,7 +34,7 @@
                                             <label class="form-label" for="form3Example2">Last name</label>
                                         </div>
                                     </div>  
-                                            
+
                                 </div>
 
                                 <!-- Email input -->
@@ -73,19 +73,19 @@
                                 <button type="submit" class="btn btn-primary btn-block mb-4">
                                     Sign up
                                 </button>
-</form>
-                                <!-- Register buttons -->
-                                <div class="text-center">
-                                    <p>or sign up with:</p>
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </button>
+                            </form>
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>or sign up with:</p>
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
 
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-google"></i>
-                                    </button>
-                                </div>
-                            
+                                <button type="button" class="btn btn-link btn-floating mx-1">
+                                    <i class="fab fa-google"></i>
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

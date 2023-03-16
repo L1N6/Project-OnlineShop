@@ -100,6 +100,7 @@ public class CustomerDAO {
             ps.setString(5, cus.getCustomerID());
             ps.executeUpdate();
         } catch (Exception e) {
+            System.out.println("Loi: "+ e.getMessage());
         }
 
     }

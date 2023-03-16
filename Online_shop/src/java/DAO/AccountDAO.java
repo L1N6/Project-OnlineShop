@@ -47,14 +47,31 @@ public class AccountDAO {
         return acc;
     }
 
+    public void update(String email, String pass) {
+        Account acc = null;
+        try {
+            String sql = "UPDATE [Accounts]\n"
+                    + "   SET \n"
+                    + "   [Password] = ?\n"
+                    + " WHERE Email = ?";
+            ps = connection.prepareStatement(sql);
+            ps.setString(1, pass);
+            ps.setString(2, email);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Loi : " + e.getMessage());
+        }
+    }
+
     public int addAccount(Customer customer, Account acc) throws SQLException {
         int result1 = 0, result2 = 0;
         try {
             String sql1 = "insert into Customers(CustomerID, CompanyName, ContactName, ContactTitle, Address,Gender) values(?,?,?,?,?,?)";
-            String sql2 = "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role) values(?,?,?,?,2)";
+            String sql2 = "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role, [Status]) values(?,?,?,?,2, 1)";
             boolean fl = true;
             if (acc.getEmployeeID() == null) {
-                sql2 = "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role) values(?,?,?,NULL,2)";
+                sql2 = "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role, [Status]) values(?,?,?,NULL,2,1)";
                 fl = false;
             }
             System.out.println(customer.toString());
@@ -95,7 +112,7 @@ public class AccountDAO {
             ps.setString(2, email);
             ps.executeUpdate();
         } catch (Exception e) {
-            
+
         } finally {
         }
     }
@@ -114,7 +131,7 @@ public class AccountDAO {
                     + "  FROM [Accounts] a JOIN Customers c ON a.CustomerID = c.CustomerID"
                     + " where a.Email = ? ";
             if (!contact.equals("")) {
-                sql += " AND c.ContactName = '"+contact+"'";
+                sql += " AND c.ContactName = '" + contact + "'";
             }
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, email);

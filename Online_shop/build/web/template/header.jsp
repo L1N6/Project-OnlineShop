@@ -128,7 +128,7 @@
 
                                 <c:if test="${not empty AccSession || not empty GoogleAccount}">
                                     <a class="dropdown-item" href="<c:url value="/ProfileController"><c:param name="req" value="profile"/></c:url>">Profile</a>
-                                    <a class="dropdown-item" href="<c:url value="/LogoutController"><c:param name="req" value="remove"/></c:url>">SignOut</a>
+                                    <a class="dropdown-item" href="./LogoutController">SignOut</a>
                                 </c:if>  
                             </div>
                         </div>

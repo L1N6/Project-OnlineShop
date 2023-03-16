@@ -43,7 +43,7 @@ public class SignUpController extends HttpServlet {
             String txtAddress = (String) request.getParameter("txtAddress");
             boolean gender = (Boolean.valueOf(request.getParameter("gender")));
             AccountDAO acd = new AccountDAO();
-            if (acd.checkAccount(txtEmail,"") != null) {
+            if (acd.checkAccount(txtEmail, "") != null) {
                 request.setAttribute("txtFirstName", txtFirstName);
                 request.setAttribute("txtLastName", txtLastName);
                 request.setAttribute("txtAddress", txtAddress);
@@ -56,6 +56,7 @@ public class SignUpController extends HttpServlet {
                 cus.setAddress(txtAddress);
                 cus.setGender(gender);
                 Account acc = new Account(txtEmail, txtPass, cus, null);
+//                acc.set
                 if (acd.addAccount(cus, acc) != 0) {
 //                    SendMail.SendMailFunction(txtEmail, "tieu de", acc.toString());
                     request.getSession().setAttribute("AccSession", acc);
@@ -76,11 +77,11 @@ public class SignUpController extends HttpServlet {
                             + "    <table>\n"
                             + "        <tr>\n"
                             + "            <td>Email:</td>\n"
-                            + "            <td>"+acc.getEmail()+"</td>\n"
+                            + "            <td>" + acc.getEmail() + "</td>\n"
                             + "        </tr>\n"
                             + "        <tr>\n"
                             + "            <td>Password:</td>\n"
-                            + "            <td>"+acc.getPass()+"</td>\n"
+                            + "            <td>" + acc.getPass() + "</td>\n"
                             + "        </tr>\n"
                             + "    </table>\n"
                             + "</body>\n"
@@ -89,6 +90,11 @@ public class SignUpController extends HttpServlet {
                     response.sendRedirect("home");
 
                 } else {
+                    request.setAttribute("txtFirstName", txtFirstName);
+                    request.setAttribute("txtLastName", txtLastName);
+                    request.setAttribute("txtAddress", txtAddress);
+                    request.setAttribute("gender", gender);
+                    request.setAttribute("ERROR", "Thong tin đã tồn tại");
                     request.getRequestDispatcher("signUp.jsp").forward(request, response);
                 }
             }

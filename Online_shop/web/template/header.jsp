@@ -104,10 +104,6 @@
                 </div>
                 <div class="col-lg-4 text-center text-lg-right mt-3" >
                     <div class="btn-group mx-2">
-                        <a href="" class="btn px-0">
-                            <i class="fas fa-heart text-white"></i>
-                            <span class="badge text-white border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
-                        </a>
                         <a href="<c:url value="/cart"><c:param name="type" value="showCart"/></c:url>" class="btn px-0 ml-3">
                             <i class="fas fa-shopping-cart text-white"></i>
                             <span class="badge text-white border border-secondary rounded-circle" style="padding-bottom: 2px;">${0 + ProductCart.size()}</span>

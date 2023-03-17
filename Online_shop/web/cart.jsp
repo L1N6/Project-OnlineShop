@@ -23,7 +23,10 @@
                 <c:forEach items="${ProductCart}" var="gProduct">
                     <tbody class="align-middle">
                         <tr>
-                            <td style="text-align: left; padding-left: 7%"><img src="img/${gProduct.picture}" alt="" style="width: 50px;">${gProduct.productName} - ${gProduct.color}</td>
+                            <td style="text-align: left; padding-left: 7%"><img src="img/${gProduct.picture}" alt="" style="width: 50px;">
+                            <a href="<c:url value="/detail"><c:param name="productID" value="${gProduct.productDetailID}"/></c:url>" 
+                               style="color: black">${gProduct.productName} - ${gProduct.color}</a>
+                            </td>
                             <td class="align-middle">$<fmt:formatNumber maxFractionDigits="0" value="${gProduct.price}"/></td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">

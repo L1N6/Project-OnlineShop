@@ -298,7 +298,6 @@
                                                    <c:param name="productDetailID" value="${p.productID}"/>
                                                    <c:param name="type" value="buyNow"/>
                                                </c:url>"><i class="fa fa-shopping-cart"></i></a>
-                                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                             <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
                                                    <c:param name="productID" value="${p.productID}" />
                                             </c:url>"><i class="fa fa-search"></i></a>
@@ -395,7 +394,6 @@
                                                    <c:param name="productDetailID" value="${p.productID}"/>
                                                    <c:param name="type" value="buyNow"/>
                                                </c:url>"><i class="fa fa-shopping-cart"></i></a>
-                                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
                                                    <c:param name="productID" value="${p.productID}" />
                                             </c:url>"><i class="fa fa-search"></i></a>
@@ -476,8 +474,6 @@
                                                    <c:param name="productDetailID" value="${p.productID}"/>
                                                    <c:param name="type" value="buyNow"/>
                                                </c:url>"><i class="fa fa-shopping-cart"></i></a>
-                                                    <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                                    <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
                                                    <c:param name="productID" value="${p.productID}" />
                                             </c:url>"><i class="fa fa-search"></i></a>
@@ -560,8 +556,6 @@
                                                    <c:param name="productDetailID" value="${p.productID}"/>
                                                    <c:param name="type" value="buyNow"/>
                                                </c:url>"><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                                                 <a class="btn btn-outline-dark btn-square" href="<c:url value="/detail">
                                                    <c:param name="productID" value="${p.productID}" />
                                             </c:url>"><i class="fa fa-search"></i></a>

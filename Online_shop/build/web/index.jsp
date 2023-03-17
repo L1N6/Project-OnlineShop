@@ -50,10 +50,10 @@
                                            href="<c:url value="/shop"><c:param name="choice" value="showList" /></c:url>">Shop Now</a>
                                         </div>
                                     </div>
+                             </div>
                             </c:if>
                             <c:set var="count" value="${1}"/>   
                         </c:forEach>        
-                    </div>
                 </div>
             </div>
 
@@ -134,7 +134,6 @@
                             <img class="img-fluid w-100" src="img/${sale.picture}" alt="">
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                             </div>
                         </div>
@@ -180,7 +179,6 @@
                             <img class="img-fluid w-100" src="img/${product.picture}" alt="">
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                             </div>
                         </div>
@@ -193,7 +191,7 @@
                                 <c:if test="${product.discount == 0}">
                                     <h5>$<fmt:formatNumber maxFractionDigits="0" value="${product.price }"/></h5>
                                 </c:if>
-                            </div>
+                            </div   
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <div class="rate-star-class">
                                     <c:forEach begin="1" end="${product.rate}">
@@ -208,9 +206,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
-
+                </c:forEach>
+            </div>
         </div>
     </div>
 
@@ -228,14 +225,13 @@
                             <img class="img-fluid w-100" src="img/${product.picture}" alt="">
                             <div class="product-action">
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                                 <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
                             <a class="h6 text-decoration-none text-truncate" href="<c:url value="/detail">
                                    <c:param name="productID" value="${product.productID}" />
-                               </c:url>">">${product.productName}</a>
+                               </c:url>">${product.productName}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <c:if test="${product.discount != 0}">
                                     <h5>$<fmt:formatNumber maxFractionDigits="0" value="${product.price *(1-product.discount)}"/></h5><h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="2" value="${product.price}"/></del></h6>

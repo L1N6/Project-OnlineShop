@@ -49,7 +49,7 @@
                             <img src="./img/gradient-mobile-store-logo-design_23-2149697771.jpg" class="rounded" width="70" height="70"" alt="alt"/>
                         </a>
                         <div class="d-none d-lg-block mr-3">
-                            <a class="text-body text-decoration-none" data-toggle="collapse" href="#navbar-vertical" style="height: 5px;">
+                            <a class="text-body text-decoration-none border-primary" data-toggle="collapse" href="#navbar-vertical" style="height: 5px;">
                                 <c:choose>
                                     <c:when test="${empty BrandFilter}">
                                         <h6 class="text-white font-weight-bold m-0 text-decoration-none"><i class="fa fa-bars mr-2"></i>All Brands</h6>
@@ -93,9 +93,9 @@
                 <div class="col-lg-3 col-2 text-left mt-3">
                     <form action="<c:url value="/searching"/>" method="Post">
                         <div class="input-group">
-                            <input value="${txtValue}" type="text" class="form-control" placeholder="Search for products" name="txt">
+                            <input value="${txtValue}" type="text" class="form-control" style="border-top-left-radius: 5px; border-bottom-left-radius: 5px" placeholder="Search for products" name="txt">
                             <div class="input-group-append">
-                                <button class="input-group-text bg-transparent text-primary">
+                                <button class="input-group-text bg-transparent text-primary" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
@@ -115,7 +115,7 @@
                             <li><a href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a></li>
                             </c:if>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-light dropdown-toggl bg-secondary font-weight-bold" data-toggle="dropdown">My Account</button>
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggl bg-secondary font-weight-bold" style="border-radius: 5px"data-toggle="dropdown">My Account</button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <c:if test="${empty AccSession && empty GoogleAccount}">
                                     <a  class="dropdown-item" href="<%=path%>/SignIn" type="button">Sign in</a>

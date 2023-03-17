@@ -10,8 +10,8 @@
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
-            <table class="table table-light table-borderless table-hover text-center mb-0">
-                <thead class="thead-dark">
+            <table class="table table-light table-borderless table-hover text-center mb-0" >
+                <thead class="thead-dark border-1">
                     <tr>
                         <th>Products</th>
                         <th>Price</th>
@@ -77,14 +77,14 @@
         </div>
         <div class="col-lg-4">
             <form class="mb-30" action="<c:url value="/cart"></c:url>" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-0 p-4" style="background-color: rgb(190, 197, 199, 1)" name="txtCouponCode" placeholder="Coupon Code">
+                    <div class="input-group" style="gap: 5px">
+                        <input type="text" class="form-control border-0 p-4" style="background-color: rgb(190, 197, 199, 1); border-radius: 5px;" name="txtCouponCode" placeholder="Coupon Code">
                         <div class="input-group-append">
-                            <button class="btn btn-primary">Apply Coupon</button>
+                            <button class="btn btn-primary" style="border-radius: 5px">Apply Coupon</button>
                         </div>
                     </div>
                 </form>
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-white pr-3">Cart Summary</span></h5>
                 <div class="bg-light p-30 mb-5">
                     <div class="border-bottom pb-2">
                         <div class="d-flex justify-content-between mb-3">
@@ -112,7 +112,7 @@
                             <h5>$<fmt:formatNumber maxFractionDigits="0" value="${Subtotal - (Subtotal * Discount)}"/></h5>
                         </div>
                             <form action="<c:url value="/checkout"/>" method="get">
-                                <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                                <button class="btn btn-block btn-primary font-weight-bold my-3 py-3" style="border-radius: 5px;">Proceed To Checkout</button>
                             </form>
                     </div>
                 </div>

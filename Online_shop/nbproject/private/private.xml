@@ -13,6 +13,7 @@
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Customer.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/CustomerDAO.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/shop/FilterController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/checkout.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/SendEmail.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/cart.jsp</file>
@@ -23,8 +24,10 @@
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/index.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/Account.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/META-INF/web.xml</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/cart/ProductCart.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/ErrorController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/contact.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/Home/ProductDAO1.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/detail.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Checkout/CheckoutController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/Profile.jsp</file>

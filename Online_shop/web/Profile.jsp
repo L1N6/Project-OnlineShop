@@ -13,23 +13,20 @@
                 <div class="card mb-4">
                     <div class="card-body text-center">
                         <c:choose>
-                            <c:when test="${not empty customerAccount}">
+                            <c:when test="${not empty AccSession}">
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
+                                <h5 class="my-3">${customerAccount.customer.getContactName()}</h5> 
+                                <button id="s5" class="btn btn-primary" onclick="update()">Update Profile</button>
+                                <a href="./chagePass"> <button id="s5" class="btn btn-primary" >Change Password</button></a>
                             </c:when>
                             <c:otherwise>
                                 <img src="${GoogleAccount.getPicture()}" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
+                                <h5 class="my-3">${customerAccount.customer.getContactName()}</h5> 
                             </c:otherwise>
                         </c:choose>
-                        <h5 class="my-3">${customerAccount.customer.getContactName()}</h5> 
-                        <!--                        <div class="d-flex justify-content-center mb-2">
-                                                    <button type="button" class="btn btn-primary">Follow</button>
-                                                    <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-                                                </div>-->
-                        <button id="s5" class="btn btn-primary" onclick="update()">Update Profile</button>
-                        <a href="./chagePass"> <button id="s5" class="btn btn-primary" >Change Password</button></a> 
-
+                        
                     </div>
                 </div>
 
@@ -46,7 +43,7 @@
                                 <div class="col-sm-9">
 
                                     <c:choose>
-                                        <c:when test="${not empty customerAccount}">
+                                        <c:when test="${not empty AccSession}">
                                             <p id="s1" class="text-muted mb-0">${customerAccount.customer.getContactName()}</p>
                                             <p><input pattern="^[\p{L}\s]+$" title="Tên không được chữa ký tự đặc biệt" name="name" form="updateUser" id="a1" style="display: none" 
                                                       type="text" class="form-control" required value="${customerAccount.customer.getContactName()}"/></p>
@@ -65,7 +62,7 @@
                                 <div class="col-sm-9">
 
                                     <c:choose>
-                                        <c:when test="${not empty customerAccount}">
+                                        <c:when test="${not empty AccSession}">
                                             <p id="s2" class="text-muted mb-0">${customerAccount.account.getEmail()}</p>
                                             <p><input id="a2" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" form="updateUser" style="display: none"  type="text" class="form-control" 
                                                       name="email"    readonly value="${customerAccount.account.getEmail()}"/></p>
@@ -85,7 +82,7 @@
                                 <div class="col-sm-9">
 
                                     <c:choose>
-                                        <c:when test="${not empty customerAccount}">
+                                        <c:when test="${not empty AccSession}">
                                             <p id="s3" class="text-muted mb-0">${customerAccount.customer.getAddress()}</p>
                                             <p><input name="address" id="a3" pattern="[a-zA-ZÀ-ỹ0-9\s,'-]{3,}" form="updateUser" style="display: none" type="text" 
                                                       class="form-control" required value="${customerAccount.customer.getAddress()}"/></p>

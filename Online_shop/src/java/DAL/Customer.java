@@ -53,6 +53,8 @@ public class Customer {
         this.ContactTitle = ContactTitle;
         this.Address = Address;
     }
+    
+    
 
     public boolean isGender() {
         return gender;

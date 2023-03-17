@@ -6,6 +6,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %>
+<c:if test="${not empty AccNull}">
+  <div class="alert alert-danger text-center my-3" role="alert">
+    <c:out value="You should SIGN IN before comment!" />
+  </div>
+</c:if>
+
 <section class="vh-100" style="background-color: #3e464d;">
   <div class="container py-4.5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">

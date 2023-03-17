@@ -25,6 +25,12 @@ public class Comments {
     public Comments(int Rate) {
         this.Rate = Rate;
     }
+
+    public Comments(int Rate, Date Time, String Description) {
+        this.Rate = Rate;
+        this.Time = Time;
+        this.Description = Description;
+    }
      
     
     public int getCommentID() {

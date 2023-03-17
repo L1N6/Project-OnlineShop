@@ -21,6 +21,10 @@ public class Account {
     public Account() {
     }
 
+    public Account(int Role) {
+        this.Role = Role;
+    }
+
     public Account(String Email) {
         this.Email = Email;
     }

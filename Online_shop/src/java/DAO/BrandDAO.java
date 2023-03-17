@@ -7,13 +7,12 @@ package DAO;
 import DAL.BrandAndQuantity;
 import DAL.DBcontext;
 import DAL.Home.Brands;
-import DAL.ProductDiscountUnitOnOrder;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 /**
  *
@@ -24,6 +23,7 @@ public class BrandDAO extends DBcontext{
     PreparedStatement ps;
     public ArrayList<BrandAndQuantity> getBrands() throws SQLException {
         ArrayList<BrandAndQuantity> list = new ArrayList<>();
+        System.out.println("ádfaweufyiasd");
         try {
             String sql = "Select * from Brands inner join (select BrandID,Count(ProductID) as Quantity from Products group by BrandID)as b ON Brands.BrandID=b.BrandID";
             ps = getConnection().prepareStatement(sql);

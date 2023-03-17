@@ -93,11 +93,18 @@
                     <c:set var="paramStorage" value="storage"/>
                     <c:forEach items="${listStorage}" var="value">
                         <div class="custom-control custom-radio custom-control-inline">
+<<<<<<< HEAD
                             <button onclick="location.href = 'detail?productID=${product.getProductDetail()}&\n\
 productStorage=${value.getProductStorage()}&\n\
 paramCheck=${paramStorage}'" style="color: #6C757D;background-color: white;border-color: red;
                                     padding: 10;border: 1px solid #6C757D;border-radius: 10px "; 
                                     type="submit">
+=======
+                            <button onclick="productStorage(event, '${value.getProductStorage()}', '${product.getProductID()}', '${paramStorage}')" 
+                                    style="color: #6C757D;background-color: white;border-color: red;
+                                    padding: 10;border: 2px solid red;border-radius: 10px "; 
+                                    type="submit" >
+>>>>>>> origin/backup-tung
                                 <c:if test="${value.getProductStorage() == 1000}"> 1TB</c:if>
                                 <c:if test="${value.getProductStorage() != 1000}"> ${value.getProductStorage()}GB</c:if>
                                 </button>

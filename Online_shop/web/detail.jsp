@@ -9,8 +9,10 @@
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">Home</a>
-                <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                <a class="breadcrumb-item text-dark" href="<c:url value="/home"/>">Home</a>
+                <a class="breadcrumb-item text-dark" href="<c:url value="/shop">
+                       <c:param name="choice" value="showList" />
+                   </c:url>">Shop</a>
                 <span class="breadcrumb-item active">${brandName}</span>
             </nav>
         </div>
@@ -20,6 +22,7 @@
 
 
 <!-- Shop Detail Start -->
+<c:set var="productDetailID" value="${ID}"/>
 <div class="container-fluid pb-5">
     <div class="row px-xl-5" id="detailProduct">
         <div class="col-lg-5 mb-30">
@@ -59,7 +62,7 @@
                         <div class="d-flex mb-3">
                             <div class="rate-star-class">
                             <c:if test="${rateProduct.getTotalComment() ne 0}">
-                                <c:set var="AVGRate" value="${Math.ceil(rateProduct.getTotalRate()/rateProduct.getTotalComment())}"/>
+                                <c:set var="AVGRate" value="${Math.floor(rateProduct.getTotalRate()/rateProduct.getTotalComment())}"/>
                             </c:if>
                             <c:set var="minValue" value="${AVGRate < 5 ? AVGRate : 5}" />
                             <c:forEach begin="1" end="${minValue}">
@@ -115,23 +118,26 @@ productColor=${color.getColor()}&paramCheck=${paramColor}'"
                         </div>
                     </c:forEach>
                 </div>
-                <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                <form action="<c:url value="/cart"/>" method="Get">
+                    <input type="hidden" name="type" value="addToCart">
+                    <input type="hidden" name="productDetailID" value="${productDetailID}">
+                    <div class="d-flex align-items-center mb-4 pt-2">
+                        <div class="input-group mr-3" style="width: 130px;">
+                            <div class="input-group-btn">
+                                <a class="btn btn-primary btn-minus" >
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                            </div>
+                            <input type="text" class="form-control bg-secondary border-0 text-center" name="txtQuantity" id="Quantity" value="${Quanity}">
+                            <div class="input-group-btn">
+                                <a class="btn btn-primary btn-plus" >
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
                         </div>
-                        <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
+                        <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                     </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To
-                        Cart</button>
-                </div>
+                </form>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Share on:</strong>
                     <div class="d-inline-flex">
@@ -157,7 +163,7 @@ productColor=${color.getColor()}&paramCheck=${paramColor}'"
             <div class="bg-light p-30">
                 <div class="nav nav-tabs mb-4">
                     <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-2">Information</a>
-                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (0)</a>
+                    <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Reviews (${accCusCom.size()})</a>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade" id="tab-pane-2">
@@ -192,54 +198,70 @@ productColor=${color.getColor()}&paramCheck=${paramColor}'"
                         </div>
                     </div>
                     <div class="tab-pane fade" id="tab-pane-3">
+                        <c:if test="${not empty successMessage}">
+                            <div id="success-message" style="display: none;">Review submitted successfully!</div>
+                        </c:if>
                         <div class="row">
-                            <div class="col-md-6">
-                                <h4 class="mb-4">1 review for "${nameProduct}"</h4>
-                                <div class="media mb-4">
-                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
-                                    <div class="media-body">
-                                        <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
-                                        <div class="text-primary mb-2">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star-half-alt"></i>
-                                            <i class="far fa-star"></i>
+                            <div style="display: flex; flex-direction: column; align-items: center;">
+                                <h4 style="margin-bottom: 1rem;">
+                                    ${accCusCom.size()}
+                                    <c:if test="${accCusCom.size() <= 1}">review</c:if>
+                                    <c:if test="${accCusCom.size() > 1}">reviews</c:if>
+                                    for "${nameProduct}"
+                                </h4>
+                                <div style="display: flex; flex-direction: column; ">
+                                    <c:forEach items="${accCusCom}" var="listComment">
+                                        <c:set var="acc" value="${listComment.acc}"></c:set>
+                                        <c:set var="cus" value="${listComment.customer}"></c:set>
+                                        <c:set var="cmt" value="${listComment.cmt}"></c:set>
+                                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                                <img src="img/user.jpg" alt="Image" style="width: 45px; margin-right: 1rem;">
+                                                <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                                                    <h6 style="margin-bottom: 0.5rem;">
+                                                    ${cus.getContactName()}
+                                                    <small style="font-style: italic;"> - ${cmt.getTime()}</small>
+                                                </h6>
+                                                <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                                                    <c:forEach begin="1" end="${cmt.getRate()}">
+                                                        <small class="fa fa-star fasize checked"></small>  
+                                                    </c:forEach>
+                                                    <c:forEach begin="1" end="${5 - cmt.getRate()}">
+                                                        <small class="fa fa-star fasize"></small>     
+                                                    </c:forEach>
+                                                </div>
+                                                <p style="margin-bottom: 0;">${cmt.getDescription()}</p>
+                                            </div>
                                         </div>
-                                        <p>Diam amet duo labore stet elitr ea clita ipsum, tempor labore accusam ipsum et no at. Kasd diam tempor rebum magna dolores sed sed eirmod ipsum.</p>
-                                    </div>
+                                    </c:forEach>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <h4 class="mb-4">Leave a review</h4>
                                 <small>Your email address will not be published. Required fields are marked *</small>
-                                <form method="get" action="detail" onsubmit="return validateForm()">
+                                <form method="get" action="detail">
                                     <input type="hidden" name="productID" value="${product.getProductDetail()}">
                                     <input type="hidden" name="review" value="review">
                                     <div class="d-flex my-3">
                                         <p class="mb-0 mr-2">Your Rating * :</p>
                                         <div class="text-primary">
-                                            <input type="button" name="number" value="1">
-                                            <input type="button" name="number" value="2">
-                                            <input type="button" name="number" value="3">
-                                            <input type="button" name="number" value="4">
-                                            <input type="button" name="number" value="5">
+                                            <select name="rating" id="rating">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="message">Your Review *</label>
                                         <textarea id="message" cols="30" rows="5" class="form-control" name="message" autocomplete="off">${message}</textarea>
-                                        <c:if test="${not empty messageError}">
-                                            <span id="messageError" style="color:red"><c:out value="${messageError}" /></span>
+                                        <c:if test="${not empty successMessage}">
+                                            <span id="successMessage" style="color:green"><c:out value="${successMessage}" /></span>
                                         </c:if>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name">Your Name *</label>
-                                        <input type="text" class="form-control" id="name" name="name" value="${name}" autocomplete="off">
-                                        <c:if test="${not empty nameError}">
-                                            <span id="nameError" style="color:red"><c:out value="${nameError}" /></span>
-                                        </c:if>
-                                    </div>                                    
+
+                                    </div>                                                                       
                                     <div class="form-group mb-0">
                                         <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
                                     </div>
@@ -283,7 +305,7 @@ productColor=${color.getColor()}&paramCheck=${paramColor}'"
                             <div class="d-flex align-items-center justify-content-center mb-1">
                                 <div class="rate-star-class">
                                     <c:if test="${itemNearLike.getTotalComment() ne 0}">
-                                        <c:set var="AVGRate1" value="${Math.ceil(itemNearLike.getTotalRate()/itemNearLike.getTotalComment())}"/>
+                                        <c:set var="AVGRate1" value="${Math.floor(itemNearLike.getTotalRate()/itemNearLike.getTotalComment())}"/>
                                         <c:set var="minValue" value="${AVGRate1 < 5 ? AVGRate1 : 5}" />
                                         <c:forEach begin="1" end="${minValue}">
                                             <small class="fa fa-star fasize checked"></small>  
@@ -310,14 +332,23 @@ productColor=${color.getColor()}&paramCheck=${paramColor}'"
 <!-- Products End -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script>
-function validateForm() {
-    var accSession = '<%= session.getAttribute("AccSession") %>';
-    if (accSession == null) {
-      alert("Bạn cần đăng nhập để thực hiện chức năng này!");
-      window.location.href = "signIn"; // chuyển hướng đến trang signIn
-      return false; // ngăn không cho submit form
-    }
-    return true; // cho phép submit form
-  }
+                                function validateForm() {
+
+                                // Get the input element by its ID
+                                var quantity = document.getElementById('Quantity');
+                                        // Get the minus button by its class
+                                        var btnMinus = document.querySelector('.btn-minus');
+                                        // Get the plus button by its class
+                                        var btnPlus = document.querySelector('.btn-plus');
+                                        // Decrement the value of the input element when the minus button is clicked
+                                        btnMinus.addEventListener('click', function () {
+                                        var currentValue = parseInt(quantity.value);
+                                                quantity.value = currentValue > 1 ? currentValue - 1 : 1;
+                                        });
+                                        // Increment the value of the input element when the plus button is clicked
+                                        btnPlus.addEventListener('click', function () {
+                                        var currentValue = parseInt(quantity.value);
+                                                quantity.value = currentValue + 1;
+                                        });
 </script>
 <%@include file="template/footer.jsp" %>

@@ -102,18 +102,19 @@
 
             <c:forEach var="brand" items="${List}">
                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                    <a class="text-decoration-none" href="">
-                        <div class="cat-item d-flex align-items-center mb-4 bg-white">
-                            <div class="overflow-hidden" style="width: 100px; height: 100px;">
-                                <img class="img-fluid rounded" src="img/${brand.picture}" alt="">
-                            </div>
-                            <div class="flex-fill pl-3">
+                    <a class="text-decoration-none" href="<c:url value="/filter">
+                           <c:param name="txtBrandName" value="${brand.brandName}"/></c:url>">
+                           <div class="cat-item d-flex align-items-center mb-4 bg-white">
+                               <div class="overflow-hidden" style="width: 100px; height: 100px;">
+                                   <img class="img-fluid rounded" src="img/${brand.picture}" alt="">
+                           </div>
+                           <div class="flex-fill pl-3">
 
-                                <h6>${brand.brandName}</h6>
-                                <small class="text-body">${brand.quantity} Products</small>
+                               <h6>${brand.brandName}</h6>
+                               <small class="text-body">${brand.quantity} Products</small>
 
-                            </div>
-                        </div>
+                           </div>
+                       </div>
                     </a>
                 </div>
             </c:forEach>
@@ -232,7 +233,9 @@
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">${product.productName}</a>
+                            <a class="h6 text-decoration-none text-truncate" href="<c:url value="/detail">
+                                   <c:param name="productID" value="${product.productID}" />
+                               </c:url>">">${product.productName}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <c:if test="${product.discount != 0}">
                                     <h5>$<fmt:formatNumber maxFractionDigits="0" value="${product.price *(1-product.discount)}"/></h5><h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="2" value="${product.price}"/></del></h6>
@@ -305,5 +308,5 @@
         </div>
     </div>
 </div>
-    <!-- Vendor End -->
-    <%@include file="template/footer.jsp" %>
+<!-- Vendor End -->
+<%@include file="template/footer.jsp" %>

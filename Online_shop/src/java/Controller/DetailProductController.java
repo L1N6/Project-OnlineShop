@@ -4,18 +4,27 @@
  */
 package Controller;
 
+import DAL.AccCusCom;
 import DAL.Account;
 import DAL.Home.Brands;
+import DAL.loginGoogle.GooglePojo;
 import DAL.shop.Comments;
 import DAL.shop.Product;
 import DAL.shop.ProductDetail;
+import DAO.ProductDetails;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DetailProductController extends HttpServlet {
 
@@ -92,24 +101,47 @@ public class DetailProductController extends HttpServlet {
             System.out.println("onclickSubmit: " + onclickSubmit);
             if (onclickSubmit == true) {
                 String message = req.getParameter("message");
-                String name = req.getParameter("name");
-                String number = req.getParameter("number");
-                Account accSession = (Account) req.getSession().getAttribute("AccSession");
-                if (accSession == null) {
-                    req.getRequestDispatcher("signIn.jsp").forward(req, resp);
-                }
-                if (message == null || message.isEmpty()) {
-                    req.setAttribute("messageError", "Please enter a message.");
-                }
-                if (name == null || name.isEmpty()) {
-                    req.setAttribute("nameError", "Please enter your name.");
-                }
-                // Set attribute values for error messages
-                req.setAttribute("message", message);
-                req.setAttribute("name", name);
+                String rating = req.getParameter("rating");
 
+                System.out.println("ALo ALo: " + message + " rating " + rating);
+                Account accSession = (Account) req.getSession().getAttribute("AccSession");
+                GooglePojo gg = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
+                System.out.println("GG Account: " + gg);
+                System.out.println("AccSession: " + accSession);
+                if (accSession == null && gg == null) {
+                    req.setAttribute("AccNull", "AccNull");
+                    req.getRequestDispatcher("signIn.jsp").forward(req, resp);
+                } else {
+                    if (message == null || message.isEmpty()) {
+                        req.setAttribute("messageError", "Please enter a message.");
+                    } else {
+                        int accountID = 0, status = 1;
+                        Calendar calendar = Calendar.getInstance();
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        String commentDate = dateFormat.format(calendar.getTime());
+                        String picture = null;
+                        if (accSession != null) {
+                            accountID = accSession.getAccountID();
+                        }
+                        if (gg != null) {
+                            accountID = gg.getAccountID();
+                        }
+                        ProductDetails commentDAO = new ProductDetails();
+                        try {
+                            commentDAO.insertComments(accountID, status, Integer.parseInt(rating), Integer.parseInt(IDProduct), commentDate, message, picture);
+                        } catch (SQLException ex) {
+                            Logger.getLogger(DetailProductController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
+                        req.setAttribute("successMessage", "Your comment has been added successfully.");
+                        // Set attribute values for error messages
+                        req.setAttribute("message", message);
+                    }
+                }
             }
-            System.out.println("ALO ALO1: ");
+            ArrayList<AccCusCom> accCusCom = new DAO.ProductDetails().listCommentOfAProduct(Integer.parseInt(IDProduct));
+            System.out.println(accCusCom.size());
+            req.setAttribute("accCusCom", accCusCom);
             //------------------------------------------------------------------
             req.setAttribute("check", "not empty check");
             req.setAttribute("nameProduct", nameProduct);
@@ -124,8 +156,16 @@ public class DetailProductController extends HttpServlet {
             req.setAttribute("spec", spec);
             req.setAttribute("mayAlsoYouLike", mayAlsoYouLike);
             req.setAttribute("rateProduct", rateProduct);
-            req.getRequestDispatcher("/detail.jsp").forward(req, resp);
             //----------------------------------------------------------------------
+            req.setAttribute("ID", IDProduct);
+            System.out.println(req.getParameter("numberQuantity"));
+            if (req.getParameter("numberQuantity") == null) {
+                req.setAttribute("Quanity", 1);
+            } else {
+                req.setAttribute("Quanity", req.getParameter("numberQuantity"));
+            }
+
+            req.getRequestDispatcher("detail.jsp").forward(req, resp);
         }
     }
 

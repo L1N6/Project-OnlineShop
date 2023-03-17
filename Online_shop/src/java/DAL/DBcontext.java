@@ -17,16 +17,17 @@ import java.util.logging.Logger;
  * @author LEGION
  */
 public class DBcontext {
+
     private Connection connection;
-    public DBcontext()
-    {
+
+    public DBcontext() {
         //@Students: You are allowed to edit user, pass, url variables to fit 
         //your system configuration
         //You can also add more methods for Database Interaction tasks. 
         //But we recommend you to do it in another class
         // For example : StudentDBContext extends DBContext , 
         //where StudentDBContext is located in dal package, 
-        
+
         try {
             String user = "sa";
             String pass = "123123";
@@ -41,8 +42,8 @@ public class DBcontext {
     public static void main(String[] args) {
        
     }
-    
-    public  void openConnection(){
+
+    public void openConnection() {
         try {
             DBcontext db = new DBcontext();
             connection = db.connection;
@@ -51,7 +52,7 @@ public class DBcontext {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public Connection getConnection() {
         return connection;
     }
@@ -59,25 +60,21 @@ public class DBcontext {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
-    public static void releaseJBDCObject(ResultSet rs,PreparedStatement ps,Connection conn){
+
+    public static void releaseJBDCObject(ResultSet rs, PreparedStatement ps, Connection conn) {
         try {
-            if(rs!= null) {
+            if (rs != null) {
                 rs.close();
             }
-            if(ps!=null) {
+            if (ps != null) {
                 ps.close();
             }
-            if(conn!=null) {
-                conn.close(); 
+            if (conn != null) {
+                conn.close();
             }
         } catch (SQLException e) {
-            Logger.getLogger(DBcontext.class.getName()).log(Level.ALL,e.toString(),e);
+            Logger.getLogger(DBcontext.class.getName()).log(Level.ALL, e.toString(), e);
         }
     }
-    
-    
-    
-
-
 
 }

@@ -25,14 +25,14 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getSession().getAttribute("CustomerInfor") != null) {
+        if (request.getSession().getAttribute("CustomerInfor") != null || request.getSession().getAttribute("GoogleAccount") != null) {
             CustomerAccount inforAccount = (CustomerAccount) request.getSession().getAttribute("CustomerInfor");
             request.setAttribute("customerAccount", inforAccount);
             request.getRequestDispatcher("Profile.jsp").forward(request, response);
         } else {
             response.sendRedirect("home");
         }
-
+        
     }
 
     /**

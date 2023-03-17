@@ -4,15 +4,23 @@
  */
 package DAO;
 
+import DAL.AccCusCom;
+import DAL.Account;
+import DAL.Customer;
 import DAL.Home.Brands;
 import DAL.DBcontext;
 import DAL.shop.Comments;
 import DAL.shop.Product;
 import DAL.shop.ProductDetail;
 import java.sql.Array;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -21,15 +29,11 @@ import java.util.ArrayList;
 public class ProductDetails extends DBcontext {
 
     public static void main(String[] args) {
-        Comments cmt = new DAO.ProductDetails().getRateByProductID(37);
-        ArrayList<ProductDetail> list = new DAO.ProductDetails().mayAlsoYouLike(38);
-        for (ProductDetail productDetail : list) {
-            System.out.println("AVG: " + productDetail.getTotalRate() + " " + productDetail.getTotalComment() + "ID: " + productDetail.getProductDetail());
-        }
-        System.out.println(cmt.getTotalComment() + " " + cmt.getTotalRate());
-        System.out.println("AVG: " + (double) cmt.getTotalRate() / cmt.getTotalComment());
-        System.out.println("AVG: " + Math.ceil(cmt.getTotalRate() / cmt.getTotalComment()));
 
+        ArrayList<AccCusCom> list = new DAO.ProductDetails().listCommentOfAProduct(4);
+        for (AccCusCom accCusCom : list) {
+            System.out.println(accCusCom.getCmt().getTime());
+        }
     }
 
     public ProductDetail getProductDetail(String idProduct) {
@@ -350,8 +354,71 @@ public class ProductDetails extends DBcontext {
         }
         return cmt;
     }
-    
+
     //REVIEW PART
     //Find AccountID BY Email
-    
+    public void insertComments(int accountID, int status, int rate, int productID, String time, String description, String picture) throws SQLException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = getConnection();
+            String sql = "INSERT INTO Comments(AccountID, Status, Rate, ProductID, Time, Description) VALUES (?, ?, ?, ?, ?, ?)";
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, accountID);
+            stmt.setInt(2, status);
+            stmt.setInt(3, rate);
+            stmt.setInt(4, productID);
+            stmt.setString(5, time);
+            stmt.setString(6, description);
+            stmt.setString(7, picture);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            // handle exception
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    //List comment about a product
+    public ArrayList<AccCusCom> listCommentOfAProduct(int productDetailID) {
+        ArrayList<AccCusCom> list = new ArrayList<>();
+        Account acc = new Account();
+        Customer cus = new Customer();
+        DAL.Comments cmts = new DAL.Comments();
+        try {
+            String sql = "SELECT c.Rate, c.Description, c.Picture, cus.ContactName, acc.Role, acc.CustomerID,c.Time FROM [Comments] c \n"
+                    + "INNER JOIN Accounts acc ON c.AccountID = acc.AccountID\n"
+                    + "INNER JOIN Customers cus ON acc.CustomerID = cus.CustomerID\n"
+                    + "WHERE ProductID = (SELECT ProductID FROM ProductDetails WHERE ProductDetailID = ?)\n"
+                    + "ORDER BY c.CommentID DESC;";
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setInt(1, productDetailID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int Rate = rs.getInt("Rate");
+                String Description = rs.getString("Description");
+                String ContactName = rs.getString("ContactName");
+                String CustomerID = rs.getString("CustomerID");
+                int Role = rs.getInt("Role");
+                Date Time = rs.getDate("Time");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yy", Locale.ENGLISH);
+                java.sql.Date sqlDate = new java.sql.Date(Time.getTime());
+                acc = new Account(Role);
+                cus = new Customer(CustomerID, ContactName);
+                cmts = new DAL.Comments(Rate, sqlDate, Description);
+                list.add(new AccCusCom(acc, cus, cmts));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

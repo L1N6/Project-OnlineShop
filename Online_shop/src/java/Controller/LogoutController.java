@@ -35,6 +35,9 @@ public class LogoutController extends HttpServlet {
             request.getSession().setAttribute("adminAccount",null);
             request.getSession().setAttribute("AccSession",null);
             request.getSession().setAttribute("CustomerInfor",null); 
+            request.getSession().removeAttribute("ProductCart");
+            request.getSession().removeAttribute("Subtotal");
+            request.getSession().removeAttribute("GoogleAccount");
             request.getRequestDispatcher("./index.jsp").forward(request, response);
         }
     } 

@@ -33,6 +33,8 @@ public class Comments {
         this.TotalComment = TotalComment;
     }
 
+    
+
     public int getTotalRate() {
         return TotalRate;
     }

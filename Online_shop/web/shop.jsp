@@ -9,6 +9,21 @@
     </c:redirect>
 </c:if>
 <!-- Shop Start -->
+<c:if test="${not empty OrderSuccessful}">
+    <div classs="container p-5">
+	<div class="row no-gutters">
+		<div class="col-lg-3 col-md-12 ml-auto">
+			<div class="alert alert-success fade show" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    	<span aria-hidden="True">&times;</span>
+			  	</button>
+			 	<h4 class="alert-heading">Order successful!</h4>
+			  	<p>Thanks for your support.</p>
+			</div>
+		</div>
+	</div>
+</div>
+</c:if>
 <div class="container-fluid">
     <div class="row px-xl-5">
         <!-- Shop Sidebar Start -->

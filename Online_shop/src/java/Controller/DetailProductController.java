@@ -29,7 +29,8 @@ public class DetailProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String IDProduct = req.getParameter("productID");
+        try {
+            String IDProduct = req.getParameter("productID");
         String productIDAjax = req.getParameter("productID");
         String storageProductAjax = req.getParameter("productStorage");
         String colorProductAjax = req.getParameter("productColor");
@@ -127,7 +128,7 @@ public class DetailProductController extends HttpServlet {
                         }
                         ProductDetails commentDAO = new ProductDetails();
                         try {
-                            commentDAO.insertComments(accountID, status, Integer.parseInt(rating), Integer.parseInt(IDProduct), commentDate, message, picture);
+                            commentDAO.insertComments(accountID, status, Integer.parseInt(rating), Integer.parseInt(IDProduct), commentDate, message);
                         } catch (SQLException ex) {
                             Logger.getLogger(DetailProductController.class.getName()).log(Level.SEVERE, null, ex);
                         }
@@ -165,6 +166,9 @@ public class DetailProductController extends HttpServlet {
             }
 
             req.getRequestDispatcher("detail.jsp").forward(req, resp);
+        }
+        } catch (Exception e) {
+            resp.sendRedirect("Error");
         }
     }
 

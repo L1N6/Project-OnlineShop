@@ -356,7 +356,7 @@ public class ProductDetails extends DBcontext {
 
     //REVIEW PART
     //Find AccountID BY Email
-    public void insertComments(int accountID, int status, int rate, int productID, String time, String description, String picture) throws SQLException {
+    public void insertComments(int accountID, int status, int rate, int productID, String time, String description) throws SQLException {
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -370,7 +370,6 @@ public class ProductDetails extends DBcontext {
             stmt.setInt(4, productID);
             stmt.setString(5, time);
             stmt.setString(6, description);
-            stmt.setString(7, picture);
 
             stmt.executeUpdate();
 

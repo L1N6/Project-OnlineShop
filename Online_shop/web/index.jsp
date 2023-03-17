@@ -279,8 +279,8 @@
                     <div class="bg-light p-4">
                         <img src="img/Apple.png" alt="">
                     </div>
-                    <div class="bg-light p-4">
-                        <img src="img/Oppo-Logo.png" alt="">
+                    <div class="bg-light p-4" >
+                        <img src="img/Oppo-Logo.png" alt="" style="border-radius: 5px">
                     </div>
                     <div class="bg-light p-4">
                         <img src="img/ss.jpg" alt="">
@@ -289,13 +289,13 @@
                         <img src="img/Xiaomi.png" alt="">
                     </div>
                     <div class="bg-light p-4">
-                        <img src="img/vivo.png" alt="">
+                        <img src="img/vivo.png" alt="" style="border-radius: 5px">
                     </div>
                     <div class="bg-light p-4">
                         <img src="img/mobell.png" alt="">
                     </div>
                     <div class="bg-light p-4">
-                        <img src="img/realme.png" alt="">
+                        <img src="img/realme.png" alt="" style="border-radius: 5px">
                     </div>
                     <div class="bg-light p-4">
                         <img src="img/itel.png" alt="">

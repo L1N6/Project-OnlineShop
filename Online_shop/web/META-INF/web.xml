@@ -4,6 +4,10 @@
         <servlet-name>Shop</servlet-name>
         <servlet-class>Controller.shop.ShopViewController</servlet-class>
     </servlet>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/Error</location>
+    </error-page>
     <servlet>
         <servlet-name>SearchingProducts</servlet-name>
         <servlet-class>Controller.shop.SearchingController</servlet-class>

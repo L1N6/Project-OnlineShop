@@ -35,6 +35,10 @@ public class Product {
         this.Picture = Picture;
     }
 
+    public Product(String Picture) {
+        this.Picture = Picture;
+    }
+
     
 
        

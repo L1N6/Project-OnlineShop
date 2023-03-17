@@ -29,10 +29,6 @@
         <servlet-class>Controller.DetailProductController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AjaxServlet</servlet-name>
-        <servlet-class>Controller.AjaxController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Cart</servlet-name>
         <servlet-class>Controller.Shopingcart.CartController</servlet-class>
     </servlet>
@@ -107,10 +103,6 @@
     <servlet-mapping>
         <servlet-name>DetailProductController</servlet-name>
         <url-pattern>/detail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AjaxServlet</servlet-name>
-        <url-pattern>/detailProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Cart</servlet-name>

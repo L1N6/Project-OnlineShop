@@ -36,6 +36,21 @@ public class Product {
         this.ProductName = ProductName;
         this.Picture = Picture;
     }
+
+    public Product(int ProductID, String ProductName, int BrandID, String Chip, int Ram, String Pin, String OperatingSystem, String PhoneScreen, String Picture, double Price) {
+        this.ProductID = ProductID;
+        this.ProductName = ProductName;
+        this.BrandID = BrandID;
+        this.Chip = Chip;
+        this.Ram = Ram;
+        this.Pin = Pin;
+        this.OperatingSystem = OperatingSystem;
+        this.PhoneScreen = PhoneScreen;
+        this.Picture = Picture;
+        this.Price = Price;
+    }
+    
+    
     
     public double getPrice() {
         return Price;

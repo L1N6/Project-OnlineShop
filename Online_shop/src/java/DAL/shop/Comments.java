@@ -18,6 +18,8 @@ public class Comments {
     private Date Time;
     private String Description;
     private String Picture;
+    private int TotalRate;
+    private int TotalComment;
 
     public Comments() {
     }
@@ -25,8 +27,30 @@ public class Comments {
     public Comments(int Rate) {
         this.Rate = Rate;
     }
-     
+
+    public Comments(int TotalRate, int TotalComment) {
+        this.TotalRate = TotalRate;
+        this.TotalComment = TotalComment;
+    }
+
     
+
+    public int getTotalRate() {
+        return TotalRate;
+    }
+
+    public void setTotalRate(int TotalRate) {
+        this.TotalRate = TotalRate;
+    }
+    
+    public int getTotalComment() {
+        return TotalComment;
+    }
+
+    public void setTotalComment(int TotalComment) {
+        this.TotalComment = TotalComment;
+    }
+     
     public int getCommentID() {
         return CommentID;
     }

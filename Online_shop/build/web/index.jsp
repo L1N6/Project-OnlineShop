@@ -133,12 +133,19 @@
                         <div class="product-img position-relative overflow-hidden ">
                             <img class="img-fluid w-100" src="img/${sale.picture}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${sale.productID}"/>
+                                   <c:param name="type" value="buyNow"/>
+                               </c:url>"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${sale.productID}"/>
+                               </c:url>"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4 ">
-                            <a class="h6 text-decoration-none text-truncate" href=""></a>
+                            <a class="h6 text-decoration-none text-truncate" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${sale.productID}"/>
+                               </c:url>">${sale.productName}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2 ">
 
                                 <h5>$<fmt:formatNumber maxFractionDigits="0" value="${sale.price *(1-sale.discount)}"/></h5><h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="2" value="${sale.price}"/></del></h6>
@@ -178,12 +185,18 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/${product.picture}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${product.productID}"/>
+                                   <c:param name="type" value="buyNow"/></c:url>"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${product.productID}"/>
+                               </c:url>"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="">${product.productName}</a>
+                            <a class="h6 text-decoration-none text-truncate" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${product.productID}"/>
+                               </c:url>">${product.productName}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <c:if test="${product.discount != 0}">
                                     <h5>$<fmt:formatNumber maxFractionDigits="0" value="${product.price *(1-product.discount)}"/></h5><h6 class="text-muted ml-2"><del>$<fmt:formatNumber maxFractionDigits="2" value="${product.price}"/></del></h6>
@@ -224,13 +237,17 @@
                         <div class="product-img position-relative overflow-hidden">
                             <img class="img-fluid w-100" src="img/${product.picture}" alt="">
                             <div class="product-action">
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${product.productID}"/>
+                                   <c:param name="type" value="buyNow"/></c:url>"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${product.productID}"/>
+                               </c:url>"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="text-center py-4">
-                            <a class="h6 text-decoration-none text-truncate" href="<c:url value="/detail">
-                                   <c:param name="productID" value="${product.productID}" />
+                            <a class="h6 text-decoration-none text-truncate" href="<c:url value="/SupportDetail">
+                                   <c:param name="ProductID" value="${product.productID}"/>
                                </c:url>">${product.productName}</a>
                             <div class="d-flex align-items-center justify-content-center mt-2">
                                 <c:if test="${product.discount != 0}">

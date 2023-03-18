@@ -52,6 +52,10 @@
         <servlet-name>GoogleLogin</servlet-name>
         <servlet-class>Controller.loginWithGoogleAccount.LoginGoogleAccountController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SupportDetail</servlet-name>
+        <servlet-class>Controller.ProductDetail.SupportShowDetailProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>GoogleLogin</servlet-name>
         <url-pattern>/googleAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SupportDetail</servlet-name>
+        <url-pattern>/SupportDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

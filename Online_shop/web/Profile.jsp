@@ -32,7 +32,6 @@
                                 <h5 class="my-3">${customerAccount.customer.getContactName()}</h5> 
                             </c:otherwise>
                         </c:choose>
-
                     </div>
                 </div>
 

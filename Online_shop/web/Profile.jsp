@@ -17,7 +17,13 @@
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3">${customerAccount.customer.getContactName()}</h5> 
-                                <button id="s5" class="btn btn-primary" onclick="update()">Update Profile</button>
+                                <c:if test="${check == null}">
+                                    <button id="s5" class="btn btn-primary" onclick="update()">Update Profile</button>
+                                </c:if>
+                                <c:if test="${check != null}">
+
+                                    <a href="./ProfileController?req=profile"> <button id="s5" class="btn btn-primary" >Profile </button></a>
+                                </c:if>
                                 <a href="./chagePass"> <button id="s5" class="btn btn-primary" >Change Password</button></a>
                             </c:when>
                             <c:otherwise>
@@ -26,13 +32,14 @@
                                 <h5 class="my-3">${customerAccount.customer.getContactName()}</h5> 
                             </c:otherwise>
                         </c:choose>
-                        
+
                     </div>
                 </div>
 
             </div>
             <c:if test="${check == null}">
                 <form id="updateUser" action="./UpdateProfile" method="post"></form>
+                <input type="text" form="updateUser" hidden name="pass"  value="${CustomerInfor.account.getPass()}"/>
                 <div class="col-lg-8">
                     <div class="card mb-4">
                         <div class="card-body">

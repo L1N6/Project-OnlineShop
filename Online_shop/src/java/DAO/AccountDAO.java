@@ -41,6 +41,7 @@ public class AccountDAO {
                 acc = new Account(AccountID, Email, pass, new Customer(CusID), EmpID, role);
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
         } finally {
 
         }
@@ -76,6 +77,7 @@ public class AccountDAO {
             }
             System.out.println(customer.toString());
             System.out.println(acc.toString());
+            System.out.println(customer.getCustomerID());
             PreparedStatement ps1 = connection.prepareStatement(sql1);
             PreparedStatement ps2 = connection.prepareStatement(sql2);
             ps1.setString(1, customer.getCustomerID());
@@ -149,5 +151,7 @@ public class AccountDAO {
         }
         return acc;
     }
+
+    
 
 }

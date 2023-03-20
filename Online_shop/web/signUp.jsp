@@ -13,6 +13,7 @@
         <div class="container">
             <div class="row gx-lg-5 align-items-center" >
                 <div class="col-lg-6 mb-5 mb-lg-0">
+                    <img src="img/thiet-ke-shop-dien-thoai-huy-dung-mobile.jpg" width="100%" height="676px">
                 </div>
 
                 <div class="col-lg-6 mb-5 mb-lg-0">

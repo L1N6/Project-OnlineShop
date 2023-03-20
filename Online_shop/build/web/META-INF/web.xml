@@ -17,10 +17,6 @@
         <servlet-class>Controller.shop.FilterController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Test</servlet-name>
-        <servlet-class>Controller.Test</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SendEmailServlet</servlet-name>
         <servlet-class>Controller_Contact.SendEmailServlet</servlet-class>
     </servlet>
@@ -56,6 +52,10 @@
         <servlet-name>SupportDetail</servlet-name>
         <servlet-class>Controller.ProductDetail.SupportShowDetailProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateOrder</servlet-name>
+        <servlet-class>Controller.UpdateOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>
@@ -67,10 +67,6 @@
     <servlet-mapping>
         <servlet-name>FilterProducts</servlet-name>
         <url-pattern>/filter</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Test</servlet-name>
-        <url-pattern>/test</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SendEmailServlet</servlet-name>
@@ -135,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>SupportDetail</servlet-name>
         <url-pattern>/SupportDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateOrder</servlet-name>
+        <url-pattern>/updateOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

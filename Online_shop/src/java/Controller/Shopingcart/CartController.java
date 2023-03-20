@@ -35,6 +35,7 @@ public class CartController extends HttpServlet {
         if (choice == null) {
             choice = "showCart";
         }
+        req.setAttribute("check","not empty");
         try {
             int productDetailID;
             if (req.getParameter("productDetailID") == null) {

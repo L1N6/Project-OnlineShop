@@ -7,6 +7,11 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %>
+<c:if test="${empty check}">
+    <c:redirect url="/shop">
+        <c:param name="choice" value="shop"/>
+    </c:redirect>
+</c:if>
 <!-- Breadcrumb Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">

@@ -11,7 +11,10 @@
     <c:out value="You should SIGN IN before comment!" />
   </div>
 </c:if>
-
+<c:if test="${not empty AccSession || not empty GoogleAccount}">
+    <c:redirect url="/home">
+    </c:redirect>
+</c:if>
 <section class="vh-100" style="background-color: #3e464d;">
   <div class="container py-4.5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">

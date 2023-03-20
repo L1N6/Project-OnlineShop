@@ -7,6 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %>
 <!-- Cart Start -->
+<c:if test="${empty check}">
+    <c:redirect url="/shop">
+        <c:param name="choice" value="shop"/>
+    </c:redirect>
+</c:if>
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">

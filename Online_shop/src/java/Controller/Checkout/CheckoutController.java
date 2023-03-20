@@ -32,6 +32,7 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            req.setAttribute("check","not empty");
             Account acc = (Account) req.getSession().getAttribute("AccSession");
             double totalPrice = 0;
             if (acc != null) {

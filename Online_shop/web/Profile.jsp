@@ -7,7 +7,6 @@
 <!-- Carousel Start --> 
 <section style="background-color: #eee;">
     <div class="container py-5">
-
         <div class="row">
             <div class="col-lg-4">
                 <div class="card mb-4">
@@ -158,6 +157,47 @@
                     </div>
 
                 </div>
+            </c:if>
+        </div>
+
+        <div class="col-lg-12 table-responsive mb-5">
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Order</span></h5>    
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead>
+                    <tr class="thead-dark border-1">
+                        <th>Order ID</th>
+                        <th>Products</th>
+                        <th>Date Creation</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <c:forEach items="${ProductCart}" var="gProduct">
+                    <tbody class="align-middle">
+                        <tr>
+                            <td class="align-middle">#</td>
+                            <td style="text-align: left; padding-left: 5%"><img src="img/${gProduct.picture}" alt="" style="width: 50px;">${gProduct.productName} - ${gProduct.color}</td>
+                            <td class="align-middle">Date</td>
+                            <td class="align-middle">
+                                <div class="quantity mx-auto" style="width: 100px;">
+                                    <input type="text" readonly class="form-control form-control-sm bg-secondary1 border-0 text-center"  value="${gProduct.quantity}">
+                                </div>
+                            </td>
+                            <td class="align-middle">$<fmt:formatNumber maxFractionDigits="0" value="${gProduct.quantity * gProduct.price}"/></td>
+                            <td class="align-middle">
+                                    <button class="btn btn-success" style="background-color: yellowgreen; border-color: yellowgreen " type="submit">Pending</button>
+                                    <button class="btn btn-success"  type="submit">Accepted</button>
+                                    <button class="btn btn-danger"  type="submit">Cancelled</button>
+                                    <text class="btn btn-danger" style="background-color: blue; border-color: blue">Done</text>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </c:forEach>
+            </table>
+            <c:if test="${empty ProductCart}">
+                <p>You have no order here. Please choose the product for order <a href="<c:url value="/shop"/>">Here!</a></p>
             </c:if>
         </div>
     </div>

@@ -132,7 +132,7 @@
                             <input  hidden name="type" value="Update" value="${employeeId.address} required><br>
                                     <input type="text" id="address" name="address" required><br>
                             <c:if test="${ type == 'Update'  }">
-                                <input hidden name="type" value="update">
+                                <input hidden name="typeP" value="update">
                                 <input hidden name="employeeID" value="${employeeId.employeeID}">
                                 <button class="btn btn-success"  type="submit">Update</button>
                             </c:if>

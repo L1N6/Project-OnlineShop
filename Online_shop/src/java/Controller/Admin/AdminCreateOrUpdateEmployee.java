@@ -39,7 +39,7 @@ public class AdminCreateOrUpdateEmployee extends HttpServlet {
         String birthDate = req.getParameter("birthdate");
         String address = req.getParameter("address");
         System.out.println(req.getParameter("type"));
-        if(req.getParameter("type").equals("Update")){
+        if(req.getParameter("typeP") != null ){
             String employeeId = req.getParameter("employeeID");
             new AdminDAO().UpdateEmployee(email, pass, firstName, birthDate, address, employeeId);
             resp.sendRedirect("employee?employeeID="+employeeId);

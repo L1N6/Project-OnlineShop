@@ -34,6 +34,7 @@ public class AdminManageEmployees extends HttpServlet{
         String status =  req.getParameter("status");
         if(status.equals("Baned")){
             status = "2";
+            req.getSession().removeAttribute("Employee");
         }else
         if(status.equals("Permission"))
         {

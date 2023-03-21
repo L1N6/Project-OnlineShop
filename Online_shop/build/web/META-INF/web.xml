@@ -305,7 +305,14 @@
         <servlet-name>UpdateEmployee</servlet-name>
         <url-pattern>/Admin/employeeUpdate</url-pattern>
     </servlet-mapping>
-    
+    <servlet>
+        <servlet-name>AdminDashBoard</servlet-name>
+        <servlet-class>Controller.Admin.AdminManageDashBoard</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminDashBoard</servlet-name>
+        <url-pattern>/Admin/dashboard</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

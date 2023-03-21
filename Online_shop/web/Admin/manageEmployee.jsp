@@ -65,7 +65,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="product">
+                    <a class="nav-link" href="dashboard">
                         <i class='fa fa-mobile'></i>
                         <span>Dashbord</span></a>
                 </li>
@@ -118,19 +118,14 @@
 
                         <div class="card shadow mb-4">
                             <div class="card-header py-3 d-flex justify-content-between">
-                                <div><h6 class="m-0 font-weight-bold text-primary">CUSTOMERS</h6></div>
+                                <div><h6 class="m-0 font-weight-bold text-primary">Employee</h6></div>
                                 <a type="button" href="employeeUpdate" class="btn btn-success">Add Employee</a>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <div class="form-group">
-                                            <label for="select-filter">Select Status: </label>
-                                            <select class="form-control" id="select-filter">
-                                                <option value="">All</option>
-                                                <option value="Active">Active</option>
-                                                <option value="Baned">Baned</option>
-                                            </select>
+                                         
                                             
                                         </div>
                                         <thead>
@@ -226,42 +221,7 @@
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <script>
-                                                        $(document).ready(function () {
-                                                            var table = $('#dataTable').DataTable({
-
-                                                            });
-
-                                                            var savedSearchValue = localStorage.getItem('searchValueEm');
-                                                            if (savedSearchValue !== null) {
-                                                                table.search(savedSearchValue).draw();
-                                                            }
-
-
-                                                            $('#dataTable_filter input').on('keyup', function () {
-                                                                var searchValue = $(this).val();
-                                                                if (searchValue === '') {
-                                                                    localStorage.removeItem('searchValueEm');
-                                                                } else {
-                                                                    localStorage.setItem('searchValueEm', searchValue);
-                                                                }
-                                                            });
-
-                                                            // Add event listener for the select filter
-                                                            $('#select-filter').on('change', function () {
-                                                                var filterValue = $(this).val();
-
-                                                                // Save the filter value in local storage
-                                                                localStorage.setItem('filterValueEm', filterValue);
-
-                                                                table.column(7).search(filterValue).draw();
-                                                            });
-                                                            var savedFilterValue = localStorage.getItem('filterValueEm');
-                                                            if (savedFilterValue !== null) {
-                                                                $('#select-filter').val(savedFilterValue);
-                                                                table.column(7).search(savedFilterValue).draw();
-                                                            }
-
-                                                        });
+                                  
                                                         function changeStatus(accountId, status) {
 
                                                             if (status === 1) {

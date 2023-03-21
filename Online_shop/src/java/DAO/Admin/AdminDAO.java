@@ -15,6 +15,7 @@ import DAL.Admin.CustomerOrder;
 import DAL.Admin.Employee;
 import DAL.Admin.HistoryProduct;
 import DAL.Admin.HistoryProductDetail;
+import DAL.Admin.MonthRevenue;
 import DAL.Admin.OrderDetail;
 import DAL.Admin.OrderHistory;
 
@@ -166,13 +167,13 @@ public class AdminDAO extends DBcontext {
     public void changeStatusCustomer(String id, String status, String sql) {
 
         try {
+            System.out.println("DoThanh" + status);
             ps = getConnection().prepareStatement(sql);
-            System.out.println(status);
             ps.setString(1, status);
             ps.setString(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-
+            System.err.println(e);
         } finally {
             DBcontext.releaseJBDCObject(rs, ps, getConnection());
         }
@@ -1108,7 +1109,7 @@ public class AdminDAO extends DBcontext {
             ps.setString(5, pass);
 
             ps.executeUpdate();
-
+            System.err.println("Create");
         } catch (SQLException e) {
             System.out.println(e);
         } finally {
@@ -1117,7 +1118,7 @@ public class AdminDAO extends DBcontext {
 
     }
 
-    public void UpdateEmployee(String email, String pass, String firstName, String birthDate, String address,String employeeID
+    public void UpdateEmployee(String email, String pass, String firstName, String birthDate, String address, String employeeID
     ) {
         ArrayList<Employee> list = new ArrayList<>();
         Employee acc = new Employee();
@@ -1133,7 +1134,7 @@ public class AdminDAO extends DBcontext {
             ps.setString(5, email);
             ps.setString(6, pass);
             ps.setString(7, employeeID);
-           
+
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -1179,8 +1180,136 @@ public class AdminDAO extends DBcontext {
         return acc;
     }
 
+    public float getRevenueThisMonthOrdered() {
+        float revenue = 0;
+        try {
+            String sql = "SELECT CONVERT(varchar(7), a.ShippedDate, 120) AS Month,SUM(a.Price) as Earning \n"
+                    + "From (select a.ShippedDate,b.*,(c.UnitPrice*b.Quantity*(1-d.Discount)) as Price from Orders as a inner join OrderDetails as b on a.OrderID=b.OrderID\n"
+                    + "										  inner join ProductDetails as c on c.ProductDetailID = b.ProductDetailID\n"
+                    + "										  inner join Discounts as d on b.DiscountID=d.DiscountID\n"
+                    + ") as a\n"
+                    + "WHERE CONVERT(varchar(7), a.ShippedDate, 120) = (SELECT FORMAT(GETDATE(), 'yyyy-MM') AS CurrentMonthYear)\n"
+                    + "GROUP BY CONVERT(varchar(7), a.ShippedDate, 120);";
+            ps = getConnection().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                revenue = rs.getFloat("Earning");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        }
+        return revenue;
+    }
+
+    public ArrayList<MonthRevenue> getListRevenueOrdered() {
+        ArrayList<MonthRevenue> list = new ArrayList<>();
+        MonthRevenue m = new MonthRevenue();
+        try {
+            String sql = "SELECT CONVERT(varchar(7), a.ShippedDate, 120) AS Month,SUM(a.Price) as Earning \n"
+                    + "From (select a.ShippedDate,b.*,(c.UnitPrice*b.Quantity*(1-d.Discount)) as Price from Orders as a inner join OrderDetails as b on a.OrderID=b.OrderID\n"
+                    + "										  inner join ProductDetails as c on c.ProductDetailID = b.ProductDetailID\n"
+                    + "										  inner join Discounts as d on b.DiscountID=d.DiscountID\n"
+                    + ") as a\n"
+                    + "\n"
+                    + "GROUP BY CONVERT(varchar(7), a.ShippedDate, 120);";
+            ps = getConnection().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                String month = rs.getString("Month");
+                float revenue = rs.getFloat("Earning");
+                m = new MonthRevenue(revenue, month);
+                list.add(m);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        }
+        return list;
+    }
+
+    public float getRevenueThisMonthInOrder() {
+        float revenue = 0;
+        try {
+            String sql = "SELECT CONVERT(varchar(7), a.OrderDate, 120) AS Month,SUM(a.Price) as Earning \n"
+                    + "                    From (select  a.OrderDate,b.*,(c.UnitPrice*b.Quantity*(1-d.Discount)) as Price from Orders as a inner join OrderDetails as b on a.OrderID=b.OrderID\n"
+                    + "                   									  inner join ProductDetails as c on c.ProductDetailID = b.ProductDetailID\n"
+                    + "                   									  inner join Discounts as d on b.DiscountID=d.DiscountID\n"
+                    + "                    ) as a\n"
+                    + " WHERE CONVERT(varchar(7), a.OrderDate, 120) = (SELECT FORMAT(GETDATE(), 'yyyy-MM') AS CurrentMonthYear)\n"
+                    + " GROUP BY CONVERT(varchar(7), a.OrderDate, 120);";
+            ps = getConnection().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                revenue = rs.getFloat("Earning");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        }
+        return revenue;
+    }
+
+    public int getAmountOrderThisMonth() {
+        int revenue = 0;
+        try {
+            String sql = "SELECT CONVERT(varchar(7), a.OrderDate, 120) AS Month,Sum(OrderID) as [Order] \n"
+                    + "From (select a.OrderDate,b.*,(c.UnitPrice*b.Quantity*(1-d.Discount)) as Price from Orders as a inner join OrderDetails as b on a.OrderID=b.OrderID\n"
+                    + "										  inner join ProductDetails as c on c.ProductDetailID = b.ProductDetailID\n"
+                    + "										  inner join Discounts as d on b.DiscountID=d.DiscountID\n"
+                    + ") as a\n"
+                    + "WHERE CONVERT(varchar(7), a.OrderDate, 120) = (SELECT FORMAT(GETDATE(), 'yyyy-MM') AS CurrentMonthYear)\n"
+                    + "GROUP BY CONVERT(varchar(7), a.OrderDate, 120);";
+            ps = getConnection().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                revenue = rs.getInt("Order");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        }
+        return revenue;
+    }
+
+    public int getAmountCustomerInShop() {
+        int revenue = 0;
+        try {
+            String sql = "select COunt(CustomerID) as a from Customers";
+            ps = getConnection().prepareStatement(sql);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                revenue = rs.getInt("a");
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        } finally {
+            DBcontext.releaseJBDCObject(rs, ps, getConnection());
+        }
+        return revenue;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new AdminDAO().getEmployeebyEmployeeId("5").getEmployeeID());
+        System.out.println(new AdminDAO().getAmountOrderThisMonth());
     }
 
 }

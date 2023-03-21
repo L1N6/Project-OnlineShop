@@ -51,6 +51,7 @@ public class CartController extends HttpServlet {
                 CouponCode = 0.1;
             }
             Account acc = (Account) req.getSession().getAttribute("AccSession");
+            System.out.println(acc.getAccountID() + "adkasjid");
             double totalPrice = 0;
             switch (choice) {
                 case "+":
@@ -367,6 +368,7 @@ public class CartController extends HttpServlet {
                             }
                         }
                         if (!exist) {
+                            System.out.println(accountID + " " + productDetailID);
                             new CartDAO().addCustomerProductCart(accountID, productDetailID);
                         }
                         listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);

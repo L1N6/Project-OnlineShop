@@ -11,6 +11,7 @@ import DAL.loginGoogle.GooglePojo;
 import DAL.shop.Comments;
 import DAL.shop.ProductDetail;
 import DAO.ProductDetails;
+import static com.sun.corba.se.impl.util.Utility.printStackTrace;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -81,7 +82,6 @@ public class DetailProductController extends HttpServlet {
 
             } else if ("color".equals(paramCheck)) {
                 ArrayList<ProductDetail> pdt = new DAO.ProductDetails().getListPictureByIDAndColor(productIDAjax, colorProductAjax);
-                System.out.println(pdt.size());
                 req.setAttribute("pdt", pdt);
             } else {
                 formattedNum = decimalFormat.format(price);
@@ -93,21 +93,15 @@ public class DetailProductController extends HttpServlet {
             //------------------------------------------------------------------
             //REVIEW PART
             String review = req.getParameter("review");
-            System.out.println("review: " + review);
             boolean onclickSubmit = false;
             if ("review".equals(review)) {
                 onclickSubmit = true;
             }
-            System.out.println("onclickSubmit: " + onclickSubmit);
             if (onclickSubmit == true) {
                 String message = req.getParameter("message");
                 String rating = req.getParameter("rating");
-
-                System.out.println("ALo ALo: " + message + " rating " + rating);
                 Account accSession = (Account) req.getSession().getAttribute("AccSession");
                 GooglePojo gg = (GooglePojo) req.getSession().getAttribute("GoogleAccount");
-                System.out.println("GG Account: " + gg);
-                System.out.println("AccSession: " + accSession);
                 if (accSession == null && gg == null) {
                     req.setAttribute("AccNull", "AccNull");
                     req.getRequestDispatcher("signIn.jsp").forward(req, resp);
@@ -140,7 +134,6 @@ public class DetailProductController extends HttpServlet {
                 }
             }
             ArrayList<AccCusCom> accCusCom = new DAO.ProductDetails().listCommentOfAProduct(Integer.parseInt(IDProduct));
-            System.out.println(accCusCom.size());
             req.setAttribute("accCusCom", accCusCom);
             //------------------------------------------------------------------
             req.setAttribute("check", "not empty check");
@@ -168,6 +161,7 @@ public class DetailProductController extends HttpServlet {
             req.getRequestDispatcher("detail.jsp").forward(req, resp);
         }
         } catch (Exception e) {
+            printStackTrace();
             resp.sendRedirect("Error");
         }
     }

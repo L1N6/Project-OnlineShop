@@ -85,7 +85,6 @@ public class ProductDetails extends DBcontext {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(product.getColor());
         return product;
     }
 
@@ -311,7 +310,6 @@ public class ProductDetails extends DBcontext {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(pd.toString());
         return pd;
     }
 

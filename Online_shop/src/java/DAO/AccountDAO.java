@@ -75,9 +75,6 @@ public class AccountDAO {
                 sql2 = "insert into Accounts(Email,Password,CustomerID,EmployeeID,Role, [Status]) values(?,?,?,NULL,2,1)";
                 fl = false;
             }
-            System.out.println(customer.toString());
-            System.out.println(acc.toString());
-            System.out.println(customer.getCustomerID());
             PreparedStatement ps1 = connection.prepareStatement(sql1);
             PreparedStatement ps2 = connection.prepareStatement(sql2);
             ps1.setString(1, customer.getCustomerID());

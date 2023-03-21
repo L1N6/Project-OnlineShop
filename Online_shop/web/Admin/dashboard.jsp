@@ -263,16 +263,7 @@
                     <input hidden type="number" id="Jan" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(1).revenue}"/>">
                     <input hidden type="text" id="Feb" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(2).revenue}"/>">
                     <input hidden type="text" id="Mar" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(3).revenue}"/>">
-                    <input hidden type="text" id="Apr" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(4).revenue}"/>">
-                    <input hidden type="text" id="May" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(5).revenue}"/>">
-                    <input hidden type="text" id="Jun" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(6).revenue}"/>">
-                    <input hidden type="text" id="Jul" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(7).revenue}"/>">
-                    <input hidden type="text" id="Aug" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(8).revenue}"/>">
-                    <input hidden type="text" id="Sep" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(9).revenue}"/>">
-                    <input hidden type="text" id="Oct" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(10).revenue}"/>">
-                    <input hidden type="text" id="Nov" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(11).revenue}"/>">
-                    <input hidden type="text" id="Dec" value="<fmt:formatNumber groupingUsed="false" maxFractionDigits="0" value="${list.get(12).revenue}"/>">
-
+                    
 
                 </form>
                 <!-- Footer -->
@@ -386,15 +377,7 @@
             var Jan = parseFloat(document.getElementById("Jan").value);
 
             var Mar = parseFloat(document.getElementById("Mar").value);
-            var Apr = parseFloat(document.getElementById("Apr").value);
-            var May = parseFloat(document.getElementById("May").value);
-            var Jun = parseFloat(document.getElementById("Jun").value);
-            var Jul = parseFloat(document.getElementById("Jul").value);
-            var Aug = parseFloat(document.getElementById("Aug").value);
-            var Sep = parseFloat(document.getElementById("Sep").value);
-            var Oct = parseFloat(document.getElementById("Oct").value);
-            var Nov = parseFloat(document.getElementById("Nov").value);
-            var Dec = parseFloat(document.getElementById("Dec").value);
+            
             var Feb = parseFloat(document.getElementById("Feb").value);
             var x = 1000;
             var myLineChart = new Chart(ctx, {
@@ -415,7 +398,7 @@
                             pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                             pointHitRadius: 10,
                             pointBorderWidth: 2,
-                            data: [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec],
+                            data: [Jan, Feb, Mar],
                         }],
                 },
                 options: {

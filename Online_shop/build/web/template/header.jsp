@@ -110,10 +110,6 @@
                         </a>
                     </div>
                     <div class="d-inline-flex align-items-center">
-                        <c:if test="${not empty adminAccount}">
-                            <li><a href="<c:url value="/Admin"><c:param name="req" value="listProduct"/></c:url>">Admin Manager</a></li>
-                            <li><a href="<c:url value="/home"><c:param name="req" value="remove"/></c:url>">SignOut</a></li>
-                            </c:if>
                         <div class="btn-group">
                             <button type="button" class="btn btn-sm btn-light dropdown-toggl bg-secondary font-weight-bold" style="border-radius: 5px"data-toggle="dropdown">My Account</button>
                             <div class="dropdown-menu dropdown-menu-right">

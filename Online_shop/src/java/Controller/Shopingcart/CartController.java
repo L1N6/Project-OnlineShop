@@ -45,7 +45,7 @@ public class CartController extends HttpServlet {
             }
             String code = req.getParameter("txtCouponCode");
             double CouponCode;
-            if (code == null) {
+            if (code == null || code.isEmpty()) {
                 CouponCode = 0;
             } else {
                 CouponCode = 0.1;

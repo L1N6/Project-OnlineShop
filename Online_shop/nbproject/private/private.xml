@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminProductDetails.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/shop/ProductDAO.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/Error.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/CustomerOrder/CustomerOrderDAO.java</file>
@@ -11,6 +12,8 @@
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/shop.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Shopingcart/CartController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Home/HomeController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Admin/TestController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminCreateProduct.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/HomeController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/UpdateOrder.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/checkout.jsp</file>
@@ -23,12 +26,17 @@
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/signUp.jsp</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/checkout/Order.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/forgotPass.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminManageCustomer.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Checkout/CheckoutController.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminManageOrder.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAO/GoogleAccount/GoogleAccountDAO.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/Profile.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/DAL/DBcontext.java</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/Admin/AdminManageProduct.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/SignInController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/src/java/Controller/shop/ShopViewController.java</file>
             <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/template/header.jsp</file>
+            <file>file:/D:/SPRING23/SWP391/Backup-Dev/Project-OnlineShop/Online_shop/web/cssError/style.css</file>
         </group>
     </open-files>
 </project-private>

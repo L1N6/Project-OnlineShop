@@ -230,7 +230,7 @@
                                     </c:url>" style="background-color: yellowgreen; border-color: yellowgreen " type="submit">View</a>
                                     <text class="btn btn-success"  type="submit">Accepted</text>
                                 </c:if>
-                                <c:if test="${cOrder.status == 2}">
+                                <c:if test="${cOrder.status == 4}">
                                     <a class="btn btn-success" href="<c:url value="/updateOrder">
                                            <c:param name="orderID" value="${cOrder.orderID}"/>
                                            <c:param name="type" value="view"/>

@@ -52,7 +52,7 @@ public class CustomerOrderDAO extends DBcontext {
     public void cancelCustomerOrder(int OrderID) {
         try {
             String sql = "UPDATE Orders\n"
-                    + "SET [Status] = 2\n"
+                    + "SET [Status] = 4\n"
                     + "WHERE OrderID = ?;";
             ps = getConnection().prepareCall(sql);
             ps.setInt(1, OrderID);

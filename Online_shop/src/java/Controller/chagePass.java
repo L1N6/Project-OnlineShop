@@ -26,6 +26,7 @@ public class chagePass extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("check", true);
+        request.setAttribute("checkPath", "not empty");
         request.getRequestDispatcher("Profile.jsp").forward(request, response);
     }
 

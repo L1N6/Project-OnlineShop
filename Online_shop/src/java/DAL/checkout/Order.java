@@ -24,7 +24,15 @@ public class Order {
     private String ShipRegion;
     private String PhoneNumber;
     private String ShipCountry;
-    private boolean Status;
+    private int Status;
+
+    public Order(int OrderID, Date OrderDate, String ShipAddress, String ShipCountry, int Status) {
+        this.OrderID = OrderID;
+        this.OrderDate = OrderDate;
+        this.ShipAddress = ShipAddress;
+        this.ShipCountry = ShipCountry;
+        this.Status = Status;
+    }
 
     public Order() {
     }
@@ -138,13 +146,14 @@ public class Order {
         this.ShipCountry = ShipCountry;
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return Status;
     }
 
-    public void setStatus(boolean Status) {
+    public void setStatus(int Status) {
         this.Status = Status;
     }
+
     
     
 }

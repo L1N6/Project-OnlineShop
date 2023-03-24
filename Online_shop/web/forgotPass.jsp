@@ -29,7 +29,7 @@
                                 </div>
                             </div>  
                             <div>
-                                <a class="form-check d-flex justify-content-end mb-4" href="./SignIn"> Sign Up</a>
+                                <a class="form-check d-flex justify-content-end mb-4" href="./SignIn"> Sign In</a>
                             </div>
 
 

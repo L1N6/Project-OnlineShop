@@ -7,13 +7,18 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="template/header.jsp" %>
+<c:if test="${empty check}">
+    <c:redirect url="/shop">
+        <c:param name="choice" value="shop"/>
+    </c:redirect>
+</c:if>
 <!-- Breadcrumb Start -->
 <div class="container-fluid">
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
                 <a class="breadcrumb-item text-dark" href="<c:url value="/home"/>">Home</a>
-                <a class="breadcrumb-item text-dark" href="<c:url value="/shop"/>">Shop</a>
+                <a class="breadcrumb-item text-dark" href="<c:url value="/cart"/>">Cart</a>
                 <span class="breadcrumb-item active">Checkout</span>
             </nav>
         </div>

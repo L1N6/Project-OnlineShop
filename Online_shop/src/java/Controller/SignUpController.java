@@ -52,15 +52,32 @@ public class SignUpController extends HttpServlet {
                 request.getRequestDispatcher("signUp.jsp").forward(request, response);
             } else {
                 // id = 3 chu cái dau Email và 2 chu cai dau FirstName ..... ContactName = txtFirstName + " " + txtLastName
-                Customer cus = new Customer(txtEmail.substring(0, 3) + txtFirstName.substring(0, 2), txtFirstName + " " + txtLastName);
+                Customer cus = new Customer(txtEmail.substring(0, 2) + txtFirstName.substring(0, 2), txtFirstName + " " + txtLastName);
                 cus.setAddress(txtAddress);
                 cus.setGender(gender);
+
+                String cust = cus.getCustomerID();
+                if (new CustomerDAO().getCustomerInfor(cust) != null) {
+                    do {
+                        try {
+                            int count = Integer.parseInt(cust.substring(cust.length() - 1, cust.length()));
+                            cust = cust.substring(0, cust.length() - 1) + "1";
+                        } catch (Exception e) {
+                            cust += "1";
+                        }
+                    } while (new CustomerDAO().getCustomerInfor(cust) != null);
+                    
+                }else{
+                     cust += "1";
+                }
+                cus.setCustomerID(cust);
                 Account acc = new Account(txtEmail, txtPass, cus, null);
 //                acc.set
                 if (acd.addAccount(cus, acc) != 0) {
 //                    SendMail.SendMailFunction(txtEmail, "tieu de", acc.toString());
                     request.getSession().setAttribute("AccSession", acc);
                     CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID().getCustomerID());
+                    inforAccount.getAccount().setPass(txtPass);
                     request.getSession().setAttribute("CustomerInfor", inforAccount);
                     SendMail.SendMailFunction(acc.getEmail(), "Welcome to us ", "<!DOCTYPE html>\n"
                             + "<html lang=\"en\">\n"
@@ -87,8 +104,7 @@ public class SignUpController extends HttpServlet {
                             + "</body>\n"
                             + "\n"
                             + "</html>");
-                    response.sendRedirect("home");
-
+                    response.sendRedirect("home"); 
                 } else {
                     request.setAttribute("txtFirstName", txtFirstName);
                     request.setAttribute("txtLastName", txtLastName);

@@ -50,6 +50,7 @@ public class UpdateProfile extends HttpServlet {
             customer.setAddress(address);
             new CustomerDAO().updateCustomer(customer);
             customerAccount = new CustomerDAO().getCustomerInfor(account.getCustomerID().getCustomerID());
+            customerAccount.getAccount().setPass(pass);
             request.getSession().setAttribute("CustomerInfor", customerAccount);
             response.sendRedirect("ProfileController?req=profile");
         } catch (SQLException ex) {

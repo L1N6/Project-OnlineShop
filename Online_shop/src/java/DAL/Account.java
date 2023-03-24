@@ -10,7 +10,6 @@ package DAL;
  */
 public class Account {
     private int AccountID;
-
     private String Email;
     private String Pass;
     private Customer CustomerID;

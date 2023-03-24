@@ -3,7 +3,7 @@
     Created on : Jan 28, 2023, 7:36:43 AM
     Author     : LEGION
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Footer Start -->
 <footer class="text-center text-lg-start bg-light text-muted">
@@ -65,16 +65,15 @@
             Products
           </h6>
           <p>
-            <a href="#!" class="text-reset">Home</a>
+              <a href="<c:url value="/home"/>" class="text-reset">Home</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Our Shop</a>
+            <a href="<c:url value="/shop">
+                    <c:param name="choice" value="showList" />
+                    </c:url>" class="text-reset">Our Shop</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Checkout</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Contact us</a>
+              <a href="<c:url value="/contact"/>" class="text-reset">Contact us</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -85,14 +84,16 @@
           <h6 class="text-uppercase fw-bold mb-4">
             Account
           </h6>
+          <c:if test="${not empty AccSession || not empty GoogleAccount}">
+              <p>
+                <a href="<c:url value="/ProfileController"><c:param name="req" value="profile"/></c:url>" class="text-reset">Profile</a>
+              </p>
+          </c:if>
           <p>
-            <a href="#!" class="text-reset">Profile</a>
+              <a href="<c:url value="=/cart"/>" class="text-reset">Cart</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Cart</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Checkout</a>
+            <a href="<c:url value="/checkout"/>" class="text-reset">Checkout</a>
           </p>
 <!--          <p>
             <a href="#!" class="text-reset">Help</a>

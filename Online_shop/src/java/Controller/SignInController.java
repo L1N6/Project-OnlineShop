@@ -40,19 +40,22 @@ public class SignInController extends HttpServlet {
                 req.setAttribute("msgPass", "Pass is required");
             }
             Account acc = new AccountDAO().getAccount(email, pass);
-            if (acc != null) { 
+            System.out.println(acc.getRole()+ "co cai l t");
+            if (acc != null) {
                 //Cap session cho account
                 req.setAttribute("check", "not empty");
                 if (acc.getRole() == 1) {
                     req.getSession().setAttribute("adminAccount", acc);
                 } else {
+                    CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID().getCustomerID());
+                    System.out.println(inforAccount.getAccount().getAccountID());
+                    acc = inforAccount.getAccount();
+                    acc.setPass(pass);
+                    inforAccount.setAccount(acc);
+                    req.getSession().setAttribute("CustomerInfor", inforAccount);
                     req.getSession().setAttribute("AccSession", acc);
+                    System.out.println(acc.getAccountID() + "nhu con c");
                 }
-                CustomerAccount inforAccount = new CustomerDAO().getCustomerInfor(acc.getCustomerID().getCustomerID());
-                acc = inforAccount.getAccount();
-                acc.setPass(pass);
-                inforAccount.setAccount(acc);
-                req.getSession().setAttribute("CustomerInfor", inforAccount);
                 //Dieu huong toi index.jsp
                 resp.sendRedirect("home");
             } else {

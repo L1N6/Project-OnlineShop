@@ -38,11 +38,11 @@ public class CustomerDAO {
         try {
             CustomerDAO customerDAO = new CustomerDAO();
             CustomerAccount customerAccount = customerDAO.getCustomerInfor("ABCDE");
-            System.out.println(customerAccount);
         } catch (Exception ex) {
         }
 
     }
+    
 
     public CustomerAccount getCustomerInfor(String CusID) {
         CustomerAccount customerAccount = null;
@@ -62,11 +62,11 @@ public class CustomerDAO {
                     + "      ,a.[Status]\n"
                     + "  FROM [Accounts] a JOIN Customers c ON a.CustomerID = c.CustomerID\n"
                     + "   where c.CustomerID = ?";
-            System.out.println(CusID);
             ps = connection.prepareStatement(sql);
             ps.setString(1, CusID);
             rs = ps.executeQuery();
             if (rs.next()) {
+                int AccountID = rs.getInt("AccountID");
                 String Email = rs.getString("Email");
                 String CompanyName = rs.getString("CompanyName");
                 String ContactName = rs.getString("ContactName");
@@ -75,11 +75,11 @@ public class CustomerDAO {
                 String CustomerID = rs.getString("CustomerID");
                 Customer customer = new Customer(CustomerID, CompanyName, ContactName, ContactTitle, Address, rs.getBoolean("Gender"));
                 Account acc = new Account();
+                acc.setAccountID(AccountID);
                 acc.setCustomerID(customer);
                 acc.setEmail(rs.getString("Email"));
                 acc.setEmployeeID(rs.getString("EmployeeID"));
                 customerAccount = new CustomerAccount(acc, customer);
-                System.out.println(customerAccount);
                 return customerAccount;
             }
         } catch (Exception e) {

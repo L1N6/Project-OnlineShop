@@ -6,7 +6,10 @@ package Controller;
 
 import DAL.Account;
 import DAL.CustomerAccount;
+import DAL.ListProductOrder;
+import DAL.checkout.Order;
 import DAO.AccountDAO;
+import DAO.CustomerOrder.CustomerOrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +17,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -25,9 +29,11 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("checkPath","not empty");
         if (request.getSession().getAttribute("CustomerInfor") != null || request.getSession().getAttribute("GoogleAccount") != null) {
             CustomerAccount inforAccount = (CustomerAccount) request.getSession().getAttribute("CustomerInfor");
-            request.setAttribute("customerAccount", inforAccount);
+            List<Order> showCustomerOrders = new CustomerOrderDAO().getAllCustomerOrders(inforAccount.getCustomer().getCustomerID());
+            request.getSession().setAttribute("CustomerOrder", showCustomerOrders);
             request.getRequestDispatcher("Profile.jsp").forward(request, response);
         } else {
             response.sendRedirect("home");

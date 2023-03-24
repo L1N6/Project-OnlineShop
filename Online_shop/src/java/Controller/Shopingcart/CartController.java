@@ -35,6 +35,7 @@ public class CartController extends HttpServlet {
         if (choice == null) {
             choice = "showCart";
         }
+        req.setAttribute("check","not empty");
         try {
             int productDetailID;
             if (req.getParameter("productDetailID") == null) {
@@ -44,12 +45,13 @@ public class CartController extends HttpServlet {
             }
             String code = req.getParameter("txtCouponCode");
             double CouponCode;
-            if (code == null) {
+            if (code == null || code.isEmpty()) {
                 CouponCode = 0;
             } else {
                 CouponCode = 0.1;
             }
             Account acc = (Account) req.getSession().getAttribute("AccSession");
+            System.out.println(acc.getAccountID() + "adkasjid");
             double totalPrice = 0;
             switch (choice) {
                 case "+":
@@ -366,6 +368,7 @@ public class CartController extends HttpServlet {
                             }
                         }
                         if (!exist) {
+                            System.out.println(accountID + " " + productDetailID);
                             new CartDAO().addCustomerProductCart(accountID, productDetailID);
                         }
                         listCustomerProductCarts = new CartDAO().getCustomerCart(accountID);

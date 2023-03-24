@@ -35,6 +35,31 @@ public class ProductDetails extends DBcontext {
         }
     }
 
+    public ProductDetail getProductDetailbysupporting(int ProductID){
+        ProductDetail product = new ProductDetail();
+        try {
+            String sql = "select top (1) * from  Products p inner join ProductDetails pd \n" +
+"on p.ProductID = pd.ProductID where p.ProductID = ?";
+            PreparedStatement ps = getConnection().prepareCall(sql);
+            ps.setInt(1, ProductID);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                String ProductName = rs.getString("ProductName");
+                int ProductDetail = rs.getInt("ProductDetailID");
+                int ProductStorage = rs.getInt("ProductStorage");
+                double UnitPrice = rs.getDouble("UnitPrice");
+                String Color = rs.getString("Coler");
+                int UnitsInStock = rs.getInt("UnitsInStock");
+                int UnitsOnOrder = rs.getInt("UnitsOnOrder");
+                String Picture = rs.getString("Picture");
+                product = new ProductDetail(ProductDetail, ProductStorage, UnitPrice, Color, UnitsInStock,
+                        UnitsOnOrder, ProductID, ProductName, Picture);
+            }
+        } catch (Exception e) {
+        }
+        return product;
+    }
+    
     public ProductDetail getProductDetail(String idProduct) {
         ProductDetail product = new ProductDetail();
         try {
@@ -60,7 +85,6 @@ public class ProductDetails extends DBcontext {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(product.getColor());
         return product;
     }
 
@@ -286,7 +310,6 @@ public class ProductDetails extends DBcontext {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(pd.toString());
         return pd;
     }
 

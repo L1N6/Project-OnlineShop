@@ -7,12 +7,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Section: Design Block -->
 <%@include file="template/header.jsp" %>
+<c:if test="${not empty AccSession || not empty GoogleAccount}">
+    <c:redirect url="/home">
+    </c:redirect>
+</c:if>
 <section class="" ">
     <!-- Jumbotron -->
     <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%); background-color: #3e464d;">
         <div class="container">
             <div class="row gx-lg-5 align-items-center" >
                 <div class="col-lg-6 mb-5 mb-lg-0">
+                    <img src="img/thiet-ke-shop-dien-thoai-huy-dung-mobile.jpg" width="100%" height="676px">
                 </div>
 
                 <div class="col-lg-6 mb-5 mb-lg-0">
